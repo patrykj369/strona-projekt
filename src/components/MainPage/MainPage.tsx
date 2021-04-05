@@ -9,16 +9,16 @@ const Wrapper = styled.section`
 
 const Content = styled.div`
     max-width: 1200px;
-    align-items: center;
+    align-item: center;
     display: flex;
 `;
 
 const MainPage: FC = () => {
     return (
         <Wrapper>
-            <TopBar/>
+            <TopBar />
             <Content>
-                <LeftMenu/>
+                <LeftMenu />
                 <div>content</div>
             </Content>
         </Wrapper>
