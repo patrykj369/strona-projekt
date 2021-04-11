@@ -1,6 +1,9 @@
 *, *::before, *::after{
     box-sizing: border-box;
 }
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: rgba(71, 69, 69, 0.459);
+}
 
 .container{
     margin-top: 5px;
@@ -42,12 +45,4 @@
     width: 26px;
     height: 26px;
     margin-right: 15px;
-}
-
-#customLabel{
-    font-size: 1.25rem;
-    margin-left: -20%;
-    color: rgba(71, 69, 69, 0.459);
-    position: absolute;
-    top: 25px;
 }

@@ -36,8 +36,7 @@ export const TopBar: FC = () => {
                     <ExpandedMenu/>
                 </div>
                 <InputWrapper className="item2">
-                    <CustomInput type="text" className="customInput" id="searchLegal" required/>
-                    <label id="customLabel" htmlFor="searchLegal">Search Legalcluster</label>
+                    <CustomInput type="text" className="customInput" id="searchLegal" placeholder="Search Legalcluster"/>
                     <CustomImg src="./media/icons/search.png" alt="" title="" className="inputImage" />
                 </InputWrapper>
                 <RightIcons className="item3">

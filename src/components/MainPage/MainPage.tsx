@@ -11,6 +11,7 @@ const Content = styled.div`
     max-width: 1200px;
     align-item: center;
     display: flex;
+    margin: auto;
 `;
 
 const MainPage: FC = () => {
@@ -19,7 +20,6 @@ const MainPage: FC = () => {
             <TopBar />
             <Content>
                 <LeftMenu />
-                <div>content</div>
             </Content>
         </Wrapper>
     );
