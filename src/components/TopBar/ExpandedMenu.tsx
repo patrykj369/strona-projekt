@@ -8,7 +8,6 @@ const Wrapper = styled.div`
     width: 240px;
     top: 60px;
     background: white;
-    // background: rgba(143, 143, 143, 0.5);
     z-index:1;
     font-family: sans-serif;
     box-shadow: 0 8px 5px -5px rgba(143, 143, 143, 0.171);
