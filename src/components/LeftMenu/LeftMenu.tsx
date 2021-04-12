@@ -9,12 +9,11 @@ import {fontSize} from '../../styledHelpers/FontSizes';
 
 const Wrapper3 = styled(Wrapper)`
     padding: 10px;
-
 `;
 
 const InnerWrapper2 = styled.div`
-    width: 18rem;
-    height: 20rem;
+    width: 290px;
+    height: 325px;
 `;
 
 const MyDiv1 = styled.div`
@@ -23,8 +22,8 @@ const MyDiv1 = styled.div`
     border:1px solid rgba(143, 143, 143, 0.171);
     border-radius: 8px;
     position: relative;
-    width: 18rem;
-    height: 20rem;
+    width: 290px;
+    height: 325px;
     border-bottom: 2px solid rgba(143, 143, 143, 0.171);
 `;
 
@@ -35,13 +34,13 @@ const MyImage = styled.img`
     margin-right: auto;
     border-radius: 50%;
     position: absolute;
-    top: 1.5rem;
+    top: 20px;
     left: 35%;
 `;
 
 const CustomParagraph= styled.p`
     font-family: sans-serif;
-    margin-top:13vh;
+    margin-top: 140px;
     margin-left: 65px;
     font-size: ${fontSize[20]};
     font-weight: 600;
@@ -52,8 +51,8 @@ const CustomParagraph= styled.p`
 const CustomParagraph2 = styled.p`
     font-family: sans-serif;
     white-space: nowrap;
-    margin-top: 2vh;
-    margin-bottom: 3vh;
+    margin-top: 20px;
+    margin-bottom: 30px;
     margin-left: 65px;
     font-size: ${fontSize[18]};
     color: rgba(143, 143, 143);
@@ -65,8 +64,6 @@ const CustomParagraph3 = styled.p`
     white-space: nowrap;
     font-size: ${fontSize[18]};
 `;
-
-
 
 const CustomImg = styled.img`
     position: absolute;
