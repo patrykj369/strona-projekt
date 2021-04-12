@@ -12,7 +12,6 @@ const Wrapper = styled.div`
     z-index:1;
     font-family: sans-serif;
     box-shadow: 0 8px 5px -5px rgba(143, 143, 143, 0.171);
-
     li{
         padding: 5px;
         margin-left: 14%;
