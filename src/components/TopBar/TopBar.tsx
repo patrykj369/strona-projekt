@@ -15,7 +15,7 @@ const Wrapper2 = styled(Wrapper)`
 
 const InnerWrapper = styled.div`
     width: 1200px;
-    backgroud: ${Colors.white};
+    background: ${Colors.white};
 `;
 
 const MenuWrapper = styled.div`
@@ -35,7 +35,6 @@ const LeftSide = styled.div`
         width: 26px;
         height: 26px;
         margin-top: 8px;
-        margin-right: -35px;
     };
 
     span{
@@ -43,7 +42,6 @@ const LeftSide = styled.div`
         grid-column: 2;
         font-size: ${fontSize[20]};
         margin-top: 15px;
-        margin-left: -20px;
     };
 
     .arrow{

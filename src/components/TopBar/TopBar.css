@@ -9,7 +9,7 @@
     margin-top: 5px;
     padding-bottom: 10px;
     display: grid;
-    grid-template-columns: 60px 1fr 2.5fr 1fr;
+    grid-template-columns: 60px 1.2fr 2.5fr 1fr;
     box-shadow: 0 8px 5px -5px rgba(143, 143, 143, 0.171);
 }
 
@@ -24,7 +24,7 @@
 .customInput{
     text-align: center;
     margin: 0 5px 0 0;
-    width: 95%;
+    width: 90%;
     height: 40px;
     position: relative;
     border:0.5px solid rgba(143, 143, 143, 0.171);
