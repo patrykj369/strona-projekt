@@ -24,7 +24,7 @@ const MenuWrapper = styled.div`
 
 const LeftSide = styled.div`
     display: grid;
-    grid-tempalte-column: 1fr 2fr 1fr;
+    grid-template-columns: 26px 1fr 1fr;
     text-align: center;
     *{
         box-sizing: border-box;
@@ -35,6 +35,7 @@ const LeftSide = styled.div`
         width: 26px;
         height: 26px;
         margin-top: 8px;
+        margin-left: 8px;
     };
 
     span{
@@ -49,7 +50,7 @@ const LeftSide = styled.div`
         margin-left: 80px;
         margin-top: 20px;
         width: 14px;
-        height:10px;
+        height: 10px;
     }
 
 `;
