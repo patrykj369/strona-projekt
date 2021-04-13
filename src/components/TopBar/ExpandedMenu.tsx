@@ -42,14 +42,14 @@ const Wrapper = styled.div`
         border-radius: 4px;
     }
 
-    div{
+    .logoutButton{
         margin-left:32%;
         font-size: ${fontSize[20]};
         margin-bottom: 8px;
         color: rgba(143, 143, 143);
     }
 
-    .imgDiv{
+    .imgLogout{
         width: 24px;
         height: 22px;
         margin-right: 15px;
@@ -67,6 +67,7 @@ export const ExpandedMenu: FC = () => {
                 <li><img src="./media/icons/people.png" alt="" className="imgLi"></img>People</li>
                 <li><img src="./media/icons/entities2.png" alt="" className="imgLi"></img>Entities</li>
                 <li><img src="./media/icons/administration.png" alt="" className="imgLi"></img>Administration</li>
+
                 <li className="specificLi">Workspaces</li>
                 <li><img src="./media/icons/entities.png" alt="" className="imgLi"></img>Client contract</li>
                 <li><img src="./media/icons/cog.png" alt="" className="imgLi"></img>Supplier contract</li>
@@ -74,13 +75,17 @@ export const ExpandedMenu: FC = () => {
                 <li><img src="./media/icons/network.png" alt="" className="imgLi"></img>Group Norms</li>
                 <li><img src="./media/icons/publications.png" alt="" className="imgLi"></img>Real estate contracts</li>
                 <hr></hr>
+
                 <li className="specificLi">Account</li>
-                <li>Name Surname</li>
+                <div>
+                    <li>Name Surname</li>
+                </div>
+
                 <li><img src="./media/icons/privacy.png" alt="" className="imgLi"></img>Privacy</li>
                 <li><img src="./media/icons/settings.png" alt="" className="imgLi"></img>Settings</li>
             </ul>
             <hr></hr>
-            <div><img src="./media/icons/logout.png" alt="" className="imgDiv"></img><span className="spanDiv">Logout</span></div>
+            <div className="logoutButton"><img src="./media/icons/logout.png" alt="" className="imgLogout"></img><span className="spanDiv">Logout</span></div>
         </Wrapper>
     );
 };
