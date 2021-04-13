@@ -1,19 +1,23 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
+import "./MainPage.css";
+
 import { TopBar } from '../TopBar/TopBar';
 import { LeftMenu } from '../LeftMenu/LeftMenu';
 
 
 
 const Wrapper = styled.section`
+
 `;
 
 const Content = styled.div`
     max-width: 1200px;
-    align-item: center;
+    align-items: center;
     display: flex;
     margin: auto;
+
 `;
 
 const MainPage: FC = () => {

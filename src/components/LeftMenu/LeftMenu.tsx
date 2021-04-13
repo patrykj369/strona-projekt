@@ -6,12 +6,15 @@ import "./LeftMenu.css";
 import { Wrapper } from '../../styledHelpers/Components';
 import { Colors } from '../../styledHelpers/Colors';
 import {fontSize} from '../../styledHelpers/FontSizes';
+import {LeftSite} from '../LeftSite/LeftSite';
 
 const Wrapper3 = styled(Wrapper)`
+    background: ${Colors.grey_hsla};
     padding: 10px;
 `;
 
 const InnerWrapper2 = styled.div`
+
     width: 290px;
     height: 325px;
 `;
@@ -85,8 +88,9 @@ export const LeftMenu: FC = () => {
                     <CustomParagraph3 className="customParagraph4">Your Publications</CustomParagraph3>
                     <div className="divCustom1"><CustomImg src="./media/icons/plus.png" className="customImageUser1"/></div>
                 </MyDiv1>
-
             </InnerWrapper2>
+
+            <LeftSite></LeftSite>
         </Wrapper3>
     );
 };

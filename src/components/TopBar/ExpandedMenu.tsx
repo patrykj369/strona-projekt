@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 
 import {fontSize} from '../../styledHelpers/FontSizes';
+import {Colors} from '../../styledHelpers/Colors';
 
 
 const Wrapper = styled.div`
@@ -12,6 +13,7 @@ const Wrapper = styled.div`
     background: white;
     z-index:1;
     font-family: sans-serif;
+    border-radius: 5px;
     box-shadow: 0 8px 5px -5px rgba(143, 143, 143, 0.171);
     li{
         padding: 5px;
@@ -40,6 +42,38 @@ const Wrapper = styled.div`
         margin-left: 5px;
         border: 1px solid rgba(143, 143, 143, 0.5);
         border-radius: 4px;
+    }
+
+    .userAccount{
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        grid-template-rows: 1fr;
+        height: 50px;
+    }
+
+    .avatarImg{
+        grid-column: 1;
+        grid-row: 1;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        margin-left: 5px;
+    }
+
+    .seeProfile{
+        grid-column: 2;
+        grid-row: 1;
+        color: ${Colors.blue};
+        font-size: ${fontSize[16]};
+        font-weight: 600;
+        margin-top: 25px;
+        margin-left: 12px;
+    }
+
+    .nameProfil{
+        grid-column: 2;
+        grid-row: 1;
+        margin-left: 12px;
     }
 
     .logoutButton{
@@ -77,8 +111,10 @@ export const ExpandedMenu: FC = () => {
                 <hr></hr>
 
                 <li className="specificLi">Account</li>
-                <div>
-                    <li>Name Surname</li>
+                <div className="userAccount">
+                    <img className="avatarImg" src="https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg" alt=""></img>
+                    <li className="nameProfil">Patryk Jabłoński</li>
+                    <li className="seeProfile">See profile</li>
                 </div>
 
                 <li><img src="./media/icons/privacy.png" alt="" className="imgLi"></img>Privacy</li>
