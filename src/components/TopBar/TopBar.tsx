@@ -10,7 +10,7 @@ import { ExpandedMenu } from './ExpandedMenu';
 import { fontSize } from '../../styledHelpers/FontSizes';
 
 const Wrapper2 = styled(Wrapper)`
-    padding: 10px;
+    padding: 0;
 `;
 
 const InnerWrapper = styled.div`
@@ -34,7 +34,7 @@ const LeftSide = styled.div`
         grid-column:1;
         width: 26px;
         height: 26px;
-        margin-top: 8px;
+        margin-top: 10px;
         margin-left: 8px;
     };
 
@@ -55,7 +55,9 @@ const LeftSide = styled.div`
 
 `;
 
-const RightIcons = styled.div``;
+const RightIcons = styled.div`
+    margin-left: 80px;
+`;
 
 const InputWrapper = styled.div``;
 
