@@ -5,6 +5,7 @@ import "./MainPage.css";
 
 import { TopBar } from '../TopBar/TopBar';
 import { LeftMenu } from '../LeftMenu/LeftMenu';
+import { Publications} from '../Publications/Publications';
 
 
 
@@ -27,6 +28,7 @@ const MainPage: FC = () => {
             <TopBar />
             <Content>
                 <LeftMenu />
+                <Publications/>
             </Content>
         </Wrapper>
 
