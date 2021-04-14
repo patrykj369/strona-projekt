@@ -2,6 +2,8 @@ import React, {FC} from 'react';
 import styled from 'styled-components';
 
 import {Wrapper} from  '../../styledHelpers/Components';
+import {fontSize} from '../../styledHelpers/FontSizes';
+import {Colors} from '../../styledHelpers/Colors';
 
 const WrapperPublications = styled(Wrapper)`
     position: relative;
@@ -21,20 +23,64 @@ const ContentPublications = styled.div`
     box-shadow: 0 8px 5px -5px rgba(143, 143, 143, 0.171);
 
     .importantInfo{
+        display: grid;
+        grid-template-rows: 65% 20% 15%;
         grid-column: 1;
+
         background:
         linear-gradient(rgba(150, 174, 219, 0.6), rgba(11, 75, 194, 0.4)),
         url("../media/towers.jpg") center;
+
         background-size: 430px 440px;
         border-radius: 10px 0 0 10px;
+
+        font-family: sans-serif;
+
+        span{
+            grid-row: 2;
+            margin: 10px 20px 0 20px;
+            color: ${Colors.white};
+            font-size: ${fontSize[20]};
+            line-height: 25px;
+        }
+
+
+
+        .info{
+            margin-top: -30px;
+            grid-row: 3;
+            display: flex;
+            align-items: center;
+            color:${Colors.dirty_white};
+            margin-left: 20px;
+            font-size: ${fontSize[14]};
+            img{
+                margin-left: 10px;
+                margin-right: 10px;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+        }
+        }
     }
+
+
 `;
 
 export const Publications: FC = () => {
     return(
         <WrapperPublications>
             <ContentPublications>
-                <div className="importantInfo"></div>
+                <div className="importantInfo">
+                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit and one more line for demo</span>
+
+                    <div className="info">
+                    <p className="tekscior">7 jan. 2020</p>
+                    <img src="https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg" alt=""></img>
+                    <p className="tekscior">Patryk Jabłoński</p>
+                    </div>
+
+                </div>
                 <div className="otherInfos"></div>
             </ContentPublications>
 
