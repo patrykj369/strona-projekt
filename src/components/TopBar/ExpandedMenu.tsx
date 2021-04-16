@@ -7,6 +7,7 @@ import {Colors} from '../../styledHelpers/Colors';
 
 
 const Wrapper = styled.div`
+    cursor: pointer;
     position: absolute;
     width: 270px;
     top: 60px;

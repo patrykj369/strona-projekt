@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import {Wrapper} from  '../../styledHelpers/Components';
 import {fontSize} from '../../styledHelpers/FontSizes';
 import {Colors} from '../../styledHelpers/Colors';
+import {LatestPublication} from './LatestPublication';
 
 const WrapperPublications = styled(Wrapper)`
     position: relative;
@@ -21,6 +22,15 @@ const ContentPublications = styled.div`
     border-radius: 10px;
     position: absolute;
     box-shadow: 0 8px 5px -5px rgba(143, 143, 143, 0.171);
+
+    h2{
+
+        font-size: ${fontSize[20]};
+        font-weight: 600;
+        color: ${Colors.navy_blue};
+        font-family: sans-serif;
+        margin: 15px 0 5px 20px;
+    }
 
     .importantInfo{
         display: grid;
@@ -55,13 +65,29 @@ const ContentPublications = styled.div`
             margin-left: 20px;
             font-size: ${fontSize[14]};
             img{
-                margin-left: 10px;
-                margin-right: 10px;
+                margin: 0 10px 0 10px;
                 border-radius: 50%;
                 width: 30px;
                 height: 30px;
         }
         }
+    }
+
+    LatestPublication{
+        grid-column: 2;
+    }
+
+    .btn{
+        margin-top: 5px;
+        margin-left: 15px;
+        background: #fff;
+        border: none;
+        outline: none; //usuwa czarny border wokol buttona(domyslne dzialanie przegladarki)
+        cursor: pointer;
+        color: ${Colors.navy_blue};
+        font-size: ${fontSize[20]};
+        font-weight: 600;
+
     }
 
 
@@ -81,9 +107,17 @@ export const Publications: FC = () => {
                     </div>
 
                 </div>
-                <div className="otherInfos"></div>
-            </ContentPublications>
 
+                <div>
+                <h2>Latest publications</h2>
+
+                <LatestPublication></LatestPublication>
+                <LatestPublication></LatestPublication>
+                <LatestPublication></LatestPublication>
+                <button type="button" className="btn">See more publications</button>
+                </div>
+
+            </ContentPublications>
         </WrapperPublications>
     );
 };

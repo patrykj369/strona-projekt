@@ -23,6 +23,7 @@ const MenuWrapper = styled.div`
 `;
 
 const LeftSide = styled.div`
+    cursor: pointer;
     display: grid;
     grid-template-columns: 26px 1fr 1fr;
     text-align: center;
