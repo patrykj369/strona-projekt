@@ -84,10 +84,8 @@ const ContentPublications = styled.div`
         border: none;
         outline: none; //usuwa czarny border wokol buttona(domyslne dzialanie przegladarki)
         cursor: pointer;
-        color: ${Colors.navy_blue};
+        color: ${Colors.blue};
         font-size: ${fontSize[20]};
-        font-weight: 600;
-
     }
 
 
