@@ -38,13 +38,40 @@ const WorkspacesWrapper = styled(Wrapper)`
     .btn-left{
         left:-45px;
         top: 110px;
+        background-image:url('./media/icons/angle-left-solid.svg');
+        background-position: center;
+        background-size: 40px 40px;
+        animation: sliderLeft 2s ease infinite;
+    }
+
+    .btn-left:hover{
+        animation: none;
     }
 
     .btn-right{
         right: -45px;
         top: 110px;
+        background-image:url('./media/icons/angle-right-solid.svg');
+        background-position: center;
+        background-size: 40px 40px;
+        animation: sliderRight 2s ease infinite;
     }
 
+    .btn-right:hover{
+        animation: none;
+    }
+
+    @keyframes sliderLeft{
+        50%{
+            left: -55px;
+        }
+    }
+
+    @keyframes sliderRight{
+        50%{
+            right: -55px;
+        }
+    }
 `;
 
 const WorkspacesContent = styled.div`
@@ -54,6 +81,7 @@ const WorkspacesContent = styled.div`
     display: flex;
     flex-direction: row;
     //background: ${Colors.grey_hsla};
+    scroll-behavior: smooth;
 
     ::-webkit-scrollbar{
         width: 0;
@@ -67,12 +95,14 @@ const WorkspacesContent = styled.div`
 export const Workspaces: FC = () => {
     return (
         <WorkspacesWrapper>
-            <input type="button" className="btn btn-left"></input>
-            <input type="button" className="btn btn-right"></input>
+            <input type="button" className="btn btn-left" onClick={() => scrollWin(-200, 0) }>
+
+            </input>
+            <input type="button" className="btn btn-right" onClick={() =>scrollWin(200, 0)}></input>
             <h2>Workspaces</h2>
 
             <div className="scrollBar">
-                <WorkspacesContent>
+                <WorkspacesContent id="workspaces">
                     <SingleComponent/>
                     <SingleComponent/>
                     <SingleComponent/>
@@ -84,4 +114,9 @@ export const Workspaces: FC = () => {
 
         </WorkspacesWrapper>
     );
+}
+
+function scrollWin(x: number, y: number): void {
+    var element = document.getElementById("workspaces");
+    element?.scrollBy(x, y);
 }
