@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     cursor: pointer;
     position: absolute;
     width: 270px;
-    top: 60px;
+    top: 55px;
     background: white;
     z-index:1;
     font-family: sans-serif;
