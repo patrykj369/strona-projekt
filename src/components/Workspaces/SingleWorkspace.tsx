@@ -82,7 +82,7 @@ const SingleComponentContent = styled.div`
     }
     .cardUsers{
         margin-top: 12px;
-        margin-left: 5px;
+        margin-left: 12px;
         grid-column:2;
         grid-row:2;
         color: ${Colors.text_color};
