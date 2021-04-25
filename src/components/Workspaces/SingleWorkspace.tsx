@@ -4,6 +4,13 @@ import { Colors } from '../../styledHelpers/Colors';
 import { Wrapper } from '../../styledHelpers/Components';
 import { fontSize } from '../../styledHelpers/FontSizes';
 
+import {
+    // BrowserRouter as Router,
+    // Switch,
+    // Route,
+    // Link
+  } from "react-router-dom";
+
 
 const SingleComponentWrapper = styled(Wrapper)`
     padding: 0;
