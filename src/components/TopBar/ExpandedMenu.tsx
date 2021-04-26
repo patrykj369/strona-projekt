@@ -80,6 +80,11 @@ const Wrapper = styled.div`
         margin-top: 25px;
         margin-left: 12px;
     }
+    .seeProfileLink{
+        color: ${Colors.blue};
+        font-size: ${fontSize[16]};
+        text-decoration: none;
+    }
 
     .nameProfil{
         grid-column: 2;
@@ -98,6 +103,11 @@ const Wrapper = styled.div`
         width: 24px;
         height: 22px;
         margin-right: 15px;
+    }
+    .linksForLogout{
+        color: rgb(143, 143, 143);
+        font-size: ${fontSize[20]};
+        text-decoration: none;
     }
 `;
 
@@ -154,14 +164,16 @@ export const ExpandedMenu: FC = () => {
                 <div className="userAccount">
                     <img className="avatarImg" src="https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg" alt=""></img>
                     <li className="nameProfil">Patryk Jabłoński</li>
-                    <li className="seeProfile">See profile</li>
+                    <li className="seeProfile"><Link to="/profile" className="seeProfileLink">See profile</Link></li>
                 </div>
 
-                <li><img src="./media/icons/privacy.png" alt="" className="imgLi"></img>Privacy</li>
-                <li><img src="./media/icons/settings.png" alt="" className="imgLi"></img>Settings</li>
+                <Link to="/privacy" className="linksForSites"><li><img src="./media/icons/privacy.png" alt="" className="imgLi"></img>Privacy</li></Link>
+                <Link to="/settings" className="linksForSites"><li><img src="./media/icons/settings.png" alt="" className="imgLi"></img>Settings</li></Link>
             </ul>
             <hr></hr>
-            <div className="logoutButton"><img src="./media/icons/logout.png" alt="" className="imgLogout"></img><span className="spanDiv">Logout</span></div>
+                <div className="logoutButton">
+                    <Link to="/logout" className="linksForLogout"><img src="./media/icons/logout.png" alt="" className="imgLogout"></img><span className="spanDiv">Logout</span></Link>
+                </div>
         </Wrapper>
     );
 };

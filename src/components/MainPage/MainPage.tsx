@@ -35,8 +35,47 @@ const MainPage: FC = () => {
             <Content>
                 <LeftMenu />
                 <Switch>
-                    <Route path="/test">
-                        <div>test</div>
+                    <Route path="/publications">
+                        <div>To są publications</div>
+                    </Route>
+                    <Route path="/people">
+                        <div>To są people</div>
+                    </Route>
+                    <Route path="/entities">
+                        <div>To są entities</div>
+                    </Route>
+                    <Route path="/administration">
+                        <div>To są administration</div>
+                    </Route>
+                    <Route path="/client_contract">
+                        <div>To są client contract</div>
+                    </Route>
+                    <Route path="/supplier_contract">
+                        <div>To są supplier contract</div>
+                    </Route>
+                    <Route path="/corporate">
+                        <div>To są corporate</div>
+                    </Route>
+                    <Route path="/group_norms">
+                        <div>To są group norms</div>
+                    </Route>
+                    <Route path="/real_estate_contracts">
+                        <div>To są real estate contracts</div>
+                    </Route>
+                    <Route path="/profile">
+                        <div>To jest profile</div>
+                    </Route>
+                    <Route path="/supplier_contract">
+                        <div>To są supplier_contract</div>
+                    </Route>
+                    <Route path="/settings">
+                        <div>To są settings</div>
+                    </Route>
+                    <Route path="/privacy">
+                        <div>To są privacy</div>
+                    </Route>
+                    <Route path="/logout">
+                        <div>To jest logout</div>
                     </Route>
 
                     <Route path="/">
