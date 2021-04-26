@@ -8,7 +8,12 @@ import { LeftMenu } from '../LeftMenu/LeftMenu';
 import { Publications} from '../Publications/Publications';
 import { Workspaces } from '../Workspaces/Workspaces';
 
-
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    //Link
+  } from "react-router-dom";
 
 const Wrapper = styled.section`
 
@@ -24,16 +29,25 @@ const Content = styled.div`
 
 const MainPage: FC = () => {
     return (
-
+    <Router>
         <Wrapper>
             <TopBar />
             <Content>
                 <LeftMenu />
-                <Publications/>
-                <Workspaces/>
+                <Switch>
+                    <Route path="/test">
+                        <div>test</div>
+                    </Route>
+
+                    <Route path="/">
+                        <Publications/>
+                        <Workspaces/>
+                    </Route>
+
+                </Switch>
             </Content>
         </Wrapper>
-
+    </Router>
     );
 };
 
