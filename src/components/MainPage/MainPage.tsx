@@ -7,6 +7,7 @@ import { TopBar } from '../TopBar/TopBar';
 import { LeftMenu } from '../LeftMenu/LeftMenu';
 import { Publications} from '../Publications/Publications';
 import { Workspaces } from '../Workspaces/Workspaces';
+import {ResumeWork} from '../ResumeWork/ResumeWork';
 
 import {
     BrowserRouter as Router,
@@ -93,6 +94,7 @@ const MainPage: FC = () => {
                     <Route path="/">
                         <Publications/>
                         <Workspaces/>
+                        <ResumeWork/>
                     </Route>
 
                 </Switch>
