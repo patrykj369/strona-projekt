@@ -77,6 +77,12 @@ const MainPage: FC = () => {
                     <Route path="/logout">
                         <div>To jest logout</div>
                     </Route>
+                    <Route path="/messages">
+                        <div>To jest messages</div>
+                    </Route>
+                    <Route path="/notifications">
+                        <div>To jest notifications</div>
+                    </Route>
 
                     <Route path="/">
                         <Publications/>

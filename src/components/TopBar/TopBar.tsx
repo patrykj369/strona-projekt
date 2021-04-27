@@ -2,12 +2,13 @@ import React, { FC } from 'react';
 import styled from 'styled-components';
 import useDropdown from 'react-dropdown-hook';
 
-import './TopBar.css';
+import './TopBar.scss';
 
 import { Wrapper } from '../../styledHelpers/Components';
 import { Colors } from '../../styledHelpers/Colors';
 import { ExpandedMenu } from './ExpandedMenu';
 import { fontSize } from '../../styledHelpers/FontSizes';
+import { Link } from 'react-router-dom';
 
 const Wrapper2 = styled(Wrapper)`
     padding: 0;
@@ -81,7 +82,7 @@ export const TopBar: FC = () => {
     return(
         <Wrapper2 className="wrapper">
             <InnerWrapper className="container">
-                <CustomImg src="./media/logo.png" className="logoImage"/>
+                <Link to="/"><CustomImg src="./media/logo.png" className="logoImage"/></Link>
 
                 <MenuWrapper className="item1" ref={wrapperRef}>
                     <LeftSide onClick={menuHandler}>
@@ -98,11 +99,23 @@ export const TopBar: FC = () => {
                     <CustomInput type="text" className="customInput" id="searchLegal" placeholder="Search Legalcluster"/>
                     <CustomImg src="./media/icons/search.png" alt="" title="" className="inputImage" />
                 </InputWrapper>
+
                 <RightIcons className="item3">
-                    <CustomImg src="./media/icons/house.png" className="customImage"/>
-                    <CustomImg src="./media/icons/comments.png" className="customImage"/>
-                    <CustomImg src="./media/icons/bell.png" className="customImage"/>
+                    <Link to="/">
+                        <CustomImg src="./media/icons/house.png" className="customImage"/>
+                    </Link>
+                    <Link to="/messages">
+                        <div className="divBoxNotification1"></div>
+                        <CustomImg src="./media/icons/comments.png" className="customImage"/>
+                        <div className="counterNotifications1"><p>3</p></div>
+                    </Link>
+                    <Link to="/notifications">
+                        <div className="divBoxNotification2"></div>
+                        <CustomImg src="./media/icons/bell.png" className="customImage"/>
+                        <div className="counterNotifications2"><p>3</p></div>
+                    </Link>
                 </RightIcons>
+
             </InnerWrapper>
         </Wrapper2>
     );
