@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import "./LeftMenu.css";
+import "./LeftMenu.scss";
 
 import { Wrapper } from '../../styledHelpers/Components';
 import { Colors } from '../../styledHelpers/Colors';
 import {fontSize} from '../../styledHelpers/FontSizes';
 import {LeftSite} from '../LeftSite/LeftSite';
+import { Link } from 'react-router-dom';
 
 const Wrapper3 = styled(Wrapper)`
     background: ${Colors.grey_hsla};
@@ -77,16 +78,31 @@ export const LeftMenu: FC = () => {
         <Wrapper3 className="wrapper">
             <InnerWrapper2 className="container">
                 <MyDiv1>
+
                     <MyImage src='https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' className="profileImage"></MyImage>
+
                     <CustomParagraph className="customParagraph">Patryk Jabłoński</CustomParagraph>
+
                     <CustomParagraph2 className="customParagraph2">Job title - Company </CustomParagraph2>
+
                     <hr></hr>
+
                     <CustomImg src="./media/icons/network.png" className="customImage1"/>
+
                     <CustomParagraph3 className="customParagraph3">Your network</CustomParagraph3>
-                    <div className="divCustom"><CustomImg src="./media/icons/user-plus.png" className="customImageUser"/></div>
+
+                    <Link to="/network">
+                        <div className="divCustom"><CustomImg src="./media/icons/user-plus.png" className="customImageUser"/></div>
+                    </Link>
+
                     <CustomImg src="./media/icons/publications.svg" className="customImage2"/>
+
                     <CustomParagraph3 className="customParagraph4">Your Publications</CustomParagraph3>
-                    <div className="divCustom1"><CustomImg src="./media/icons/plus.png" className="customImageUser1"/></div>
+
+                    <Link to="/publications">
+                        <div className="divCustom1"><CustomImg src="./media/icons/plus.png" className="customImageUser1"/></div>
+                    </Link>
+
                 </MyDiv1>
             </InnerWrapper2>
 

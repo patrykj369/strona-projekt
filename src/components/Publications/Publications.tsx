@@ -5,6 +5,7 @@ import {Wrapper} from  '../../styledHelpers/Components';
 import {fontSize} from '../../styledHelpers/FontSizes';
 import {Colors} from '../../styledHelpers/Colors';
 import {LatestPublication} from './LatestPublication';
+import { Link } from 'react-router-dom';
 
 const WrapperPublications = styled(Wrapper)`
     position: relative;
@@ -112,7 +113,7 @@ export const Publications: FC = () => {
                 <LatestPublication></LatestPublication>
                 <LatestPublication></LatestPublication>
                 <LatestPublication></LatestPublication>
-                <button type="button" className="btn">See more publications</button>
+                <Link to="/publications"><button type="button" className="btn">See more publications</button></Link>
                 </div>
 
             </ContentPublications>

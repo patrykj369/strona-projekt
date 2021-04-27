@@ -83,6 +83,12 @@ const MainPage: FC = () => {
                     <Route path="/notifications">
                         <div>To jest notifications</div>
                     </Route>
+                    <Route path="/network">
+                        <div>To jest network</div>
+                    </Route>
+                    <Route path="/ecosystem">
+                        <div>To jest ecosystem</div>
+                    </Route>
 
                     <Route path="/">
                         <Publications/>

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import {fontSize} from '../../styledHelpers/FontSizes';
 import { Wrapper } from '../../styledHelpers/Components';
+import { Link } from 'react-router-dom';
 
 const Wrapper4 = styled(Wrapper)`
     position: relative;
@@ -14,11 +15,19 @@ const WrapperSite = styled.div`
     top: 360px;
     left: -270px;
 
+    .links{
+        text-decoration: none;
+        font-size: ${fontSize[18]};
+        font-family: sans-serif;
+        color: #000;
+    }
+
     .imgLi{
         width: 24px;
         height: 22px;
         margin-right: 15px;
     }
+
 
     li{
         height: 22px;
@@ -33,9 +42,9 @@ export const LeftSite: FC = () => {
         <Wrapper4>
         <WrapperSite>
             <ul>
-                <li><img src="./media/icons/publications.svg" alt="" className="imgLi"></img>Publications</li>
-                <li><img src="./media/icons/ecosystem.svg" alt="" className="imgLi"></img>Ecosystem</li>
-                <li><img src="./media/icons/entities2.svg" alt="" className="imgLi"></img>Entities</li>
+                <Link to="/publications" className="links"><li><img src="./media/icons/publications.svg" alt="" className="imgLi"></img>Publications</li></Link>
+                <Link to="/ecosystem" className="links"><li><img src="./media/icons/ecosystem.svg" alt="" className="imgLi"></img>Ecosystem</li></Link>
+                <Link to="/entities" className="links"><li><img src="./media/icons/entities2.svg" alt="" className="imgLi"></img>Entities</li></Link>
             </ul>
         </WrapperSite>
         </Wrapper4>
