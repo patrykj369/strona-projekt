@@ -73,7 +73,10 @@ const CustomImg = styled.img`
     position: absolute;
 `;
 
-export const LeftMenu: FC = () => {
+
+
+export const LeftMenu: FC = (props) => {
+
     return (
         <Wrapper3 className="wrapper">
             <InnerWrapper2 className="container">
@@ -86,7 +89,6 @@ export const LeftMenu: FC = () => {
                     <CustomParagraph2 className="customParagraph2">Job title - Company </CustomParagraph2>
 
                     <hr></hr>
-
                     <CustomImg src="./media/icons/network.png" className="customImage1"/>
 
                     <CustomParagraph3 className="customParagraph3">Your network</CustomParagraph3>

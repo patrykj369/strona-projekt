@@ -20,6 +20,7 @@ hr{
     margin-top: 8px;
     margin-left: 12px;
 }
+
 .divCustom{
     margin-top: 10px;
     margin-left: 220px;
@@ -27,6 +28,11 @@ hr{
     width: 40px;
     border: 2px solid rgba(143, 143, 143, 0.6);;
     border-radius: 5px;
+    transition: background-color .5s;
+}
+
+.divCustom:hover{
+    background-color: #e7e6e6;
 }
 
 .customParagraph4{
@@ -52,4 +58,9 @@ hr{
     width: 40px;
     border: 2px solid rgba(143, 143, 143, 0.6);;
     border-radius: 5px;
+    transition: background-color .5s;
+}
+
+.divCustom1:hover{
+    background-color: #e7e6e6;
 }

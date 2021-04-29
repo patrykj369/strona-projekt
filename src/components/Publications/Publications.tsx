@@ -79,14 +79,22 @@ const ContentPublications = styled.div`
     }
 
     .btn{
-        margin-top: 5px;
+        margin-top: 0;
         margin-left: 15px;
+        height: 40px;
         background: #fff;
         border: none;
         outline: none; //usuwa czarny border wokol buttona(domyslne dzialanie przegladarki)
         cursor: pointer;
         color: ${Colors.blue};
         font-size: ${fontSize[20]};
+        transition: background-color .5s, border-radius .5s;
+    }
+
+    .btn:hover{
+        height:40px;
+        background: ${Colors.hover_color};
+        border-radius: 5px;
     }
 
 

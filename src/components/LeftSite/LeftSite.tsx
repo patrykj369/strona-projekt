@@ -30,11 +30,13 @@ const WrapperSite = styled.div`
 
 
     li{
-        height: 22px;
+        height: 30px;
+        width: 150px;
         margin-bottom: 20px;
         font-size: ${fontSize[18]};
         font-family: sans-serif;
     }
+
 `;
 
 export const LeftSite: FC = () => {
