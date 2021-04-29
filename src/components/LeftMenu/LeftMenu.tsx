@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import "./LeftMenu.scss";
@@ -75,7 +75,24 @@ const CustomImg = styled.img`
 
 
 
-export const LeftMenu: FC = (props) => {
+const LeftMenu: FC = () => {
+
+    const [name, setItem]= useState({});
+
+    const [company, setItemik]= useState({});
+
+    async function fetchData(){
+        const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
+        res
+        .json()
+        .then(res => setItem(res.name), res1 => setItemik(res1.company));
+    }
+
+    useEffect(()=>{
+        fetchData();
+    },[])
+
+    console.log(company);
 
     return (
         <Wrapper3 className="wrapper">
@@ -84,9 +101,9 @@ export const LeftMenu: FC = (props) => {
 
                     <MyImage src='https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' className="profileImage"></MyImage>
 
-                    <CustomParagraph className="customParagraph">Patryk Jabłoński</CustomParagraph>
+                    <CustomParagraph className="customParagraph">{JSON.stringify(name).slice(1,-1)}</CustomParagraph>
 
-                    <CustomParagraph2 className="customParagraph2">Job title - Company </CustomParagraph2>
+                    <CustomParagraph2 className="customParagraph2">{JSON.stringify(company).slice(1,-1)}</CustomParagraph2>
 
                     <hr></hr>
                     <CustomImg src="./media/icons/network.png" className="customImage1"/>
@@ -112,3 +129,5 @@ export const LeftMenu: FC = (props) => {
         </Wrapper3>
     );
 };
+
+export default LeftMenu;

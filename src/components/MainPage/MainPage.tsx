@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import "./MainPage.css";
 
 import { TopBar } from '../TopBar/TopBar';
-import {LeftMenu} from '../LeftMenu/LeftMenu';
+import LeftMenu from '../LeftMenu/LeftMenu';
 import { Publications} from '../Publications/Publications';
 import { Workspaces } from '../Workspaces/Workspaces';
 import {ResumeWork} from '../ResumeWork/ResumeWork';
