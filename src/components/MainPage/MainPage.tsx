@@ -26,6 +26,7 @@ const Content = styled.div`
     display: flex;
     margin: auto;
 
+
 `;
 
 const MainPage: FC = () => {

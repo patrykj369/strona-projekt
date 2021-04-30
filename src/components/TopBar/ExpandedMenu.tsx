@@ -24,6 +24,29 @@ const Wrapper = styled.div`
         overflow-y: scroll;
         overflow-x: hidden;
 
+        ::-webkit-scrollbar{
+            width: 8px;
+
+        }
+
+        ::-webkit-scrollbar-track{
+            background: none;
+
+        }
+
+        ::-webkit-scrollbar-thumb {
+
+            background: #b8b7b7;
+            height: 20px;
+            border-radius: 5px;
+        }
+
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #919090;
+        }
+
+
     }
 
     .linksForSites{
