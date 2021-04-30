@@ -81,14 +81,15 @@ const LeftMenu: FC = () => {
 
     const userID: number = 1;
 
-    const [users, setName]= useState<any>(null);
-    const [company, setCompany] = useState(null);
+    const [person, setPerson]= useState<any>(null);
+    const [company, setCompany] = useState<any>(null);
+    const [imageUrl, setImageUrl] = useState<any>(null);
 
     useEffect(() =>{
        async function getName() {
         const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
         const data = await response.json();
-        setName(data.name);
+        setPerson(data.name);
        }
 
        async function getCompany() {
@@ -97,8 +98,15 @@ const LeftMenu: FC = () => {
         setCompany(data.company.name);
        }
 
+       async function getUrl(){
+           const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`)
+           const data = await response.json();
+           setImageUrl(data.url);
+       }
+
        getName();
        getCompany();
+       getUrl();
     });
 
 
@@ -107,9 +115,9 @@ const LeftMenu: FC = () => {
             <InnerWrapper2 className="container">
                 <MyDiv1>
 
-                    <MyImage src='https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' className="profileImage"></MyImage>
+                    <MyImage src={imageUrl} className="profileImage"></MyImage>
 
-                    <CustomParagraph className="customParagraph">{JSON.stringify(users).slice(1,-1)}</CustomParagraph>
+                    <CustomParagraph className="customParagraph">{JSON.stringify(person).slice(1,-1)}</CustomParagraph>
 
 
                     {/* {JSON.stringify(name).slice(1,-1) */}
