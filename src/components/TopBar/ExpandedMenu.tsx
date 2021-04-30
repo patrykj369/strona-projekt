@@ -1,4 +1,4 @@
-import { FC, useState, ChangeEvent } from 'react';
+import { FC, useState, ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components';
 
 import {Link} from 'react-router-dom';
@@ -18,6 +18,13 @@ const Wrapper = styled.div`
     font-family: sans-serif;
     border-radius: 5px;
     box-shadow: 0 8px 5px -5px rgba(143, 143, 143, 0.171);
+
+    .overflowContainer{
+        height: 260px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+
+    }
 
     .linksForSites{
             text-decoration: none;
@@ -114,13 +121,38 @@ const Wrapper = styled.div`
 export const ExpandedMenu: FC = () => {
     const [inputText, setInputText] = useState<string>('');
 
+    const userID: number = 1;
+
+    const [person, setPerson]= useState<any>(null);
+    const [imageUrl, setImageUrl] = useState<any>(null);
+
+    useEffect(() =>{
+       async function getName() {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
+        const data = await response.json();
+        setPerson(data.name);
+       }
+
+       async function getUrl(){
+           const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`)
+           const data = await response.json();
+           setImageUrl(data.url);
+       }
+
+       getName();
+       getUrl();
+    });
+
     const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
         const text = e.target.value;
         setInputText(text);
     }
+
+
     return (
         <Wrapper>
             <ul>
+                <div className="overflowContainer">
                 <input type="text" placeholder="Filter..." value={inputText} onChange={inputHandler}></input>
                 <li className="specificLi">Platform</li>
 
@@ -157,13 +189,13 @@ export const ExpandedMenu: FC = () => {
                 {'Real estate contracts'.toLowerCase().includes(inputText.toLowerCase()) &&
                    <Link to="/real_estate_contracts" className="linksForSites"><li><img src="./media/icons/publications.png" alt="" className="imgLi"></img>Real estate contracts</li></Link>
                 }
-
+                </div>
                 <hr></hr>
 
                 <li className="specificLi">Account</li>
                 <div className="userAccount">
-                    <img className="avatarImg" src="https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg" alt=""></img>
-                    <li className="nameProfil">Patryk Jabłoński</li>
+                    <img className="avatarImg" src={JSON.stringify(imageUrl).slice(1,-1)} alt=""></img>
+                    <li className="nameProfil">{JSON.stringify(person).slice(1,-1)}</li>
                     <li className="seeProfile"><Link to="/profile" className="seeProfileLink">See profile</Link></li>
                 </div>
 
