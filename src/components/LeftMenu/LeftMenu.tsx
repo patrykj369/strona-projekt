@@ -45,7 +45,8 @@ const MyImage = styled.img`
 const CustomParagraph= styled.p`
     font-family: sans-serif;
     margin-top: 140px;
-    margin-left: 65px;
+    /* margin-left: 65px; */
+    text-align: center;
     font-size: ${fontSize[20]};
     font-weight: 600;
     color: ${Colors.blue};
@@ -57,7 +58,8 @@ const CustomParagraph2 = styled.p`
     white-space: nowrap;
     margin-top: 20px;
     margin-bottom: 30px;
-    margin-left: 65px;
+    /* margin-left: 65px; */
+    text-align: center;
     font-size: ${fontSize[18]};
     color: rgba(143, 143, 143);
 `;
@@ -77,22 +79,28 @@ const CustomImg = styled.img`
 
 const LeftMenu: FC = () => {
 
-    const [name, setItem]= useState({});
+    const userID: number = 1;
 
-    const [company, setItemik]= useState({});
+    const [users, setName]= useState<any>(null);
+    const [company, setCompany] = useState(null);
 
-    async function fetchData(){
-        const res = await fetch('https://jsonplaceholder.typicode.com/users/1');
-        res
-        .json()
-        .then(res => setItem(res.name), res1 => setItemik(res1.company));
-    }
+    useEffect(() =>{
+       async function getName() {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
+        const data = await response.json();
+        setName(data.name);
+       }
 
-    useEffect(()=>{
-        fetchData();
-    },[])
+       async function getCompany() {
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
+        const data = await response.json();
+        setCompany(data.company.name);
+       }
 
-    console.log(company);
+       getName();
+       getCompany();
+    });
+
 
     return (
         <Wrapper3 className="wrapper">
@@ -101,8 +109,10 @@ const LeftMenu: FC = () => {
 
                     <MyImage src='https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' className="profileImage"></MyImage>
 
-                    <CustomParagraph className="customParagraph">{JSON.stringify(name).slice(1,-1)}</CustomParagraph>
+                    <CustomParagraph className="customParagraph">{JSON.stringify(users).slice(1,-1)}</CustomParagraph>
 
+
+                    {/* {JSON.stringify(name).slice(1,-1) */}
                     <CustomParagraph2 className="customParagraph2">{JSON.stringify(company).slice(1,-1)}</CustomParagraph2>
 
                     <hr></hr>
