@@ -119,8 +119,6 @@ const LeftMenu: FC = () => {
 
                     <CustomParagraph className="customParagraph">{JSON.stringify(person).slice(1,-1)}</CustomParagraph>
 
-
-                    {/* {JSON.stringify(name).slice(1,-1) */}
                     <CustomParagraph2 className="customParagraph2">{JSON.stringify(company).slice(1,-1)}</CustomParagraph2>
 
                     <hr></hr>

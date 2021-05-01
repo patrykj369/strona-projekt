@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import {Wrapper} from  '../../styledHelpers/Components';
@@ -38,9 +38,9 @@ const ContentPublications = styled.div`
         grid-template-rows: 65% 20% 15%;
         grid-column: 1;
 
-        background:
-        linear-gradient(rgba(150, 174, 219, 0.6), rgba(11, 75, 194, 0.4)),
-        url("../media/towers.jpg") center;
+        /* background:
+        linear-gradient(rgba(235, 238, 241, 0), rgba(235, 238, 241, 0.5)),
+        url("../media/towers.jpg") center; */
 
         background-size: 430px 440px;
         border-radius: 10px 0 0 10px;
@@ -62,7 +62,7 @@ const ContentPublications = styled.div`
             grid-row: 3;
             display: flex;
             align-items: center;
-            color:${Colors.dirty_white};
+            color:${Colors.white};
             margin-left: 20px;
             font-size: ${fontSize[14]};
             img{
@@ -101,16 +101,60 @@ const ContentPublications = styled.div`
 `;
 
 export const Publications: FC = () => {
+    const postID: number = 1;
+
+    const [title, setTitle] = useState<any>(null);
+    const [image, setImage ] = useState<any>(null);
+
+    const [userID, setUserID] = useState<any>(null);
+    const [userName, setUserName] = useState<any>(null);
+    // const [userImage, setUserImage] = useState<any>(null);
+
+    useEffect(()=>{
+
+        async function getTitle() {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postID}`);
+            const data = await response.json();
+            const title = JSON.stringify(data.title).slice(1,-1);
+            const titleFirstLetterUpper = title.charAt(0).toUpperCase() + title.slice(1);
+            setUserID(data.userId);
+            setTitle(titleFirstLetterUpper);
+        }
+
+        async function getImage(){
+            const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${postID}`);
+            const data = await response.json();
+            const url = JSON.stringify(data.url).slice(1,-1);
+            setImage(url);
+        }
+
+        async function getName() {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
+            const data = await response.json();
+            setUserName(data.name);
+           }
+
+           //DODAĆ CATCH DO OBŚŁUGI BŁĘDÓW
+
+        getTitle();
+        getImage();
+        getName();
+    });
+
     return(
         <WrapperPublications>
             <ContentPublications>
-                <div className="importantInfo">
-                    <span>Lorem ipsum dolor sit amet, consectetur adipiscing elit and one more line for demo</span>
+                <div className="importantInfo" style={{
+                    background: `linear-gradient(rgba(235, 238, 241, 0), #9b9999), url(${image}) center`,
+                    backgroundPosition: `center`,
+                    }}>
+
+                    <span>{title}</span>
 
                     <div className="info">
                     <p className="tekscior">7 jan. 2020</p>
                     <img src="https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg" alt=""></img>
-                    <p className="tekscior">Patryk Jabłoński</p>
+                    <p className="tekscior">{JSON.stringify(userName).slice(1,-1)}</p>
                     </div>
 
                 </div>
@@ -118,8 +162,6 @@ export const Publications: FC = () => {
                 <div>
                 <h2>Latest publications</h2>
 
-                <LatestPublication></LatestPublication>
-                <LatestPublication></LatestPublication>
                 <LatestPublication></LatestPublication>
                 <Link to="/publications"><button type="button" className="btn">See more publications</button></Link>
                 </div>

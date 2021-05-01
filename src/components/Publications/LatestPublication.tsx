@@ -87,7 +87,46 @@ export const LatestPublication: FC = () =>{
                         </div>
 
                     </div>
+                </div>
+                <div className="otherInfos">
 
+                    <div className="publications">
+                        <div className="publicationsFirst">
+                            <img src="https://media.istockphoto.com/photos/womans-hands-writing-on-sheet-in-a-clipboard-with-a-pen-isolated-on-picture-id653752914?k=6&m=653752914&s=170667a&w=0&h=zdwZq_u4Ykq_IksHsKshW33-ma-rGLkktFAkUh1pJNU=" alt=""></img>
+                            <div className="publicationsContent">
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit... and one more line for the demo </p>
+                            </div>
+
+                            <div className="publicationsDate">
+                                <p className="date">7 jan. 2020</p>
+                                <img src='https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' className="profileImage" alt=""></img>
+                                <p className="name">Patryk Jabłoński</p>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div className="otherInfos">
+
+                    <div className="publications">
+                        <div className="publicationsFirst">
+                            <img src="https://media.istockphoto.com/photos/womans-hands-writing-on-sheet-in-a-clipboard-with-a-pen-isolated-on-picture-id653752914?k=6&m=653752914&s=170667a&w=0&h=zdwZq_u4Ykq_IksHsKshW33-ma-rGLkktFAkUh1pJNU=" alt=""></img>
+                            <div className="publicationsContent">
+
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit... and one more line for the demo </p>
+                            </div>
+
+                            <div className="publicationsDate">
+                                <p className="date">7 jan. 2020</p>
+                                <img src='https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' className="profileImage" alt=""></img>
+                                <p className="name">Patryk Jabłoński</p>
+                            </div>
+
+                        </div>
+
+                    </div>
                 </div>
         </PublicationWrapper>
     );
