@@ -101,18 +101,18 @@ const ContentPublications = styled.div`
 `;
 
 export const Publications: FC = () => {
-    const postID: number = 1;
+    const postId: number = 1;
 
     const [title, setTitle] = useState<any>(null);
     const [image, setImage ] = useState<any>(null);
 
-    const [userID, setUserID] = useState<any>(null);
+    const [userId, setUserID] = useState<any>(null);
     const [userName, setUserName] = useState<any>(null);
     const [userImage, setUserImage] = useState<any>(null);
 
     useEffect(()=>{
 
-        async function getTitle() {
+        async function getTitle(postID: number) {
             const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postID}`);
             const data = await response.json();
             const title = JSON.stringify(data.title).slice(1,-1);
@@ -121,14 +121,14 @@ export const Publications: FC = () => {
             setTitle(titleFirstLetterUpper);
         }
 
-        async function getImage(){
+        async function getImage(postID: number){
             const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${postID}`);
             const data = await response.json();
             const url = JSON.stringify(data.url).slice(1,-1);
             setImage(url);
         }
 
-        async function getName() {
+        async function getName(userID: number) {
             const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
             const data = await response.json();
 
@@ -137,7 +137,7 @@ export const Publications: FC = () => {
            }
 
 
-        async function getUserImage(){
+        async function getUserImage(userID: number){
             const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`);
             const data = await response.json();
             if(data.url != null){
@@ -148,10 +148,10 @@ export const Publications: FC = () => {
 
            //DODAĆ CATCH DO OBsŁUGI BŁĘDÓW
 
-        getTitle();
-        getImage();
-        getName();
-        getUserImage();
+        getTitle(postId);
+        getImage(postId);
+        getName(userId);
+        getUserImage(userId);
     });
 
     return(
