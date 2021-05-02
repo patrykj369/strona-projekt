@@ -33,6 +33,10 @@ const SingleComponentContent = styled.div`
 
     position: relative;
 
+    :hover{
+        transition: transform .5s;
+        transform: scale(.98);
+    }
 
     .topCard{
         grid-row: 1;
