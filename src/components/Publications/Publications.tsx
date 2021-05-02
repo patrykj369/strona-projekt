@@ -108,7 +108,7 @@ export const Publications: FC = () => {
 
     const [userID, setUserID] = useState<any>(null);
     const [userName, setUserName] = useState<any>(null);
-    // const [userImage, setUserImage] = useState<any>(null);
+    const [userImage, setUserImage] = useState<any>(null);
 
     useEffect(()=>{
 
@@ -131,14 +131,27 @@ export const Publications: FC = () => {
         async function getName() {
             const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
             const data = await response.json();
+
+            if(data.name != null)
             setUserName(data.name);
            }
 
-           //DODAĆ CATCH DO OBŚŁUGI BŁĘDÓW
+
+        async function getUserImage(){
+            const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`);
+            const data = await response.json();
+            if(data.url != null){
+                let url = JSON.stringify(data.url).slice(1,-1);
+                setUserImage(url);
+            }
+        }
+
+           //DODAĆ CATCH DO OBsŁUGI BŁĘDÓW
 
         getTitle();
         getImage();
         getName();
+        getUserImage();
     });
 
     return(
@@ -153,7 +166,7 @@ export const Publications: FC = () => {
 
                     <div className="info">
                     <p className="tekscior">7 jan. 2020</p>
-                    <img src="https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg" alt=""></img>
+                    <img src={userImage} alt=""></img>
                     <p className="tekscior">{JSON.stringify(userName).slice(1,-1)}</p>
                     </div>
 
