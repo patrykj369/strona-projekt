@@ -103,12 +103,12 @@ const ContentPublications = styled.div`
 export const Publications: FC = () => {
     const postId: number = 1;
 
-    const [title, setTitle] = useState<any>(null);
-    const [image, setImage ] = useState<any>(null);
+    const [title, setTitle] = useState<any>(0);
+    const [image, setImage ] = useState<any>(0);
 
-    const [userId, setUserID] = useState<any>(null);
-    const [userName, setUserName] = useState<any>(null);
-    const [userImage, setUserImage] = useState<any>(null);
+    const [userId, setUserID] = useState<any>(0);
+    const [userName, setUserName] = useState<any>(0);
+    const [userImage, setUserImage] = useState<any>(0);
 
     useEffect(()=>{
 

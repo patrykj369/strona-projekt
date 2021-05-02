@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState, useEffect} from 'react';
 import styled from 'styled-components';
 
 
@@ -66,22 +66,70 @@ const PublicationWrapper = styled.div`
 
 
 export const LatestPublication: FC = () =>{
+    const postId: number = 2;
+
+    const [title, setTitle] = useState<any>([]);
+    const [image, setImage ] = useState<any>([]);
+
+    const [userId, setUserID] = useState<any>(null);
+    const [userName, setUserName] = useState<any>([]);
+    const [userImage, setUserImage] = useState<any>([]);
+
+    useEffect(()=>{
+
+        async function getInfo(postID: number) {
+            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postID}`);
+            const data = await response.json();
+            const title = JSON.stringify(data.title).slice(1,-1);
+            const titleFirstLetterUpper = title.charAt(0).toUpperCase() + title.slice(1);
+            setUserID(data.userId);
+
+            const responseUrl = await fetch(`https://jsonplaceholder.typicode.com/photos/${postID}`);
+            const dataUrl = await responseUrl.json();
+            const url = JSON.stringify(dataUrl.url).slice(1,-1);
+
+            const responseUser = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+            const dataUser = await responseUser.json();
+
+            const responseUrlIcon = await fetch(`https://jsonplaceholder.typicode.com/photos/${userId}`);
+            const dataUrlIcon = await responseUrlIcon.json();
+
+
+            setTitle((arr: any) => ([...arr, titleFirstLetterUpper]));
+            setImage((arr: any) => ([...arr, url]));
+
+            if(dataUser.name != null){
+                const userName = JSON.stringify(dataUser.name).slice(1,-1);
+                setUserName((arr: any) => ([...arr, userName]));
+            }
+
+            if(dataUrlIcon.url != null){
+                const urlIcon = JSON.stringify(dataUrlIcon.url).slice(1,-1);
+                setUserImage(urlIcon);
+            }
+        }
+
+        getInfo(postId);
+        getInfo(3);
+        getInfo(4);
+    });
+
     return(
         <PublicationWrapper>
                 <div className="otherInfos">
 
                     <div className="publications">
                         <div className="publicationsFirst">
-                            <img src="https://media.istockphoto.com/photos/womans-hands-writing-on-sheet-in-a-clipboard-with-a-pen-isolated-on-picture-id653752914?k=6&m=653752914&s=170667a&w=0&h=zdwZq_u4Ykq_IksHsKshW33-ma-rGLkktFAkUh1pJNU=" alt=""></img>
+                            <img src={image[0]} alt=""></img>
                             <div className="publicationsContent">
 
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit... and one more line for the demo </p>
+                                <p>{title[0]}</p>
                             </div>
 
                             <div className="publicationsDate">
-                                <p className="date">7 jan. 2020</p>
-                                <img src='https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' className="profileImage" alt=""></img>
-                                <p className="name">Patryk Jabłoński</p>
+                                <p className="date">27 feb. 2020</p>
+                                <img src={userImage} className="profileImage" alt=""></img>
+                                <p className="name">{userName[0]}</p>
                             </div>
 
                         </div>
@@ -92,16 +140,16 @@ export const LatestPublication: FC = () =>{
 
                     <div className="publications">
                         <div className="publicationsFirst">
-                            <img src="https://media.istockphoto.com/photos/womans-hands-writing-on-sheet-in-a-clipboard-with-a-pen-isolated-on-picture-id653752914?k=6&m=653752914&s=170667a&w=0&h=zdwZq_u4Ykq_IksHsKshW33-ma-rGLkktFAkUh1pJNU=" alt=""></img>
+                            <img src={image[1]} alt=""></img>
                             <div className="publicationsContent">
 
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit... and one more line for the demo </p>
+                                <p>{title[1]}</p>
                             </div>
 
                             <div className="publicationsDate">
-                                <p className="date">7 jan. 2020</p>
-                                <img src='https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' className="profileImage" alt=""></img>
-                                <p className="name">Patryk Jabłoński</p>
+                                <p className="date">15 nov. 2020</p>
+                                <img src={userImage} className="profileImage" alt=""></img>
+                                <p className="name">{userName[1]}</p>
                             </div>
 
                         </div>
@@ -112,16 +160,16 @@ export const LatestPublication: FC = () =>{
 
                     <div className="publications">
                         <div className="publicationsFirst">
-                            <img src="https://media.istockphoto.com/photos/womans-hands-writing-on-sheet-in-a-clipboard-with-a-pen-isolated-on-picture-id653752914?k=6&m=653752914&s=170667a&w=0&h=zdwZq_u4Ykq_IksHsKshW33-ma-rGLkktFAkUh1pJNU=" alt=""></img>
+                            <img src={image[2]} alt=""></img>
                             <div className="publicationsContent">
 
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit... and one more line for the demo </p>
+                                <p>{title[2]}</p>
                             </div>
 
                             <div className="publicationsDate">
-                                <p className="date">7 jan. 2020</p>
-                                <img src='https://preview.keenthemes.com/metronic-v4/theme/assets/pages/media/profile/profile_user.jpg' className="profileImage" alt=""></img>
-                                <p className="name">Patryk Jabłoński</p>
+                                <p className="date">26 dec. 2020</p>
+                                <img src={userImage} className="profileImage" alt=""></img>
+                                <p className="name">{userName[2]}</p>
                             </div>
 
                         </div>
