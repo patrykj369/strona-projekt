@@ -104,11 +104,6 @@ export const Workspaces: FC = () => {
             <div className="scrollBar">
                 <WorkspacesContent id="workspaces">
                     <SingleComponent/>
-                    <SingleComponent/>
-                    <SingleComponent/>
-                    <SingleComponent/>
-                    <SingleComponent/>
-                    <SingleComponent/>
                 </WorkspacesContent>
             </div>
 
