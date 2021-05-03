@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {fontSize} from '../../styledHelpers/FontSizes'
 import {Wrapper} from '../../styledHelpers/Components'
@@ -143,6 +143,19 @@ const PaginationBox = styled.div`
     }
 `;
 export const ResumeWork: FC = () => {
+
+    const apiURL = `https://jsonplaceholder.typicode.com/comments/`;
+    const [title, setTitle] = useState<any>([]);
+
+    useEffect(()=> {
+
+        fetch(apiURL)
+        .then(res=> res.json())
+        .then(data => setTitle(data))
+    }, [apiURL]);
+
+    console.log(title);
+
     return(
         <WrapperResumeWork>
 
@@ -156,8 +169,8 @@ export const ResumeWork: FC = () => {
                 <p>Followed</p>
                 <img src="./media/icons/arrow-down.svg" alt=""></img>
             </div>
-                <ResumeBox>
-                    <h3>World company SAS</h3>
+                {/* <ResumeBox>
+                    <h3>{title[0]}</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et hendrerit orci.
                         Donec vehicula justo ut nulla aliquet at tincidunt metus tristique
                     </p>
@@ -174,140 +187,28 @@ export const ResumeWork: FC = () => {
                         <p>Updated 3 days ago by John Doe</p>
                     </div>
                 </div>
-                </ResumeBox>
-                <ResumeBox>
-                <h3>World company SAS</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et hendrerit orci.
-                        Donec vehicula justo ut nulla aliquet at tincidunt metus tristique
-                    </p>
-                <div className="flowDiv">
-                    <div className="Subside">
-                        <img src="./media/icons/ecosystem.svg" alt=""></img>
-                        <p>Subsid. corp.</p>
-                    </div>
-                    <div className="Corp">
-                        <img src="./media/icons/entities2.svg" alt=""></img>
-                        <p>Corporate</p>
-                    </div>
-                    <div className="Updated">
-                        <p>Updated 3 days ago by John Doe</p>
-                    </div>
-                </div>
-                </ResumeBox>
-                <ResumeBox>
-                <h3>World company SAS</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et hendrerit orci.
-                        Donec vehicula justo ut nulla aliquet at tincidunt metus tristique
-                    </p>
-                <div className="flowDiv">
-                    <div className="Subside">
-                        <img src="./media/icons/ecosystem.svg" alt=""></img>
-                        <p>Subsid. corp.</p>
-                    </div>
-                    <div className="Corp">
-                        <img src="./media/icons/entities2.svg" alt=""></img>
-                        <p>Corporate</p>
-                    </div>
-                    <div className="Updated">
-                        <p>Updated 3 days ago by John Doe</p>
-                    </div>
-                </div>
-                </ResumeBox>
-                <ResumeBox>
-                <h3>World company SAS</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et hendrerit orci.
-                        Donec vehicula justo ut nulla aliquet at tincidunt metus tristique
-                    </p>
-                <div className="flowDiv">
-                    <div className="Subside">
-                        <img src="./media/icons/ecosystem.svg" alt=""></img>
-                        <p>Subsid. corp.</p>
-                    </div>
-                    <div className="Corp">
-                        <img src="./media/icons/entities2.svg" alt=""></img>
-                        <p>Corporate</p>
-                    </div>
-                    <div className="Updated">
-                        <p>Updated 3 days ago by John Doe</p>
-                    </div>
-                </div>
-                </ResumeBox>
-                <ResumeBox>
-                <h3>World company SAS</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et hendrerit orci.
-                        Donec vehicula justo ut nulla aliquet at tincidunt metus tristique
-                    </p>
-                <div className="flowDiv">
-                    <div className="Subside">
-                        <img src="./media/icons/ecosystem.svg" alt=""></img>
-                        <p>Subsid. corp.</p>
-                    </div>
-                    <div className="Corp">
-                        <img src="./media/icons/entities2.svg" alt=""></img>
-                        <p>Corporate</p>
-                    </div>
-                    <div className="Updated">
-                        <p>Updated 3 days ago by John Doe</p>
-                    </div>
-                </div>
-                </ResumeBox>
-                <ResumeBox>
-                <h3>World company SAS</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et hendrerit orci.
-                        Donec vehicula justo ut nulla aliquet at tincidunt metus tristique
-                    </p>
-                <div className="flowDiv">
-                    <div className="Subside">
-                        <img src="./media/icons/ecosystem.svg" alt=""></img>
-                        <p>Subsid. corp.</p>
-                    </div>
-                    <div className="Corp">
-                        <img src="./media/icons/entities2.svg" alt=""></img>
-                        <p>Corporate</p>
-                    </div>
-                    <div className="Updated">
-                        <p>Updated 3 days ago by John Doe</p>
-                    </div>
-                </div>
-                </ResumeBox>
-                <ResumeBox>
-                <h3>World company SAS</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et hendrerit orci.
-                        Donec vehicula justo ut nulla aliquet at tincidunt metus tristique
-                    </p>
-                <div className="flowDiv">
-                    <div className="Subside">
-                        <img src="./media/icons/ecosystem.svg" alt=""></img>
-                        <p>Subsid. corp.</p>
-                    </div>
-                    <div className="Corp">
-                        <img src="./media/icons/entities2.svg" alt=""></img>
-                        <p>Corporate</p>
-                    </div>
-                    <div className="Updated">
-                        <p>Updated 3 days ago by John Doe</p>
-                    </div>
-                </div>
-                </ResumeBox>
-                <ResumeBox>
-                <h3>World company SAS</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et hendrerit orci.
-                        Donec vehicula justo ut nulla aliquet at tincidunt metus tristique
-                    </p>
-                <div className="flowDiv">
-                    <div className="Subside">
-                        <img src="./media/icons/ecosystem.svg" alt=""></img>
-                        <p>Subsid. corp.</p>
-                    </div>
-                    <div className="Corp">
-                        <img src="./media/icons/entities2.svg" alt=""></img>
-                        <p>Corporate</p>
-                    </div>
-                    <div className="Updated">
-                        <p>Updated 3 days ago by John Doe</p>
-                    </div>
-                </div>
-                </ResumeBox>
+                </ResumeBox> */}
+                {
+                    title.map((us: any) =>(
+                        <ResumeBox key={us.id}>
+                            <h3>{us.name.charAt(0).toUpperCase()+us.name.slice(1)}</h3>
+                            <p>{us.body.charAt(0).toUpperCase()+us.body.slice(1)}</p>
+                            <div className="flowDiv">
+                                <div className="Subside">
+                                    <img src="./media/icons/ecosystem.svg" alt=""></img>
+                                    <p>Subsid. corp.</p>
+                                </div>
+                            <div className="Corp">
+                                <img src="./media/icons/entities2.svg" alt=""></img>
+                                <p>Corporate</p>
+                            </div>
+                            <div className="Updated">
+                                <p>Updated 3 days ago by John Doe</p>
+                            </div>
+                            </div>
+                        </ResumeBox>
+                ))};
+
 
                 <PaginationBox>
                     <p>Previous</p>

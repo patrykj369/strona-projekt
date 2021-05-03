@@ -78,7 +78,8 @@ export const LatestPublication: FC = () =>{
     useEffect(()=>{
 
         async function getInfo(postID: number) {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postID}`);
+            try {
+                const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postID}`);
             const data = await response.json();
             const title = JSON.stringify(data.title).slice(1,-1);
             const titleFirstLetterUpper = title.charAt(0).toUpperCase() + title.slice(1);
@@ -107,12 +108,16 @@ export const LatestPublication: FC = () =>{
                 const urlIcon = JSON.stringify(dataUrlIcon.url).slice(1,-1);
                 setUserImage(urlIcon);
             }
+            }catch(e){
+
+            }
+
         }
 
         getInfo(postId);
         getInfo(3);
         getInfo(4);
-    });
+    }, [userId]);
 
     return(
         <PublicationWrapper>
