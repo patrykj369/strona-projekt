@@ -169,7 +169,7 @@ export const ResumeWork: FC = () => {
         <WrapperResumeWork>
 
             <ResumeWorkContent>
-            <h2>Resume your work</h2>
+            <h2 id="resumeText">Resume your work</h2>
             <div className="searchInput">
                 <input type="text" placeholder="Filter by title..."></input>
                 <img src="./media/icons/search.svg" alt="" className="searchIcon"></img>
