@@ -8,6 +8,7 @@ const PaginationBox = styled.div`
     margin-top: 25px;
     margin-bottom: 60px;
     display: flex;
+
     .inActiveClass{
         //margin-right: 10px;
         text-transform: uppercase;
@@ -15,40 +16,35 @@ const PaginationBox = styled.div`
         color: ${Colors.blue};
         font-size: ${fontSize[18]};
         width: 40px;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding-top: 4px;
+        padding-bottom: 4px;
         text-align: center;
+        transition: background-color .5s;
     }
-    p:hover{
-        border: 1px solid ${Colors.pagination_color};
-        background-color:${Colors.pagination_color};
-        a{
+    a:hover{
+        background-color:${Colors.text_color};
+        padding-top: 4px;
+        padding-bottom: 4px;
+        p{
             color: ${Colors.white};
         }
     }
 
     a{
         text-decoration: none;
-        text-transform: uppercase;
-        font-family: sans-serif;
-        color: ${Colors.blue};
-        font-size: ${fontSize[18]};
-        width: 40px;
+
     }
 
     .activeClass{
         text-transform: uppercase;
         font-family: sans-serif;
-        //color: ${Colors.blue};
         font-size: ${fontSize[18]};
         width: 40px;
-        padding-top: 8px;
-        padding-bottom: 8px;
+        padding-top: 4px;
+        padding-bottom: 4px;
         text-align: center;
-
-        border: 1px solid ${Colors.pagination_color};
-        background-color:${Colors.pagination_color};
-        a{
+        background-color:${Colors.text_color};
+        p{
             color: ${Colors.white};
         }
     }
@@ -67,14 +63,6 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate}) =>{
         pageNumbers.push(i);
     }
 
-    // const changeStyles = () => (ev: Event) =>{
-    //     const tmp = document.getElementById((ev.target as Element).id);
-    //     console.log(tmp);
-    //     console.log("duuupa");
-    // }
-
-    //const [isActive, setActive] = useState(false);
-
 
     window.addEventListener('click', (event) => {
 
@@ -91,11 +79,10 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate}) =>{
     return (
         <PaginationBox id="paginationBoxik">
             {pageNumbers.map(number => (
-                <p key={number} id={number.toString()} className="inActiveClass">
+
                     <a  onClick={() => paginate(number)} id={number.toString()} href='!#' className="inActiveClass">
-                        {number}
+                        <p key={number} id={number.toString()} className="inActiveClass">{number} </p>
                     </a>
-                </p>
             ))}
         </PaginationBox>
     )
