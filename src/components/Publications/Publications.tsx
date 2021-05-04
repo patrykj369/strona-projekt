@@ -113,45 +113,68 @@ export const Publications: FC = () => {
     useEffect(()=>{
 
         async function getTitle(postID: number) {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postID}`);
-            const data = await response.json();
-            const title = JSON.stringify(data.title).slice(1,-1);
-            const titleFirstLetterUpper = title.charAt(0).toUpperCase() + title.slice(1);
-            setUserID(data.userId);
-            setTitle(titleFirstLetterUpper);
+            try{
+                const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postID}`);
+                const data = await response.json();
+                const title = JSON.stringify(data.title).slice(1,-1);
+                const titleFirstLetterUpper = title.charAt(0).toUpperCase() + title.slice(1);
+                setUserID(data.userId);
+                setTitle(titleFirstLetterUpper);
+            }catch(e){
+
+            }
+
         }
 
         async function getImage(postID: number){
-            const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${postID}`);
-            const data = await response.json();
-            const url = JSON.stringify(data.url).slice(1,-1);
-            setImage(url);
+            try{
+                const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${postID}`);
+                const data = await response.json();
+                const url = JSON.stringify(data.url).slice(1,-1);
+                setImage(url);
+            }catch(e){
+
+            }
+
         }
 
         async function getName(userID: number) {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
-            const data = await response.json();
+            try{
+                const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
+                const data = await response.json();
 
-            if(data.name != null)
-            setUserName(data.name);
+                if(data.name != null)
+                setUserName(data.name);
+            }catch(e){
+
+            }
+
            }
 
 
         async function getUserImage(userID: number){
-            const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`);
-            const data = await response.json();
-            if(data.url != null){
+            try{
+                const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`);
+                const data = await response.json();
+                if(data.url != null){
                 let url = JSON.stringify(data.url).slice(1,-1);
                 setUserImage(url);
             }
+            }catch(e){
+
+            }
+
         }
 
-           //DODAĆ CATCH DO OBsŁUGI BŁĘDÓW
+        try{
+            getTitle(postId);
+            getImage(postId);
+            getName(userId);
+            getUserImage(userId);
+        }catch(e){
 
-        getTitle(postId);
-        getImage(postId);
-        getName(userId);
-        getUserImage(userId);
+        }
+
     });
 
     return(

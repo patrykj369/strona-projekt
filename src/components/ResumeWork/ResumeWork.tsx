@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {fontSize} from '../../styledHelpers/FontSizes'
 import {Wrapper} from '../../styledHelpers/Components'
 import { Colors } from '../../styledHelpers/Colors';
+import { Pagination } from '../Pagination/Pagination';
 
 const WrapperResumeWork = styled(Wrapper)`
     position: relative;
@@ -129,32 +130,40 @@ const ResumeBox = styled.div`
     }
 `;
 
-const PaginationBox = styled.div`
-    justify-content: center;
-    margin-top: 15px;
-    margin-bottom: 60px;
-    display: flex;
-    p{
-        margin-right: 10px;
-        text-transform: uppercase;
-        font-family: sans-serif;
-        color: ${Colors.blue};
-        font-size: ${fontSize[18]};
-    }
-`;
+// const PaginationBox = styled.div`
+//     justify-content: center;
+//     margin-top: 15px;
+//     margin-bottom: 60px;
+//     display: flex;
+//     p{
+//         margin-right: 10px;
+//         text-transform: uppercase;
+//         font-family: sans-serif;
+//         color: ${Colors.blue};
+//         font-size: ${fontSize[18]};
+//     }
+// `;
 export const ResumeWork: FC = () => {
 
     const apiURL = `https://jsonplaceholder.typicode.com/comments/`;
-    const [title, setTitle] = useState<any>([]);
+    const [posts, setPosts] = useState<any>([]);
+    //const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(20);
 
     useEffect(()=> {
 
         fetch(apiURL)
         .then(res=> res.json())
-        .then(data => setTitle(data))
+        .then(data => setPosts(data));
+
     }, [apiURL]);
 
-    console.log(title);
+    const indexOfLastPost: number = currentPage * postsPerPage;
+    const indexOfFirstPost: number = indexOfLastPost - postsPerPage;
+    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+
+    const paginate = (pageNumber:number) => setCurrentPage(pageNumber)
 
     return(
         <WrapperResumeWork>
@@ -169,27 +178,8 @@ export const ResumeWork: FC = () => {
                 <p>Followed</p>
                 <img src="./media/icons/arrow-down.svg" alt=""></img>
             </div>
-                {/* <ResumeBox>
-                    <h3>{title[0]}</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque et hendrerit orci.
-                        Donec vehicula justo ut nulla aliquet at tincidunt metus tristique
-                    </p>
-                <div className="flowDiv">
-                    <div className="Subside">
-                        <img src="./media/icons/ecosystem.svg" alt=""></img>
-                        <p>Subsid. corp.</p>
-                    </div>
-                    <div className="Corp">
-                        <img src="./media/icons/entities2.svg" alt=""></img>
-                        <p>Corporate</p>
-                    </div>
-                    <div className="Updated">
-                        <p>Updated 3 days ago by John Doe</p>
-                    </div>
-                </div>
-                </ResumeBox> */}
                 {
-                    title.map((us: any) =>(
+                    currentPosts.map((us: any) =>(
                         <ResumeBox key={us.id}>
                             <h3>{us.name.charAt(0).toUpperCase()+us.name.slice(1)}</h3>
                             <p>{us.body.charAt(0).toUpperCase()+us.body.slice(1)}</p>
@@ -207,16 +197,9 @@ export const ResumeWork: FC = () => {
                             </div>
                             </div>
                         </ResumeBox>
-                ))};
+                ))}
 
-
-                <PaginationBox>
-                    <p>Previous</p>
-                    <p>01</p>
-                    <p>02</p>
-                    <p>03</p>
-                    <p>Next</p>
-                </PaginationBox>
+            <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}></Pagination>
 
             </ResumeWorkContent>
         </WrapperResumeWork>

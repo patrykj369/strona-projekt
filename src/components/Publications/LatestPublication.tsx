@@ -113,10 +113,14 @@ export const LatestPublication: FC = () =>{
             }
 
         }
+        try{
+            getInfo(postId);
+            getInfo(3);
+            getInfo(4);
+        }catch(e){
 
-        getInfo(postId);
-        getInfo(3);
-        getInfo(4);
+        }
+
     }, [userId]);
 
     return(
