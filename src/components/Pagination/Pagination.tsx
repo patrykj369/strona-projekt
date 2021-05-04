@@ -10,7 +10,6 @@ const PaginationBox = styled.div`
     display: flex;
 
     .inActiveClass{
-        //margin-right: 10px;
         text-transform: uppercase;
         font-family: sans-serif;
         color: ${Colors.blue};
@@ -75,6 +74,7 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate}) =>{
             tmp?.classList.add("activeClass")
         }
     });
+
 
     return (
         <PaginationBox id="paginationBoxik">
