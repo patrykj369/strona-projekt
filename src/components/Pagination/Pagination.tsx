@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import styled from 'styled-components';
 import { Colors } from '../../styledHelpers/Colors';
 import { fontSize } from '../../styledHelpers/FontSizes';
@@ -58,6 +58,8 @@ interface props{
 export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate}) =>{
     const pageNumbers: number [] = [];
 
+    const [page=1, setPage] = useState<any>();
+
     for(let i=1; i<= Math.ceil(totalPosts / postsPerPage); i++){
         pageNumbers.push(i);
     }
@@ -78,12 +80,18 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate}) =>{
 
     return (
         <PaginationBox id="paginationBoxik">
-            {pageNumbers.map(number => (
-
-                    <a  onClick={() => paginate(number)} id={number.toString()} href='!#' className="inActiveClass">
+            <a href='!#' onClick={()=> {paginate(page-1); setPage(page-1)}}>
+                <p>PREVIOUS</p>
+            </a>
+            {pageNumbers.map((number) => (
+                    <a  onClick={() => {paginate(number); setPage(number)}} id={number.toString()} href='!#' className="inActiveClass">
                         <p key={number} id={number.toString()} className="inActiveClass">{number} </p>
                     </a>
             ))}
+
+            <a href='!#' onClick={()=> {paginate(page+1); setPage(page+1)}}>
+                <p>NEXT</p>
+            </a>
         </PaginationBox>
     )
 
