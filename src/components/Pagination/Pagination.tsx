@@ -47,6 +47,12 @@ const PaginationBox = styled.div`
             color: ${Colors.white};
         }
     }
+
+    div{
+        a{
+            display: inline-block;
+        }
+    }
 `;
 
 interface props{
@@ -83,12 +89,13 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate}) =>{
             <a href='!#' onClick={()=> {paginate(page-1); setPage(page-1)}}>
                 <p>PREVIOUS</p>
             </a>
+            <div>
             {pageNumbers.map((number) => (
                     <a  onClick={() => {paginate(number); setPage(number)}} id={number.toString()} href='!#' className="inActiveClass">
                         <p key={number} id={number.toString()} className="inActiveClass">{number} </p>
                     </a>
             ))}
-
+            </div>
             <a href='!#' onClick={()=> {paginate(page+1); setPage(page+1)}}>
                 <p>NEXT</p>
             </a>
