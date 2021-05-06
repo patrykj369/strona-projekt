@@ -60,7 +60,7 @@ const PaginationBox = styled.div`
         font-family: sans-serif;
         color: ${Colors.blue};
         font-size: ${fontSize[18]};
-        width: 100px;
+        width: 70px;
         padding-top: 8px;
         padding-bottom: 4px;
         text-align: center;
@@ -80,7 +80,7 @@ const PaginationBox = styled.div`
         font-family: sans-serif;
         color: ${Colors.blue};
         font-size: ${fontSize[18]};
-        width: 60px;
+        width: 70px;
         padding-top: 8px;
         padding-bottom: 4px;
         text-align: center;
@@ -124,7 +124,7 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
         pageNumbers.push(i);
     }
 
-
+    //obsluga dodawania i usuwania klasy dla aktywnych przyciskow stron
     window.addEventListener('click', (event) => {
 
         if(((event.target as Element).className) === "inActiveClass"){
@@ -142,6 +142,7 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
             const currentPage = page;
 
             setPage(pageNumber);
+            //aktywuje zadany przycisk strony po numerze pageNumber
             const elem = document.getElementById(pageNumber.toString());
             const elem2 = document.getElementById(pageNumber.toString()+"a");
             elem?.classList.add("activeClass");
@@ -149,7 +150,7 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
             elem2?.classList.add("activeClass");
             elem2?.classList.remove("inActiveClass");
 
-
+            //dezaktywuje poprzedni przycisk strony
             if(pageNumber>currentPage ){
                 const prevElem = document.getElementById((pageNumber-1).toString());
                 const prevElem2 = document.getElementById((pageNumber-1).toString()+"a");
@@ -157,7 +158,7 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
                 prevElem?.classList.remove("activeClass");
                 prevElem2?.classList.add("inActiveClass");
                 prevElem2?.classList.remove("activeClass");
-            }else{
+            }else{ //dezaktywuje następny przycisk strony
                 const nextElem = document.getElementById((pageNumber+1).toString());
                 const nextElem2 = document.getElementById((pageNumber+1).toString()+"a");
                 nextElem?.classList.add("inActiveClass");
@@ -166,29 +167,10 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
                 nextElem2?.classList.remove("activeClass");
             }
 
-            if(pageNumber>=3 && pageNumber<pageLast){
-                const elem1 = document.getElementById((pageNumber+1).toString());
-                const elem2 = document.getElementById((pageNumber+1).toString()+"a");
-
-                if(elem1) elem1.style.display = "inline-block";
-                if(elem2) elem2.style.display = "inline-block";
-
-                const elem3 = document.getElementById((pageNumber-2).toString());
-                const elem4 = document.getElementById((pageNumber-2).toString()+"a");
-
-                if(elem3) elem3.className = '';
-                if(elem4) elem4.className = '';
-
-                if(elem3) elem3.style.display = "none";
-                if(elem4) elem4.style.display = "none";
-
-            }
-
+            //jezeli number jest ostatni to przechodzi na koniec i ukrywa wszysztkie poprzednie oprocz dwoch poprzedzajacych
             if(pageNumber === pageLast){
 
-                console.log(pageNumber);
-                console.log(pageLast);
-
+                //przechodzi po wszystkich stronach od 1 do ostatniej-3 i je ukrywa
                 for(let i=1; i<=pageLast-3; i++){
                     const elem1 = document.getElementById(i.toString());
                     const elem2 = document.getElementById(i.toString()+"a");
@@ -201,12 +183,55 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
 
                 }
 
+                //pojawia dwie sąsiadujące strony dla ostatniego elementu
+                const elemLastA = document.getElementById((pageNumber).toString());
+                const elemLastP = document.getElementById((pageNumber).toString()+"a");
                 const elem1 = document.getElementById((pageNumber-1).toString());
                 const elem2 = document.getElementById((pageNumber-1).toString()+"a");
                 const elem3 = document.getElementById((pageNumber-2).toString());
                 const elem4 = document.getElementById((pageNumber-2).toString()+"a");
+
+                if(elemLastA) elemLastA.style.display = "inline-block";
+                if(elemLastP) elemLastP.style.display = "inline-block";
+
                 if(elem1) elem1.style.display = "inline-block";
                 if(elem2) elem2.style.display = "inline-block";
+
+                elem3?.classList.add("inActiveClass");
+                elem4?.classList.add("inActiveClass");
+
+                if(elem3) elem3.style.display = "inline-block";
+                if(elem4) elem4.style.display = "inline-block";
+            }
+
+            //jezeli number jest pierwszy to przechodzi na koniec i ukrywa wszysztkie następne oprocz dwoch kolejnych po number
+            if(pageNumber === 1){
+
+                console.log(pageNumber);
+                console.log(pageLast);
+
+                //przechodzi po wszystkich stronach od 4 do ostatniej i je ukrywa
+                for(let i=4; i<=pageLast; i++){
+                    const elem1 = document.getElementById(i.toString());
+                    const elem2 = document.getElementById(i.toString()+"a");
+
+                    if(elem1) elem1.className = '';
+                    if(elem2) elem2.className = '';
+
+                    if(elem1) elem1.style.display = "none";
+                    if(elem2) elem2.style.display = "none";
+
+                }
+
+                //pojawia dwie sąsiadujące strony dla ostatniego elementu
+                const elem1 = document.getElementById((pageNumber+1).toString());
+                const elem2 = document.getElementById((pageNumber+1).toString()+"a");
+                const elem3 = document.getElementById((pageNumber+2).toString());
+                const elem4 = document.getElementById((pageNumber+2).toString()+"a");
+                if(elem1) elem1.style.display = "inline-block";
+                if(elem2) elem2.style.display = "inline-block";
+                elem3?.classList.add("inActiveClass");
+                elem4?.classList.add("inActiveClass");
                 if(elem3) elem3.style.display = "inline-block";
                 if(elem4) elem4.style.display = "inline-block";
             }
@@ -215,6 +240,58 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
         }
 
     }
+
+    //obsluga przycisku next
+    const plusPage = (pageNumber: number) =>{
+        if(pageNumber>=3 && pageNumber<pageLast){
+            const elem1 = document.getElementById((pageNumber+1).toString());
+            const elem2 = document.getElementById((pageNumber+1).toString()+"a");
+
+            elem1?.classList.add("inActiveClass");
+            elem2?.classList.add("inActiveClass");
+            if(elem1) elem1.style.display = "inline-block";
+            if(elem2) elem2.style.display = "inline-block";
+
+
+            const elem3 = document.getElementById((pageNumber-2).toString());
+            const elem4 = document.getElementById((pageNumber-2).toString()+"a");
+
+            if(elem3) elem3.className = '';
+            if(elem4) elem4.className = '';
+
+            if(elem3) elem3.style.display = "none";
+            if(elem4) elem4.style.display = "none";
+
+        }
+    }
+
+    //obsluga przycisku prev
+    const minusPage = (pageNumber: number) =>{
+        if(pageNumber>1 && pageNumber<=pageLast){
+            const elem1 = document.getElementById((pageNumber+2).toString());
+            const elem2 = document.getElementById((pageNumber+2).toString()+"a");
+
+            if(elem1) elem1.className = '';
+            if(elem2) elem2.className = '';
+
+            if(elem1) elem1.style.display = "none";
+            if(elem2) elem2.style.display = "none";
+
+
+
+            const elem3 = document.getElementById((pageNumber-1).toString());
+            const elem4 = document.getElementById((pageNumber-1).toString()+"a");
+
+            elem3?.classList.add("inActiveClass");
+            elem4?.classList.add("inActiveClass");
+
+            if(elem3) elem3.style.display = "inline-block";
+            if(elem4) elem4.style.display = "inline-block";
+
+        }
+    }
+
+    //przy starcie pokazuje pierwsze trzy strony i z numerem 1 zaznacza jako aktywna
     useEffect(()=>{
         if(page === 1){
             let a = document.getElementById('1');
@@ -223,6 +300,7 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
             let d = document.getElementById('2a');
             let e = document.getElementById('3');
             let f = document.getElementById('3a');
+            a?.classList.add("activeClass");
             if (a) a.style.display = "inline-block";
             if (b) b.style.display = "inline-block";
             if (c) c.style.display = "inline-block";
@@ -230,15 +308,12 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
             if (e) e.style.display = "inline-block";
             if (f) f.style.display = "inline-block";
         }
-
-
     })
-
 
 
     return (
         <PaginationBox id="paginationBoxik">
-            <a className="buttonPN" href='!#' onClick={()=> {paginate(page-1); changePage(page-1)}}>
+            <a className="buttonPN" href='!#' onClick={()=> {paginate(page-1); changePage(page-1); minusPage(page-1)}}>
                 <p>PREV</p>
             </a>
             <a className="first_last_page" href='!#' onClick={()=> {paginate(1); changePage(1)}}>
@@ -248,18 +323,19 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
             <p className="dots">...</p>
 
             <div>
-            {pageNumbers.map((number) => (
+                {pageNumbers.map((number) => (
                     <a  onClick={() => {paginate(number); changePage(number)}} id={number.toString()} href='!#' className="inActiveClass">
                         <p key={number} id={number.toString() + "a"} className="inActiveClass">{number} </p>
                     </a>
-            ))}
+                ))}
             </div>
+
             <p className="dots">...</p>
 
             <a className="first_last_page" href='!#' onClick={()=> {paginate(pageLast); changePage(pageLast)}}>
                 <p>LAST</p>
             </a>
-            <a className="buttonPN" href='!#' onClick={()=> {paginate(page+1); changePage(page+1)}}>
+            <a className="buttonPN" href='!#' onClick={()=> {paginate(page+1); changePage(page+1); plusPage(page+1)}}>
                 <p>NEXT</p>
             </a>
         </PaginationBox>

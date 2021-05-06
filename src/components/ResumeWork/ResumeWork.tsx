@@ -130,24 +130,10 @@ const ResumeBox = styled.div`
     }
 `;
 
-// const PaginationBox = styled.div`
-//     justify-content: center;
-//     margin-top: 15px;
-//     margin-bottom: 60px;
-//     display: flex;
-//     p{
-//         margin-right: 10px;
-//         text-transform: uppercase;
-//         font-family: sans-serif;
-//         color: ${Colors.blue};
-//         font-size: ${fontSize[18]};
-//     }
-// `;
 export const ResumeWork: FC = () => {
 
     const apiURL = `https://jsonplaceholder.typicode.com/comments/`;
     const [posts, setPosts] = useState<any>([]);
-    //const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
