@@ -162,8 +162,9 @@ export const ResumeWork: FC = () => {
     const indexOfLastPost: number = currentPage * postsPerPage;
     const indexOfFirstPost: number = indexOfLastPost - postsPerPage;
     const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
+    const lastPage: number = posts.length / postsPerPage;
 
-    const paginate = (pageNumber:number) => setCurrentPage(pageNumber)
+    const paginate = (pageNumber:number) => pageNumber>=1 && pageNumber <= lastPage ? setCurrentPage(pageNumber) : console.log("blad");
 
     return(
         <WrapperResumeWork>
@@ -199,7 +200,7 @@ export const ResumeWork: FC = () => {
                         </ResumeBox>
                 ))}
 
-            <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate}></Pagination>
+            <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} pageLast={lastPage}></Pagination>
 
             </ResumeWorkContent>
         </WrapperResumeWork>

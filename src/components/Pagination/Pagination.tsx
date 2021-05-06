@@ -59,9 +59,10 @@ interface props{
     postsPerPage: number;
     totalPosts: number;
     paginate: any;
+    pageLast: number;
 }
 
-export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate}) =>{
+export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageLast}) =>{
     const pageNumbers: number [] = [];
 
     const [page=1, setPage] = useState<any>();
@@ -83,10 +84,17 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate}) =>{
         }
     });
 
+    const changePage = (pageNumber: number) => {
+        if(pageNumber >= 1 && pageNumber <= pageLast){
+            setPage(pageNumber);
+        }
+
+    }
+
 
     return (
         <PaginationBox id="paginationBoxik">
-            <a href='!#' onClick={()=> {paginate(page-1); setPage(page-1)}}>
+            <a href='!#' onClick={()=> {paginate(page-1); changePage(page-1)}}>
                 <p>PREVIOUS</p>
             </a>
             <div>
@@ -96,7 +104,7 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate}) =>{
                     </a>
             ))}
             </div>
-            <a href='!#' onClick={()=> {paginate(page+1); setPage(page+1)}}>
+            <a href='!#' onClick={()=> {paginate(page+1); changePage(page+1)}}>
                 <p>NEXT</p>
             </a>
         </PaginationBox>
