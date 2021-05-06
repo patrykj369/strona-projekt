@@ -149,7 +149,7 @@ export const ResumeWork: FC = () => {
     const [posts, setPosts] = useState<any>([]);
     //const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const [postsPerPage] = useState(20);
+    const [postsPerPage] = useState(10);
 
     useEffect(()=> {
 

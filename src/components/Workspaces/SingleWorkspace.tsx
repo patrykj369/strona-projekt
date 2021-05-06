@@ -8,7 +8,7 @@ import {
     // BrowserRouter as Router,
     // Switch,
     // Route,
-    // Link
+    Link
   } from "react-router-dom";
 
 
@@ -16,9 +16,14 @@ const SingleComponentWrapper = styled(Wrapper)`
     padding: 0;
     //float: left;
     background-color: rgba(143, 143, 143, 0.001);
+
+    .linksForSites{
+        text-decoration: none;
+    }
 `;
 
 const SingleComponentContent = styled.div`
+
     background: #fff;
     font-family: sans-serif;
     width: 320px;
@@ -86,7 +91,7 @@ const SingleComponentContent = styled.div`
         margin-left: 20px;
         border-radius: 5px;
         box-shadow: 0 8px 5px -5px rgba(143, 143, 143, 0.171);
-        background-color: #fff;
+        background-color: ${Colors.white};
 
         svg{
             margin: 20px 20px;
@@ -152,7 +157,7 @@ const SingleComponentContent = styled.div`
 export const SingleComponent: FC = () =>{
     return (
         <SingleComponentWrapper>
-
+            <Link to="/client_contract" className="linksForSites">
             <SingleComponentContent>
                 <div className="topCard">
 
@@ -180,6 +185,8 @@ export const SingleComponent: FC = () =>{
                     <p className="cardUpdate">Last update 2 days ago</p>
                 </div>
             </SingleComponentContent>
+            </Link>
+            <Link to="/supplier_contract" className="linksForSites">
             <SingleComponentContent>
                 <div className="topCard1">
 
@@ -207,6 +214,8 @@ export const SingleComponent: FC = () =>{
                     <p className="cardUpdate">Last update 3 days ago</p>
                 </div>
             </SingleComponentContent>
+            </Link>
+            <Link to="/corporate" className="linksForSites">
             <SingleComponentContent>
                 <div className="topCard2">
 
@@ -234,6 +243,8 @@ export const SingleComponent: FC = () =>{
                     <p className="cardUpdate">Last update 5 days ago</p>
                 </div>
             </SingleComponentContent>
+            </Link>
+            <Link to="/group_norms" className="linksForSites">
             <SingleComponentContent>
                 <div className="topCard3">
 
@@ -261,6 +272,8 @@ export const SingleComponent: FC = () =>{
                     <p className="cardUpdate">Last update 1 days ago</p>
                 </div>
             </SingleComponentContent>
+            </Link>
+            <Link to="/real_estate_contracts" className="linksForSites">
             <SingleComponentContent>
                 <div className="topCard4">
 
@@ -288,6 +301,7 @@ export const SingleComponent: FC = () =>{
                     <p className="cardUpdate">Last update 7 days ago</p>
                 </div>
             </SingleComponentContent>
+            </Link>
         </SingleComponentWrapper>
     );
 };

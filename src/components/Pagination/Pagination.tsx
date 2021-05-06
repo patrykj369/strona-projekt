@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
 import { Colors } from '../../styledHelpers/Colors';
 import { fontSize } from '../../styledHelpers/FontSizes';
@@ -19,6 +19,7 @@ const PaginationBox = styled.div`
         padding-bottom: 4px;
         text-align: center;
         transition: background-color .5s;
+        display: none;
     }
     a:hover{
         background-color:${Colors.text_color};
@@ -53,6 +54,58 @@ const PaginationBox = styled.div`
             display: inline-block;
         }
     }
+
+    .buttonPN{
+        text-transform: uppercase;
+        font-family: sans-serif;
+        color: ${Colors.blue};
+        font-size: ${fontSize[18]};
+        width: 100px;
+        padding-top: 8px;
+        padding-bottom: 4px;
+        text-align: center;
+        transition: background-color .5s;
+    }
+    .buttonPN:hover{
+        background-color:${Colors.text_color};
+        padding-top: 8px;
+        padding-bottom: 4px;
+        p{
+            color: ${Colors.white};
+        }
+    }
+
+    .first_last_page{
+        text-transform: uppercase;
+        font-family: sans-serif;
+        color: ${Colors.blue};
+        font-size: ${fontSize[18]};
+        width: 60px;
+        padding-top: 8px;
+        padding-bottom: 4px;
+        text-align: center;
+        transition: background-color .5s;
+    }
+
+    .first_last_page:hover{
+        background-color:${Colors.text_color};
+        padding-top: 8px;
+        padding-bottom: 4px;
+        p{
+            color: ${Colors.white};
+        }
+    }
+
+    .dots{
+        text-transform: uppercase;
+        font-family: sans-serif;
+        color: ${Colors.blue};
+        font-size: ${fontSize[18]};
+        width: 60px;
+        padding-top: 8px;
+        padding-bottom: 4px;
+        text-align: center;
+    }
 `;
 
 interface props{
@@ -86,25 +139,101 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
 
     const changePage = (pageNumber: number) => {
         if(pageNumber >= 1 && pageNumber <= pageLast){
+            const currentPage = page;
+
             setPage(pageNumber);
+            const elem = document.getElementById(pageNumber.toString());
+            const elem2 = document.getElementById(pageNumber.toString()+"a");
+            elem?.classList.add("activeClass");
+            elem?.classList.remove("inActiveClass");
+            elem2?.classList.add("activeClass");
+            elem2?.classList.remove("inActiveClass");
+
+            if(pageNumber>currentPage ){
+                const prevElem = document.getElementById((pageNumber-1).toString());
+                const prevElem2 = document.getElementById((pageNumber-1).toString()+"a");
+                prevElem?.classList.add("inActiveClass");
+                prevElem?.classList.remove("activeClass");
+                prevElem2?.classList.add("inActiveClass");
+                prevElem2?.classList.remove("activeClass");
+            }else{
+                const nextElem = document.getElementById((pageNumber+1).toString());
+                const nextElem2 = document.getElementById((pageNumber+1).toString()+"a");
+                nextElem?.classList.add("inActiveClass");
+                nextElem?.classList.remove("activeClass");
+                nextElem2?.classList.add("inActiveClass");
+                nextElem2?.classList.remove("activeClass");
+            }
+
+            if(pageNumber>=3 && pageNumber<pageLast){
+                const elem1 = document.getElementById((pageNumber+1).toString());
+                const elem2 = document.getElementById((pageNumber+1).toString()+"a");
+
+                if(elem1) elem1.style.display = "inline-block";
+                if(elem2) elem2.style.display = "inline-block";
+
+                const elem3 = document.getElementById((pageNumber-2).toString());
+                const elem4 = document.getElementById((pageNumber-2).toString()+"a");
+
+                if(elem3) elem3.className = '';
+                if(elem4) elem4.className = '';
+
+                if(elem3) elem3.style.display = "none";
+                if(elem4) elem4.style.display = "none";
+
+            }
+
+
+
+
         }
 
     }
+    useEffect(()=>{
+        if(page === 1){
+            let a = document.getElementById('1');
+            let b = document.getElementById('1a');
+            let c = document.getElementById('2');
+            let d = document.getElementById('2a');
+            let e = document.getElementById('3');
+            let f = document.getElementById('3a');
+            if (a) a.style.display = "inline-block";
+            if (b) b.style.display = "inline-block";
+            if (c) c.style.display = "inline-block";
+            if (d) d.style.display = "inline-block";
+            if (e) e.style.display = "inline-block";
+            if (f) f.style.display = "inline-block";
+        }
+
+
+    })
+
 
 
     return (
         <PaginationBox id="paginationBoxik">
-            <a href='!#' onClick={()=> {paginate(page-1); changePage(page-1)}}>
-                <p>PREVIOUS</p>
+            <a className="buttonPN" href='!#' onClick={()=> {paginate(page-1); changePage(page-1)}}>
+                <p>PREV</p>
             </a>
+            <a className="first_last_page" href='!#' onClick={()=> {paginate(1); changePage(1)}}>
+                <p>FIRST</p>
+            </a>
+
+            <p className="dots">...</p>
+
             <div>
             {pageNumbers.map((number) => (
-                    <a  onClick={() => {paginate(number); setPage(number)}} id={number.toString()} href='!#' className="inActiveClass">
-                        <p key={number} id={number.toString()} className="inActiveClass">{number} </p>
+                    <a  onClick={() => {paginate(number); changePage(number)}} id={number.toString()} href='!#' className="inActiveClass">
+                        <p key={number} id={number.toString() + "a"} className="inActiveClass">{number} </p>
                     </a>
             ))}
             </div>
-            <a href='!#' onClick={()=> {paginate(page+1); changePage(page+1)}}>
+            <p className="dots">...</p>
+
+            <a className="first_last_page" href='!#' onClick={()=> {paginate(pageLast); changePage(pageLast)}}>
+                <p>LAST</p>
+            </a>
+            <a className="buttonPN" href='!#' onClick={()=> {paginate(page+1); changePage(page+1)}}>
                 <p>NEXT</p>
             </a>
         </PaginationBox>
