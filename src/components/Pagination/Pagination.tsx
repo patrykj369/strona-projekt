@@ -149,6 +149,7 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
             elem2?.classList.add("activeClass");
             elem2?.classList.remove("inActiveClass");
 
+
             if(pageNumber>currentPage ){
                 const prevElem = document.getElementById((pageNumber-1).toString());
                 const prevElem2 = document.getElementById((pageNumber-1).toString()+"a");
@@ -183,7 +184,32 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
 
             }
 
+            if(pageNumber === pageLast){
 
+                console.log(pageNumber);
+                console.log(pageLast);
+
+                for(let i=1; i<=pageLast-3; i++){
+                    const elem1 = document.getElementById(i.toString());
+                    const elem2 = document.getElementById(i.toString()+"a");
+
+                    if(elem1) elem1.className = '';
+                    if(elem2) elem2.className = '';
+
+                    if(elem1) elem1.style.display = "none";
+                    if(elem2) elem2.style.display = "none";
+
+                }
+
+                const elem1 = document.getElementById((pageNumber-1).toString());
+                const elem2 = document.getElementById((pageNumber-1).toString()+"a");
+                const elem3 = document.getElementById((pageNumber-2).toString());
+                const elem4 = document.getElementById((pageNumber-2).toString()+"a");
+                if(elem1) elem1.style.display = "inline-block";
+                if(elem2) elem2.style.display = "inline-block";
+                if(elem3) elem3.style.display = "inline-block";
+                if(elem4) elem4.style.display = "inline-block";
+            }
 
 
         }
