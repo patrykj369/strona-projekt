@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
 import styled from 'styled-components';
 import useDropdown from 'react-dropdown-hook';
 
@@ -79,6 +79,8 @@ export const TopBar: FC = () => {
         toggleDropdown();
     }
 
+    const [word, setWord] = useState('Home');
+
     return(
         <Wrapper2 className="wrapper">
             <InnerWrapper className="container">
@@ -87,11 +89,11 @@ export const TopBar: FC = () => {
                 <MenuWrapper className="item1" ref={wrapperRef}>
                     <LeftSide onClick={menuHandler}>
                         <img src="./media/icons/house.png" className="home" alt=""/>
-                        <span>Home</span>
+                        <span>{word}</span>
                         <img src="./media/icons/arrow-down.png" className="arrow" alt=""/>
                     </LeftSide>
                     {dropdownOpen &&
-                        <ExpandedMenu/>
+                        <ExpandedMenu changeWord={(word: React.SetStateAction<string>) => setWord(word)}/>
                     }
                 </MenuWrapper>
 

@@ -1,5 +1,6 @@
-import { FC, useState, ChangeEvent, useEffect } from 'react';
+import { FC, useState, ChangeEvent, useEffect} from 'react';
 import styled from 'styled-components';
+// import PropTypes from 'prop-types';
 
 import {Link} from 'react-router-dom';
 
@@ -141,7 +142,8 @@ const Wrapper = styled.div`
     }
 `;
 
-export const ExpandedMenu: FC = () => {
+
+export const ExpandedMenu: FC<any> = (props) => {
     const [inputText, setInputText] = useState<string>('');
 
     const userID: number = 1;
@@ -171,46 +173,50 @@ export const ExpandedMenu: FC = () => {
         setInputText(text);
     }
 
-
     return (
-        <Wrapper>
+        <Wrapper id="Wrapperek">
             <ul>
                 <div className="overflowContainer">
                 <input type="text" placeholder="Filter..." value={inputText} onChange={inputHandler}></input>
                 <li className="specificLi">Platform</li>
 
                 {'Home'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/" className="linksForSites"><li><img src="./media/icons/house.png" alt="" className="imgLi"></img>Home</li></Link>
+                    <Link to="/" className="linksForSites"><li id="Home" onClick={() => props.changeWord('Home')}><img src="./media/icons/house.png" alt="" className="imgLi"></img>Home</li></Link>
                 }
                 {'Publications'.toLowerCase().includes(inputText.toLowerCase())&&
-                   <Link to="/publications" className="linksForSites"><li><img src="./media/icons/publications.png" alt="" className="imgLi"></img>Publications</li></Link>
+                   <Link to="/publications" className="linksForSites"><li id="Publications" onClick={() => props.changeWord('Publications')}><img src="./media/icons/publications.png" alt="" className="imgLi"></img>Publications</li></Link>
                 }
                 {'People'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/people" className="linksForSites"><li><img src="./media/icons/people.png" alt="" className="imgLi"></img>People</li></Link>
+                    <Link to="/people" className="linksForSites">
+                        <li id="People" onClick={() => props.changeWord('People')} >
+                            <img src="./media/icons/people.png" alt="" className="imgLi"></img>
+                            People
+                        </li>
+                    </Link>
                 }
                 {'Entities'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/entities" className="linksForSites"><li><img src="./media/icons/entities2.png" alt="" className="imgLi"></img>Entities</li></Link>
+                    <Link to="/entities" className="linksForSites"><li id="Entities" onClick={() => props.changeWord('Entities')}><img src="./media/icons/entities2.png" alt="" className="imgLi"></img>Entities</li></Link>
                 }
                 {'Administration'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/administration" className="linksForSites"><li><img src="./media/icons/administration.png" alt="" className="imgLi"></img>Administration</li></Link>
+                    <Link to="/administration" className="linksForSites"><li id="Administration" onClick={() => props.changeWord('Administration')}><img src="./media/icons/administration.png" alt="" className="imgLi"></img>Administration</li></Link>
                 }
 
 
                 <li className="specificLi">Workspaces</li>
                 {'Client contract'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/client_contract" className="linksForSites"><li><img src="./media/icons/entities.png" alt="" className="imgLi"></img>Client contract</li></Link>
+                    <Link to="/client_contract" className="linksForSites"><li onClick={() => props.changeWord('Client contract')}><img src="./media/icons/entities.png" alt="" className="imgLi"></img>Client contract</li></Link>
                 }
                 {'Supplier contract'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/supplier_contract" className="linksForSites"><li><img src="./media/icons/cog.png" alt="" className="imgLi"></img>Supplier contract</li></Link>
+                    <Link to="/supplier_contract" className="linksForSites"><li onClick={() => props.changeWord('Supplier contract')}><img src="./media/icons/cog.png" alt="" className="imgLi"></img>Supplier contract</li></Link>
                 }
                 {'Corporate'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/corporate" className="linksForSites"><li><img src="./media/icons/entities.png" alt="" className="imgLi"></img>Corporate</li></Link>
+                    <Link to="/corporate" className="linksForSites"><li onClick={() => props.changeWord('Corporate')}><img src="./media/icons/entities.png" alt="" className="imgLi"></img>Corporate</li></Link>
                 }
                 {'Group norms'.toLowerCase().includes(inputText.toLowerCase()) &&
-                   <Link to="/group_norms" className="linksForSites"><li><img src="./media/icons/network.png" alt="" className="imgLi"></img>Group norms</li></Link>
+                   <Link to="/group_norms" className="linksForSites"><li onClick={() => props.changeWord('Group norms')}><img src="./media/icons/network.png" alt="" className="imgLi"></img>Group norms</li></Link>
                 }
                 {'Real estate contracts'.toLowerCase().includes(inputText.toLowerCase()) &&
-                   <Link to="/real_estate_contracts" className="linksForSites"><li><img src="./media/icons/publications.png" alt="" className="imgLi"></img>Real estate contracts</li></Link>
+                   <Link to="/real_estate_contracts" className="linksForSites"><li onClick={() => props.changeWord('Real estate...')}><img src="./media/icons/publications.png" alt="" className="imgLi"></img>Real estate contracts</li></Link>
                 }
                 </div>
                 <hr></hr>
@@ -219,11 +225,11 @@ export const ExpandedMenu: FC = () => {
                 <div className="userAccount">
                     <img className="avatarImg" src={JSON.stringify(imageUrl).slice(1,-1)} alt=""></img>
                     <li className="nameProfil">{JSON.stringify(person).slice(1,-1)}</li>
-                    <li className="seeProfile"><Link to="/profile" className="seeProfileLink">See profile</Link></li>
+                    <li className="seeProfile" onClick={() => props.changeWord('Profile')}><Link to="/profile" className="seeProfileLink">See profile</Link></li>
                 </div>
 
-                <Link to="/privacy" className="linksForSites"><li><img src="./media/icons/privacy.png" alt="" className="imgLi"></img>Privacy</li></Link>
-                <Link to="/settings" className="linksForSites"><li><img src="./media/icons/settings.png" alt="" className="imgLi"></img>Settings</li></Link>
+                <Link to="/privacy" className="linksForSites"><li onClick={() => props.changeWord('Privacy')}><img src="./media/icons/privacy.png" alt="" className="imgLi"></img>Privacy</li></Link>
+                <Link to="/settings" className="linksForSites"><li onClick={() => props.changeWord('Settings')}><img src="./media/icons/settings.png" alt="" className="imgLi"></img>Settings</li></Link>
             </ul>
             <hr></hr>
                 <div className="logoutButton">
