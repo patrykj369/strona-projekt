@@ -1,7 +1,7 @@
 import React, { FC} from 'react';
 import styled from 'styled-components';
 
-import "./MainPage.css";
+import "./MainPage.scss";
 
 import { TopBar } from '../TopBar/TopBar';
 import LeftMenu from '../LeftMenu/LeftMenu';

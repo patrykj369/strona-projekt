@@ -10,7 +10,7 @@ https://reactrouter.com/web/guides/quick-start
 2. Obrazki dla entities pochodzą z /photos
 3. Resume your work - /comments w połączeniu z /users
 4. wszystkie elementy muszą być aktywne (wyszukiwarki wyszukiwać, dropdown ma zmianiać wartości itp)
-5. latest pubplications - /posts w połączeniu z /users i /photos
+5. latest publications - /posts w połączeniu z /users i /photos
 
 
 Mail z zaliczeniem:
