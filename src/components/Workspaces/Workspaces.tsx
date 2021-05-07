@@ -87,12 +87,14 @@ const WorkspacesContent = styled.div`
         width: 0;
        background: transparent;
     }
+    scrollbar-width: none;
 
 `;
 
 
 
 export const Workspaces: FC = () => {
+
     return (
         <WorkspacesWrapper>
             <input type="button" className="btn btn-left" onClick={() => scrollWin(-200, 0) }>
