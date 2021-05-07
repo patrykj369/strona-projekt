@@ -180,7 +180,7 @@ export const ResumeWork: FC = () => {
                                 <p>Corporate</p>
                             </div>
                             <div className="Updated">
-                                <p>Updated 3 days ago by John Doe</p>
+                                <p>{us.email}</p>
                             </div>
                             </div>
                         </ResumeBox>

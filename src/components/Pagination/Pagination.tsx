@@ -207,9 +207,6 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
             //jezeli number jest pierwszy to przechodzi na koniec i ukrywa wszysztkie następne oprocz dwoch kolejnych po number
             if(pageNumber === 1){
 
-                console.log(pageNumber);
-                console.log(pageLast);
-
                 //przechodzi po wszystkich stronach od 4 do ostatniej i je ukrywa
                 for(let i=4; i<=pageLast; i++){
                     const elem1 = document.getElementById(i.toString());

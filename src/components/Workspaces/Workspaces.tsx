@@ -80,7 +80,6 @@ const WorkspacesContent = styled.div`
     width: 860px;
     display: flex;
     flex-direction: row;
-    //background: ${Colors.grey_hsla};
     scroll-behavior: smooth;
 
     ::-webkit-scrollbar{
