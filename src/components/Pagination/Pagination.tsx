@@ -21,6 +21,7 @@ const PaginationBox = styled.div`
         transition: background-color .5s;
         display: none;
     }
+
     a:hover{
         background-color:${Colors.text_color};
         padding-top: 4px;
@@ -44,6 +45,7 @@ const PaginationBox = styled.div`
         padding-bottom: 4px;
         text-align: center;
         background-color:${Colors.text_color};
+
         p{
             color: ${Colors.white};
         }

@@ -13,6 +13,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect,
     //Link
   } from "react-router-dom";
 
@@ -91,6 +92,19 @@ const MainPage: FC = () => {
                     <Route path="/ecosystem">
                         <div>To jest ecosystem</div>
                     </Route>
+
+                    {/* sluzy do przekierowania strony startowej na link zawierajacy !#, potrzebuje tego do paginacji */}
+
+                    <Route
+                        exact
+                        path="/"
+                        render={() => {
+                            return (
+                                <Redirect to="!#" />
+                            )
+                        }} />
+
+                    {/* strona startowa z odpowiednimi komponentami */}
 
                     <Route path="/">
                         <Publications/>
