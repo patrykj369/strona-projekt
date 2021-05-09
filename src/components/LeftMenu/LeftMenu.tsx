@@ -86,26 +86,24 @@ const LeftMenu: FC = () => {
     const [imageUrl, setImageUrl] = useState<any>(null);
 
     useEffect(() =>{
-       async function getName() {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
-        const data = await response.json();
-        setPerson(data.name);
+       async function getData() {
+           try{
+                const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
+                const data = await response.json();
+                setPerson(data.name);
+                setCompany(data.company.name);
+           }catch(e){}
        }
 
-       async function getCompany() {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
-        const data = await response.json();
-        setCompany(data.company.name);
+       function getUrl(){
+           try{
+               fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`)
+                .then(res=> res.json())
+                .then(data => setImageUrl(data.url));
+           }catch(e){}
        }
 
-       async function getUrl(){
-           const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`)
-           const data = await response.json();
-           setImageUrl(data.url);
-       }
-
-       getName();
-       getCompany();
+       getData();
        getUrl();
     });
 
@@ -115,7 +113,7 @@ const LeftMenu: FC = () => {
             <InnerWrapper2 className="container">
                 <MyDiv1>
 
-                    <MyImage src={imageUrl} className="profileImage"></MyImage>
+                    <MyImage src={imageUrl} alt="image" className="profileImage"></MyImage>
 
                     <CustomParagraph className="customParagraph">{JSON.stringify(person).slice(1,-1)}</CustomParagraph>
 

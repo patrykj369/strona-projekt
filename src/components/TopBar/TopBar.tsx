@@ -26,8 +26,7 @@ const MenuWrapper = styled.div`
 const LeftSide = styled.div`
     cursor: pointer;
     display: grid;
-    grid-template-columns: 26px 1fr 1fr;
-    text-align: center;
+    grid-template-columns: 40px 1fr 30px;
     *{
         box-sizing: border-box;
     }
@@ -45,11 +44,11 @@ const LeftSide = styled.div`
         grid-column: 2;
         font-size: ${fontSize[20]};
         margin-top: 15px;
+        margin-left: 20px;
     };
 
     .arrow{
         grid-column: 3;
-        margin-left: 80px;
         margin-top: 20px;
         width: 14px;
         height: 10px;

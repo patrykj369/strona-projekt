@@ -71,7 +71,7 @@ export const LatestPublication: FC = () =>{
     const [title, setTitle] = useState<any>([]);
     const [image, setImage ] = useState<any>([]);
 
-    const [userId, setUserID] = useState<any>(null);
+    const [userId, setUserID] = useState<any>(1);
     const [userName, setUserName] = useState<any>([]);
     const [userImage, setUserImage] = useState<any>([]);
 
@@ -80,34 +80,34 @@ export const LatestPublication: FC = () =>{
         async function getInfo(postID: number) {
             try {
                 const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postID}`);
-            const data = await response.json();
-            const title = JSON.stringify(data.title).slice(1,-1);
-            const titleFirstLetterUpper = title.charAt(0).toUpperCase() + title.slice(1);
-            setUserID(data.userId);
+                const data = await response.json();
+                const title = JSON.stringify(data.title).slice(1,-1);
+                const titleFirstLetterUpper = title.charAt(0).toUpperCase() + title.slice(1);
+                setUserID(data.userId);
 
-            const responseUrl = await fetch(`https://jsonplaceholder.typicode.com/photos/${postID}`);
-            const dataUrl = await responseUrl.json();
-            const url = JSON.stringify(dataUrl.url).slice(1,-1);
+                const responseUrl = await fetch(`https://jsonplaceholder.typicode.com/photos/${postID}`);
+                const dataUrl = await responseUrl.json();
+                const url = JSON.stringify(dataUrl.url).slice(1,-1);
 
-            const responseUser = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
-            const dataUser = await responseUser.json();
+                const responseUser = await fetch(`https://jsonplaceholder.typicode.com/users/${userId}`);
+                const dataUser = await responseUser.json();
 
-            const responseUrlIcon = await fetch(`https://jsonplaceholder.typicode.com/photos/${userId}`);
-            const dataUrlIcon = await responseUrlIcon.json();
+                const responseUrlIcon = await fetch(`https://jsonplaceholder.typicode.com/photos/${userId}`);
+                const dataUrlIcon = await responseUrlIcon.json();
 
 
-            setTitle((arr: any) => ([...arr, titleFirstLetterUpper]));
-            setImage((arr: any) => ([...arr, url]));
+                setTitle((arr: any) => ([...arr, titleFirstLetterUpper]));
+                setImage((arr: any) => ([...arr, url]));
 
-            if(dataUser.name != null){
-                const userName = JSON.stringify(dataUser.name).slice(1,-1);
-                setUserName((arr: any) => ([...arr, userName]));
-            }
+                if(dataUser.name != null){
+                    const userName = JSON.stringify(dataUser.name).slice(1,-1);
+                    setUserName((arr: any) => ([...arr, userName]));
+                }
 
-            if(dataUrlIcon.url != null){
-                const urlIcon = JSON.stringify(dataUrlIcon.url).slice(1,-1);
-                setUserImage(urlIcon);
-            }
+                if(dataUrlIcon.url != null){
+                    const urlIcon = JSON.stringify(dataUrlIcon.url).slice(1,-1);
+                    setUserImage(urlIcon);
+                }
             }catch(e){
 
             }

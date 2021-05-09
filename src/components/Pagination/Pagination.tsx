@@ -116,6 +116,7 @@ interface props{
 }
 
 export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageLast}) =>{
+    let iterationKey: number = 0;
     const pageNumbers: number [] = [];
 
     const [page=1, setPage] = useState<any>();
@@ -249,7 +250,6 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
             if(elem1) elem1.style.display = "inline-block";
             if(elem2) elem2.style.display = "inline-block";
 
-
             const elem3 = document.getElementById((pageNumber-2).toString());
             const elem4 = document.getElementById((pageNumber-2).toString()+"a");
 
@@ -321,8 +321,8 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
 
             <div>
                 {pageNumbers.map((number) => (
-                    <a  onClick={() => {paginate(number); changePage(number)}} id={number.toString()} href='!#' className="inActiveClass">
-                        <p key={number} id={number.toString() + "a"} className="inActiveClass">{number} </p>
+                    <a key={(iterationKey++).toString()}  onClick={() => {paginate(number); changePage(number)}} id={number.toString()} href='!#' className="inActiveClass">
+                        <p id={number.toString() + "a"} className="inActiveClass">{number} </p>
                     </a>
                 ))}
             </div>

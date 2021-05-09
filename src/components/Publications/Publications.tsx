@@ -103,12 +103,12 @@ const ContentPublications = styled.div`
 export const Publications: FC = () => {
     const postId: number = 1;
 
-    const [title, setTitle] = useState<any>(0);
-    const [image, setImage ] = useState<any>(0);
+    const [title, setTitle] = useState<any>(1);
+    const [image, setImage ] = useState<any>(1);
 
-    const [userId, setUserID] = useState<any>(0);
-    const [userName, setUserName] = useState<any>(0);
-    const [userImage, setUserImage] = useState<any>(0);
+    const [userId, setUserID] = useState<any>(1);
+    const [userName, setUserName] = useState<any>(1);
+    const [userImage, setUserImage] = useState<any>(1);
 
     useEffect(()=>{
 
@@ -181,8 +181,7 @@ export const Publications: FC = () => {
         <WrapperPublications>
             <ContentPublications>
                 <div className="importantInfo" style={{
-                    background: `linear-gradient(rgba(235, 238, 241, 0), #9b9999), url(${image}) center`,
-                    backgroundPosition: `center`,
+                    background: `linear-gradient(rgba(235, 238, 241, 0), #9b9999), url(${image}) center`
                     }}>
 
                     <span>{title}</span>
