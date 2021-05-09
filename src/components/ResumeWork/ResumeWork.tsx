@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import {fontSize} from '../../styledHelpers/FontSizes'
 import {Wrapper} from '../../styledHelpers/Components'
@@ -137,11 +137,13 @@ export const ResumeWork: FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
+    const [inputText, setInputText] = useState<string>('');
+
     useEffect(()=> {
 
         fetch(apiURL)
         .then(res=> res.json())
-        .then(data => setPosts(data));
+        .then(data => setPosts(data))
 
     }, [apiURL]);
 
@@ -152,36 +154,43 @@ export const ResumeWork: FC = () => {
 
     const paginate = (pageNumber:number) => pageNumber>=1 && pageNumber <= lastPage ? setCurrentPage(pageNumber) : console.log("blad");
 
+    const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
+        const text = e.target.value;
+        setInputText(text);
+    }
+
     return(
         <WrapperResumeWork>
 
             <ResumeWorkContent>
             <h2 id="resumeText">Resume your work</h2>
             <div className="searchInput">
-                <input type="text" placeholder="Filter by title..."></input>
+                <input type="text" placeholder="Filter by title..." value={inputText} onChange={inputHandler}></input>
                 <img src="./media/icons/search.svg" alt="" className="searchIcon"></img>
             </div>
             <div className="follow">
                 <p>Followed</p>
                 <img src="./media/icons/arrow-down.svg" alt=""></img>
             </div>
-                {
-                    currentPosts.map((us: any) =>(
+                {currentPosts.map((us: any) =>(
                         <ResumeBox key={us.id}>
-                            <h3>{us.name.charAt(0).toUpperCase()+us.name.slice(1)}</h3>
+                            {(us.name.charAt(0).toUpperCase()+us.name.slice(1)).toLowerCase().includes(inputText.toLowerCase()) &&
+                                <h3>{us.name.charAt(0).toUpperCase()+us.name.slice(1)}</h3>
+                            }
                             <p>{us.body.charAt(0).toUpperCase()+us.body.slice(1)}</p>
+
                             <div className="flowDiv">
                                 <div className="Subside">
                                     <img src="./media/icons/ecosystem.svg" alt=""></img>
                                     <p>Subsid. corp.</p>
                                 </div>
-                            <div className="Corp">
-                                <img src="./media/icons/entities2.svg" alt=""></img>
-                                <p>Corporate</p>
-                            </div>
-                            <div className="Updated">
-                                <p>{us.email}</p>
-                            </div>
+                                <div className="Corp">
+                                    <img src="./media/icons/entities2.svg" alt=""></img>
+                                    <p>Corporate</p>
+                                </div>
+                                <div className="Updated">
+                                    <p>{us.email}</p>
+                                </div>
                             </div>
                         </ResumeBox>
                 ))}
