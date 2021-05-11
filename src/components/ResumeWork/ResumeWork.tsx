@@ -137,7 +137,7 @@ export const ResumeWork: FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
-    const [inputText, setInputText] = useState<string>('');
+    const [inputText, setInputText] = useState<string>("");
 
     useEffect(()=> {
 
@@ -172,11 +172,20 @@ export const ResumeWork: FC = () => {
                 <p>Followed</p>
                 <img src="./media/icons/arrow-down.svg" alt=""></img>
             </div>
-                {currentPosts.map((us: any) =>(
+                {currentPosts.filter((us: any) => {
+                    if(inputText === ""){
+                        return us
+                    }else if(us.name.toLowerCase().includes(inputText.toLowerCase())){
+                        return us
+                    }else{
+                        return null
+                    }
+                }).map((us: any) =>{
+                    return(
                         <ResumeBox key={us.id}>
-                            {(us.name.charAt(0).toUpperCase()+us.name.slice(1)).toLowerCase().includes(inputText.toLowerCase()) &&
+                            {/* {(us.name.charAt(0).toUpperCase()+us.name.slice(1)).toLowerCase().includes(inputText.toLowerCase()) && */}
                                 <h3>{us.name.charAt(0).toUpperCase()+us.name.slice(1)}</h3>
-                            }
+                            {/* } */}
                             <p>{us.body.charAt(0).toUpperCase()+us.body.slice(1)}</p>
 
                             <div className="flowDiv">
@@ -193,7 +202,7 @@ export const ResumeWork: FC = () => {
                                 </div>
                             </div>
                         </ResumeBox>
-                ))}
+                    )})}
 
             <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} pageLast={lastPage}></Pagination>
 
