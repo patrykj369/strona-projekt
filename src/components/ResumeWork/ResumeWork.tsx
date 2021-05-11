@@ -183,9 +183,8 @@ export const ResumeWork: FC = () => {
                 }).map((us: any) =>{
                     return(
                         <ResumeBox key={us.id}>
-                            {/* {(us.name.charAt(0).toUpperCase()+us.name.slice(1)).toLowerCase().includes(inputText.toLowerCase()) && */}
-                                <h3>{us.name.charAt(0).toUpperCase()+us.name.slice(1)}</h3>
-                            {/* } */}
+                            <h3>{us.name.charAt(0).toUpperCase()+us.name.slice(1)}</h3>
+
                             <p>{us.body.charAt(0).toUpperCase()+us.body.slice(1)}</p>
 
                             <div className="flowDiv">
