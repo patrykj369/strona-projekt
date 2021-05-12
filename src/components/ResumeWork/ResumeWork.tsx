@@ -138,7 +138,7 @@ export const ResumeWork: FC = () => {
     const [postsPerPage] = useState(10);
 
     const [inputText, setInputText] = useState<any>("");
-    const [pudelko, setPudelko] = useState<number>(1);
+    const [inputSearchActive, setInputSearchActive] = useState<number>(1);
 
     useEffect(()=> {
 
@@ -160,9 +160,9 @@ export const ResumeWork: FC = () => {
         setInputText(text);
 
         if(text !== ""){
-            setPudelko(0);
+            setInputSearchActive(0);
         }else{
-            setPudelko(1);
+            setInputSearchActive(1);
         }
     }
 
@@ -229,7 +229,7 @@ export const ResumeWork: FC = () => {
                             </ResumeBox>
                         )})}
             {
-               pudelko ? <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} pageLast={lastPage}></Pagination> : null
+               inputSearchActive ? <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} pageLast={lastPage}></Pagination> : null
             }
 
 
