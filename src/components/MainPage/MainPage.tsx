@@ -8,6 +8,7 @@ import LeftMenu from '../LeftMenu/LeftMenu';
 import { Publications} from '../Publications/Publications';
 import { Workspaces } from '../Workspaces/Workspaces';
 import {ResumeWork} from '../ResumeWork/ResumeWork';
+import {Entities} from '../Entities/Entities';
 
 import {
     BrowserRouter as Router,
@@ -18,7 +19,6 @@ import {
   } from "react-router-dom";
 
 const Wrapper = styled.section`
-
 `;
 
 const Content = styled.div`
@@ -45,7 +45,7 @@ const MainPage: FC = () => {
                         <div>To są people</div>
                     </Route>
                     <Route path="/entities">
-                        <div>To są entities</div>
+                        <Entities/>
                     </Route>
                     <Route path="/administration">
                         <div>To są administration</div>

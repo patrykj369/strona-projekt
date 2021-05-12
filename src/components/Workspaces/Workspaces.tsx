@@ -84,7 +84,7 @@ const WorkspacesContent = styled.div`
 
     ::-webkit-scrollbar{
         width: 0;
-       background: transparent;
+        background: transparent;
     }
     scrollbar-width: none;
 

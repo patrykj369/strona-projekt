@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import styled from 'styled-components';
 
 import {fontSize} from '../../styledHelpers/FontSizes';
+import {Colors} from '../../styledHelpers/Colors';
 import { Wrapper } from '../../styledHelpers/Components';
 import { Link } from 'react-router-dom';
 
@@ -35,6 +36,21 @@ const WrapperSite = styled.div`
         margin-bottom: 20px;
         font-size: ${fontSize[18]};
         font-family: sans-serif;
+    }
+
+    li:after {
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: ${Colors.text_color};
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+    li:hover:after {
+        width: 100%;
+        left: 0;
     }
 
 `;

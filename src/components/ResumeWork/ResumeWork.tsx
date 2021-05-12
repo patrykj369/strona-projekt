@@ -156,7 +156,7 @@ export const ResumeWork: FC = () => {
     const paginate = (pageNumber:number) => pageNumber>=1 && pageNumber <= lastPage ? setCurrentPage(pageNumber) : console.log("blad");
 
     const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
-        const text = e.target.value;
+        const text:string = e.target.value;
         setInputText(text);
 
         if(text !== ""){

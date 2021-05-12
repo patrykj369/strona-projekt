@@ -58,6 +58,10 @@
     height:45px;
 }
 
+.divBoxNotification1:hover{
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
 .divBoxNotification2{
     position: absolute;
     background-color: rgba(163, 163, 163, 0.315);
@@ -66,6 +70,10 @@
     height:45px;
     margin-left: 92px;
     margin-top: -39px;
+}
+
+.divBoxNotification2:hover{
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .counterNotifications1{
