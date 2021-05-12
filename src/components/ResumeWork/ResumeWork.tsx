@@ -137,7 +137,8 @@ export const ResumeWork: FC = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
-    const [inputText, setInputText] = useState<string>("");
+    const [inputText, setInputText] = useState<any>("");
+    const [pudelko, setPudelko] = useState<number>(1);
 
     useEffect(()=> {
 
@@ -157,6 +158,12 @@ export const ResumeWork: FC = () => {
     const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
         const text = e.target.value;
         setInputText(text);
+
+        if(text !== ""){
+            setPudelko(0);
+        }else{
+            setPudelko(1);
+        }
     }
 
     return(
@@ -172,15 +179,7 @@ export const ResumeWork: FC = () => {
                 <p>Followed</p>
                 <img src="./media/icons/arrow-down.svg" alt=""></img>
             </div>
-                {currentPosts.filter((us: any) => {
-                    if(inputText === ""){
-                        return us
-                    }else if(us.name.toLowerCase().includes(inputText.toLowerCase())){
-                        return us
-                    }else{
-                        return null
-                    }
-                }).map((us: any) =>{
+                {inputText === "" ? currentPosts.map((us: any) =>{
                     return(
                         <ResumeBox key={us.id}>
                             <h3>{us.name.charAt(0).toUpperCase()+us.name.slice(1)}</h3>
@@ -201,9 +200,38 @@ export const ResumeWork: FC = () => {
                                 </div>
                             </div>
                         </ResumeBox>
-                    )})}
+                    )}): posts.filter((us: any) => {
+                        if(us.name.toLowerCase().includes(inputText.toLowerCase())){
+                            return us
+                        }else{
+                            return null;
+                        }
+                    }).map((us: any) =>{
+                        return(
+                            <ResumeBox key={us.id}>
+                                <h3>{us.name.charAt(0).toUpperCase()+us.name.slice(1)}</h3>
 
-            <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} pageLast={lastPage}></Pagination>
+                                <p>{us.body.charAt(0).toUpperCase()+us.body.slice(1)}</p>
+
+                                <div className="flowDiv">
+                                    <div className="Subside">
+                                        <img src="./media/icons/ecosystem.svg" alt=""></img>
+                                        <p>Subsid. corp.</p>
+                                    </div>
+                                    <div className="Corp">
+                                        <img src="./media/icons/entities2.svg" alt=""></img>
+                                        <p>Corporate</p>
+                                    </div>
+                                    <div className="Updated">
+                                        <p>{us.email}</p>
+                                    </div>
+                                </div>
+                            </ResumeBox>
+                        )})}
+            {
+               pudelko ? <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} pageLast={lastPage}></Pagination> : null
+            }
+
 
             </ResumeWorkContent>
         </WrapperResumeWork>
