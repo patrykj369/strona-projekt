@@ -36,6 +36,17 @@ const EntitiesWrapper = styled(Wrapper)`
         height: 30px;
         background-color: brown;
     }
+
+    .entitiesCard{
+        display: flex;
+    }
+`;
+
+const EntitiesCard = styled.div`
+    width: 220px;
+    height: 120px;
+    background-color: #fff;
+    margin: 20px 20px 0 0;
 `;
 
 
@@ -49,7 +60,10 @@ export const Entities: FC = () => {
                 </div>
 
                 <div className="entitiesCard">
-
+                    <EntitiesCard> </EntitiesCard>
+                    <EntitiesCard> </EntitiesCard>
+                    <EntitiesCard> </EntitiesCard>
+                    <EntitiesCard> </EntitiesCard>
                 </div>
             </div>
         </EntitiesWrapper>
