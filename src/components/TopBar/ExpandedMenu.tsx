@@ -1,13 +1,18 @@
 import { FC, useState, ChangeEvent, useEffect} from 'react';
 import styled from 'styled-components';
-// import PropTypes from 'prop-types';
 
 import {Link} from 'react-router-dom';
-
 
 import {fontSize} from '../../styledHelpers/FontSizes';
 import {Colors} from '../../styledHelpers/Colors';
 
+import { IState } from '../../reducers';
+import { IUsersReducer } from '../../reducers/usersReducers';
+import { getSomeImg, getUsers } from '../../actions/usersActions';
+import { useDispatch, useSelector } from 'react-redux';
+
+type GetImg = ReturnType<typeof getSomeImg>
+type GetUsers = ReturnType<typeof getUsers>
 
 const Wrapper = styled.div`
     cursor: pointer;
@@ -146,27 +151,38 @@ const Wrapper = styled.div`
 export const ExpandedMenu: FC<any> = (props) => {
     const [inputText, setInputText] = useState<string>('');
 
-    const userID: number = 1;
+    // const userID: number = 1;
 
-    const [person, setPerson]= useState<any>(null);
-    const [imageUrl, setImageUrl] = useState<any>(null);
+    // const [person, setPerson]= useState<any>(null);
+    // const [imageUrl, setImageUrl] = useState<any>(null);
 
-    useEffect(() =>{
-       async function getName() {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
-        const data = await response.json();
-        setPerson(data.name);
-       }
+    // useEffect(() =>{
+    //    async function getName() {
+    //     const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
+    //     const data = await response.json();
+    //     setPerson(data.name);
+    //    }
 
-       async function getUrl(){
-           const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`)
-           const data = await response.json();
-           setImageUrl(data.url);
-       }
+    //    async function getUrl(){
+    //        const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`)
+    //        const data = await response.json();
+    //        setImageUrl(data.url);
+    //    }
 
-       getName();
-       getUrl();
-    });
+    //    getName();
+    //    getUrl();
+    // });
+
+    const { someImg, usersList } = useSelector<IState, IUsersReducer>(state => ({
+        ...state.users
+    }));
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch<GetImg>(getSomeImg());
+        dispatch<GetUsers>(getUsers());
+    }, [dispatch]);
 
     const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
         const text = e.target.value;
@@ -223,8 +239,8 @@ export const ExpandedMenu: FC<any> = (props) => {
 
                 <li className="specificLi">Account</li>
                 <div className="userAccount">
-                    <img className="avatarImg" src={JSON.stringify(imageUrl).slice(1,-1)} alt=""></img>
-                    <li className="nameProfil">{JSON.stringify(person).slice(1,-1)}</li>
+                    <img className="avatarImg" src={someImg[0]?.url} alt=""></img>
+                    <li className="nameProfil">{JSON.stringify(usersList[0]?.name)?.slice(1,-1)}</li>
                     <li className="seeProfile" onClick={() => props.changeWord('Profile')}><Link to="/profile" className="seeProfileLink">See profile</Link></li>
                 </div>
 

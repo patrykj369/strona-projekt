@@ -112,7 +112,6 @@ const LeftMenu: FC = () => {
         <Wrapper3 className="wrapper">
             <InnerWrapper2 className="container">
                 <MyDiv1>
-
                     <MyImage src={imageUrl} alt="image" className="profileImage"></MyImage>
 
                     <CustomParagraph className="customParagraph">{JSON.stringify(person).slice(1,-1)}</CustomParagraph>
@@ -135,7 +134,6 @@ const LeftMenu: FC = () => {
                     <Link to="/publications">
                         <div className="divCustom1"><CustomImg src="./media/icons/plus.png" className="customImageUser1"/></div>
                     </Link>
-
                 </MyDiv1>
             </InnerWrapper2>
 

@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import styled from 'styled-components';
 
 import {fontSize} from '../../styledHelpers/FontSizes';
-import {Colors} from '../../styledHelpers/Colors';
+// import {Colors} from '../../styledHelpers/Colors';
 import { Wrapper } from '../../styledHelpers/Components';
 
 const EntitiesWrapper = styled(Wrapper)`

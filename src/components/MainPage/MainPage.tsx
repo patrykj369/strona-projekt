@@ -1,4 +1,4 @@
-import React, { FC} from 'react';
+import React, { FC, useEffect} from 'react';
 import styled from 'styled-components';
 
 import "./MainPage.scss";
@@ -17,6 +17,12 @@ import {
     Redirect,
     //Link
   } from "react-router-dom";
+// import { useDispatch } from 'react-redux';
+// import { getUsers } from '../../actions/usersActions';
+
+
+// type GetUsers = ReturnType<typeof getUsers>
+// type GetData = ReturnType<typeof getSomeData>
 
 const Wrapper = styled.section`
 `;
@@ -31,6 +37,13 @@ const Content = styled.div`
 `;
 
 const MainPage: FC = () => {
+
+    // const dispatch = useDispatch();
+
+    // useEffect(() => {
+    //     dispatch<GetUsers>(getUsers());
+    // }, [dispatch]);
+
     return (
     <Router>
         <Wrapper>
