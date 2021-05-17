@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import styled from 'styled-components';
 
 import "./LeftMenu.scss";
@@ -8,6 +8,14 @@ import { Colors } from '../../styledHelpers/Colors';
 import {fontSize} from '../../styledHelpers/FontSizes';
 import {LeftSite} from '../LeftSite/LeftSite';
 import { Link } from 'react-router-dom';
+
+import { IState } from '../../reducers';
+import { IUsersReducer } from '../../reducers/usersReducers';
+import { getSomeImg, getUsers } from '../../actions/usersActions';
+import { useDispatch, useSelector } from 'react-redux';
+
+type GetImg = ReturnType<typeof getSomeImg>
+type GetUsers = ReturnType<typeof getUsers>
 
 const Wrapper3 = styled(Wrapper)`
     background: ${Colors.grey_hsla};
@@ -79,44 +87,26 @@ const CustomImg = styled.img`
 
 const LeftMenu: FC = () => {
 
-    const userID: number = 1;
+    const { someImg, usersList } = useSelector<IState, IUsersReducer>(state => ({
+        ...state.users
+    }));
 
-    const [person, setPerson]= useState<any>(null);
-    const [company, setCompany] = useState<any>(null);
-    const [imageUrl, setImageUrl] = useState<any>(null);
+    const dispatch = useDispatch();
 
-    useEffect(() =>{
-       async function getData() {
-           try{
-                const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
-                const data = await response.json();
-                setPerson(data.name);
-                setCompany(data.company.name);
-           }catch(e){}
-       }
-
-       function getUrl(){
-           try{
-               fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`)
-                .then(res=> res.json())
-                .then(data => setImageUrl(data.url));
-           }catch(e){}
-       }
-
-       getData();
-       getUrl();
-    });
-
+    useEffect(() => {
+        dispatch<GetImg>(getSomeImg());
+        dispatch<GetUsers>(getUsers());
+    }, [dispatch]);
 
     return (
         <Wrapper3 className="wrapper">
             <InnerWrapper2 className="container">
                 <MyDiv1>
-                    <MyImage src={imageUrl} alt="image" className="profileImage"></MyImage>
+                    <MyImage src={someImg[0]?.url} alt="image" className="profileImage"></MyImage>
 
-                    <CustomParagraph className="customParagraph">{JSON.stringify(person).slice(1,-1)}</CustomParagraph>
+                    <CustomParagraph className="customParagraph">{JSON.stringify(usersList[0]?.name)?.slice(1,-1)}</CustomParagraph>
 
-                    <CustomParagraph2 className="customParagraph2">{JSON.stringify(company).slice(1,-1)}</CustomParagraph2>
+                    <CustomParagraph2 className="customParagraph2">{JSON.stringify(usersList[0]?.company.name)?.slice(1,-1)}</CustomParagraph2>
 
                     <hr></hr>
                     <CustomImg src="./media/icons/network.png" className="customImage1"/>

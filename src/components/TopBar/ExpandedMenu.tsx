@@ -151,28 +151,6 @@ const Wrapper = styled.div`
 export const ExpandedMenu: FC<any> = (props) => {
     const [inputText, setInputText] = useState<string>('');
 
-    // const userID: number = 1;
-
-    // const [person, setPerson]= useState<any>(null);
-    // const [imageUrl, setImageUrl] = useState<any>(null);
-
-    // useEffect(() =>{
-    //    async function getName() {
-    //     const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
-    //     const data = await response.json();
-    //     setPerson(data.name);
-    //    }
-
-    //    async function getUrl(){
-    //        const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`)
-    //        const data = await response.json();
-    //        setImageUrl(data.url);
-    //    }
-
-    //    getName();
-    //    getUrl();
-    // });
-
     const { someImg, usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
     }));
