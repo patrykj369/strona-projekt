@@ -1,4 +1,4 @@
-import React, { FC, useEffect} from 'react';
+import React, { FC} from 'react';
 import styled from 'styled-components';
 
 import "./MainPage.scss";
@@ -37,12 +37,6 @@ const Content = styled.div`
 `;
 
 const MainPage: FC = () => {
-
-    // const dispatch = useDispatch();
-
-    // useEffect(() => {
-    //     dispatch<GetUsers>(getUsers());
-    // }, [dispatch]);
 
     return (
     <Router>
