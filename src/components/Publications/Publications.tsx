@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect} from 'react';
 import styled from 'styled-components';
 
 import {Wrapper} from  '../../styledHelpers/Components';
@@ -6,6 +6,19 @@ import {fontSize} from '../../styledHelpers/FontSizes';
 import {Colors} from '../../styledHelpers/Colors';
 import {LatestPublication} from './LatestPublication';
 import { Link } from 'react-router-dom';
+
+import { IState } from '../../reducers';
+import { IUsersReducer } from '../../reducers/usersReducers';
+import { getUsers } from '../../actions/usersActions';
+import { getImg} from '../../actions/imagesActions';
+import { getPost} from '../../actions/postsActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { IImageReducer } from '../../reducers/imageReducers';
+import { IPostsReducer } from '../../reducers/postsReducers';
+
+type GetImg = ReturnType<typeof getImg>
+type GetUsers = ReturnType<typeof getUsers>
+type GetPosts = ReturnType<typeof getPost>
 
 const WrapperPublications = styled(Wrapper)`
     position: relative;
@@ -101,95 +114,40 @@ const ContentPublications = styled.div`
 `;
 
 export const Publications: FC = () => {
-    const postId: number = 1;
 
-    const [title, setTitle] = useState<any>(1);
-    const [image, setImage ] = useState<any>(1);
+    const {usersList } = useSelector<IState, IUsersReducer>(state => ({
+        ...state.users
+    }));
 
-    const [userId, setUserID] = useState<any>(1);
-    const [userName, setUserName] = useState<any>(1);
-    const [userImage, setUserImage] = useState<any>(1);
+    const {imageList} = useSelector<IState, IImageReducer>(state =>({
+        ...state.photos
+    }))
 
-    useEffect(()=>{
+    const {postsList} = useSelector<IState, IPostsReducer>(state =>({
+        ...state.posts
+    }))
 
-        async function getTitle(postID: number) {
-            try{
-                const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postID}`);
-                const data = await response.json();
-                const title = JSON.stringify(data.title).slice(1,-1);
-                const titleFirstLetterUpper = title.charAt(0).toUpperCase() + title.slice(1);
-                setUserID(data.userId);
-                setTitle(titleFirstLetterUpper);
-            }catch(e){
+    const dispatch = useDispatch();
 
-            }
-
-        }
-
-        async function getImage(postID: number){
-            try{
-                const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${postID}`);
-                const data = await response.json();
-                const url = JSON.stringify(data.url).slice(1,-1);
-                setImage(url);
-            }catch(e){
-
-            }
-
-        }
-
-        async function getName(userID: number) {
-            try{
-                const response = await fetch(`https://jsonplaceholder.typicode.com/users/${userID}`);
-                const data = await response.json();
-
-                if(data.name != null)
-                setUserName(data.name);
-            }catch(e){
-
-            }
-
-           }
-
-
-        async function getUserImage(userID: number){
-            try{
-                const response = await fetch(`https://jsonplaceholder.typicode.com/photos/${userID}`);
-                const data = await response.json();
-                if(data.url != null){
-                let url = JSON.stringify(data.url).slice(1,-1);
-                setUserImage(url);
-            }
-            }catch(e){
-
-            }
-
-        }
-
-        try{
-            getTitle(postId);
-            getImage(postId);
-            getName(userId);
-            getUserImage(userId);
-        }catch(e){
-
-        }
-
-    });
+    useEffect(() => {
+        dispatch<GetImg>(getImg());
+        dispatch<GetUsers>(getUsers());
+        dispatch<GetPosts>(getPost());
+    }, [dispatch]);
 
     return(
         <WrapperPublications>
             <ContentPublications>
                 <div className="importantInfo" style={{
-                    background: `linear-gradient(rgba(235, 238, 241, 0), #9b9999), url(${image}) center`
+                    background: `linear-gradient(rgba(235, 238, 241, 0), #9b9999), url(${imageList[0]?.url}) center`
                     }}>
 
-                    <span>{title}</span>
+                    <span>{postsList[0]?.title.charAt(0).toUpperCase()+postsList[0]?.title.slice(1)}</span>
 
                     <div className="info">
                     <p className="tekscior">7 jan. 2020</p>
-                    <img src={userImage} alt=""></img>
-                    <p className="tekscior">{JSON.stringify(userName).slice(1,-1)}</p>
+                    <img src={imageList[0]?.url} alt=""></img>
+                    <p className="tekscior">{usersList[0]?.name}</p>
                     </div>
 
                 </div>

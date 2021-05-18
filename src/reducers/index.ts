@@ -3,12 +3,16 @@ import photos, { IImageReducer } from './imageReducers';
 
 import users, { IUsersReducer } from './usersReducers';
 
+import posts, { IPostsReducer } from './postsReducers';
+
 export default combineReducers({
     users,
-    photos
+    photos,
+    posts
 })
 
 export interface IState {
     users: IUsersReducer,
-    photos: IImageReducer
+    photos: IImageReducer,
+    posts: IPostsReducer
 }

@@ -3,8 +3,6 @@ import { Provider } from 'react-redux';
 
 import { Reset } from 'styled-reset';
 
-
-
 import MainPage from './components/MainPage/MainPage';
 import store from './tools/store';
 

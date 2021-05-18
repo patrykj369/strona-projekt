@@ -110,9 +110,9 @@ const LeftMenu: FC = () => {
                 <MyDiv1>
                     <MyImage src={imageList[0]?.url} alt="image" className="profileImage"></MyImage>
 
-                    <CustomParagraph className="customParagraph">{JSON.stringify(usersList[0]?.name)?.slice(1,-1)}</CustomParagraph>
+                    <CustomParagraph className="customParagraph">{usersList[0]?.name}</CustomParagraph>
 
-                    <CustomParagraph2 className="customParagraph2">{JSON.stringify(usersList[0]?.company.name)?.slice(1,-1)}</CustomParagraph2>
+                    <CustomParagraph2 className="customParagraph2">{usersList[0]?.company.name}</CustomParagraph2>
 
                     <hr></hr>
                     <CustomImg src="./media/icons/network.png" className="customImage1"/>
