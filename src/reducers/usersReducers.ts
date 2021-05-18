@@ -1,46 +1,25 @@
 import { IUser } from '../entities/users';
-import * as actionTypes from '../actions/actionTypes/userTypes';
-import { IPhoto } from '../entities/photos'
+import * as userTypes from '../actions/actionTypes/userTypes';
 
 export interface IUsersReducer {
-    usersList: IUser[];
-    someData: string;
-    someImg: IPhoto[];
+    usersList: IUser[]
 }
 
 const defaultState = (): IUsersReducer => ({
-    usersList: [],
-    someData: 'random text',
-    someImg: []
+    usersList: []
 });
 
 /* eslint import/no-anonymous-default-export: [2, {"allowArrowFunction": true}] */
 export default (state = defaultState(), action: any) => {
     switch (action.type) {
-
-        case actionTypes.GET_USERS: {
-            const data: actionTypes.IUserTypes['GET_USERS'] = action;
+        case userTypes.GET_USERS: {
+            const data: userTypes.IUserTypes['GET_USERS'] = action;
             return {
                 ...state,
                 usersList: data.usersList
             }
         }
 
-        case actionTypes.PUSH_DATA: {
-            const data: actionTypes.IUserTypes['PUSH_DATA'] = action;
-            return {
-                ...state,
-                someData: data.someData
-            }
-        }
-
-        case actionTypes.GET_IMAGE: {
-            const data: actionTypes.IUserTypes['GET_IMAGE'] = action;
-            return {
-                ...state,
-                someImg: data.someImg
-            }
-        }
         default: {
             return state
         }

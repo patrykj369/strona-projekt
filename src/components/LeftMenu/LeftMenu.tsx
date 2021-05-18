@@ -11,10 +11,12 @@ import { Link } from 'react-router-dom';
 
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducers';
-import { getSomeImg, getUsers } from '../../actions/usersActions';
+import { getUsers } from '../../actions/usersActions';
+import { getImg} from '../../actions/imagesActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { IImageReducer } from '../../reducers/imageReducers';
 
-type GetImg = ReturnType<typeof getSomeImg>
+type GetImg = ReturnType<typeof getImg>
 type GetUsers = ReturnType<typeof getUsers>
 
 const Wrapper3 = styled(Wrapper)`
@@ -87,14 +89,18 @@ const CustomImg = styled.img`
 
 const LeftMenu: FC = () => {
 
-    const { someImg, usersList } = useSelector<IState, IUsersReducer>(state => ({
+    const {usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
     }));
+
+    const {imageList} = useSelector<IState, IImageReducer>(state =>({
+        ...state.photos
+    }))
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch<GetImg>(getSomeImg());
+        dispatch<GetImg>(getImg());
         dispatch<GetUsers>(getUsers());
     }, [dispatch]);
 
@@ -102,7 +108,7 @@ const LeftMenu: FC = () => {
         <Wrapper3 className="wrapper">
             <InnerWrapper2 className="container">
                 <MyDiv1>
-                    <MyImage src={someImg[0]?.url} alt="image" className="profileImage"></MyImage>
+                    <MyImage src={imageList[0]?.url} alt="image" className="profileImage"></MyImage>
 
                     <CustomParagraph className="customParagraph">{JSON.stringify(usersList[0]?.name)?.slice(1,-1)}</CustomParagraph>
 

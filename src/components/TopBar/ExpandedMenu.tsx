@@ -8,10 +8,12 @@ import {Colors} from '../../styledHelpers/Colors';
 
 import { IState } from '../../reducers';
 import { IUsersReducer } from '../../reducers/usersReducers';
-import { getSomeImg, getUsers } from '../../actions/usersActions';
+import { getUsers } from '../../actions/usersActions';
 import { useDispatch, useSelector } from 'react-redux';
+import { getImg} from '../../actions/imagesActions';
+import { IImageReducer } from '../../reducers/imageReducers';
 
-type GetImg = ReturnType<typeof getSomeImg>
+type GetImg = ReturnType<typeof getImg>
 type GetUsers = ReturnType<typeof getUsers>
 
 const Wrapper = styled.div`
@@ -151,14 +153,18 @@ const Wrapper = styled.div`
 export const ExpandedMenu: FC<any> = (props) => {
     const [inputText, setInputText] = useState<string>('');
 
-    const { someImg, usersList } = useSelector<IState, IUsersReducer>(state => ({
+    const {usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
     }));
+
+    const {imageList} = useSelector<IState, IImageReducer>(state =>({
+        ...state.photos
+    }))
 
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch<GetImg>(getSomeImg());
+        dispatch<GetImg>(getImg());
         dispatch<GetUsers>(getUsers());
     }, [dispatch]);
 
@@ -217,7 +223,7 @@ export const ExpandedMenu: FC<any> = (props) => {
 
                 <li className="specificLi">Account</li>
                 <div className="userAccount">
-                    <img className="avatarImg" src={someImg[0]?.url} alt=""></img>
+                    <img className="avatarImg" src={imageList[0]?.url} alt=""></img>
                     <li className="nameProfil">{JSON.stringify(usersList[0]?.name)?.slice(1,-1)}</li>
                     <li className="seeProfile" onClick={() => props.changeWord('Profile')}><Link to="/profile" className="seeProfileLink">See profile</Link></li>
                 </div>

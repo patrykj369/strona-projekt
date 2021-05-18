@@ -1,7 +1,9 @@
 import { Dispatch } from 'redux';
-import * as actionTypes from './actionTypes/userTypes';
+import * as userTypes from './actionTypes/userTypes';
+import * as postTypes from './actionTypes/postTypes';
+
 import { IUser } from '../entities/users';
-import { IPhoto } from '../entities/photos';
+import { IPosts } from '../entities/posts';
 
 export const getUsers = (): Promise<IUser[]> => ((dispatch: Dispatch) => {
 
@@ -9,28 +11,29 @@ export const getUsers = (): Promise<IUser[]> => ((dispatch: Dispatch) => {
         .then(response => response.json())
         .then((usersList: IUser[]) => {
             dispatch({
-                type: actionTypes.GET_USERS,
+                type: userTypes.GET_USERS,
                 usersList
             })
         })
 }) as any;
 
-export const getSomeData = (someData: string): Promise<IUser[]> => ((dispatch: Dispatch) => {
+// export const getSomeData = (someData: string): Promise<IUser[]> => ((dispatch: Dispatch) => {
 
-    dispatch({
-        type: actionTypes.PUSH_DATA,
-        someData
-    })
-}) as any;
+//     dispatch({
+//         type: actionTypes.PUSH_DATA,
+//         someData
+//     })
+// }) as any;
 
-export const getSomeImg = (): Promise<IPhoto[]> => ((dispatch: Dispatch) => {
 
-    return fetch('https://jsonplaceholder.typicode.com/photos')
+export const getPosts= (): Promise<IPosts[]> => ((dispatch: Dispatch) => {
+
+    return fetch('https://jsonplaceholder.typicode.com/posts')
     .then(response => response.json())
-    .then((someImg: IPhoto[]) => {
+    .then((postsList: IPosts[]) => {
         dispatch({
-            type: actionTypes.GET_IMAGE,
-            someImg
+            type: postTypes.GET_POSTS,
+            postsList
         })
     })
 }) as any;
