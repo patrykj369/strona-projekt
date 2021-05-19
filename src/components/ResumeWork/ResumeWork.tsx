@@ -5,6 +5,13 @@ import {Wrapper} from '../../styledHelpers/Components'
 import { Colors } from '../../styledHelpers/Colors';
 import { Pagination } from '../Pagination/Pagination';
 
+import { IState } from '../../reducers';
+import { ICommentsReducer } from '../../reducers/commentsReducers';
+import { getComments } from '../../actions/commentsActions';
+import { useDispatch, useSelector } from 'react-redux';
+
+type GetComments = ReturnType<typeof getComments>
+
 const WrapperResumeWork = styled(Wrapper)`
     position: relative;
     padding: 0;
@@ -132,26 +139,27 @@ const ResumeBox = styled.div`
 
 export const ResumeWork: FC = () => {
 
-    const apiURL = `https://jsonplaceholder.typicode.com/comments/`;
-    const [posts, setPosts] = useState<any>([]);
+    const {commentList} = useSelector<IState, ICommentsReducer>(state => ({
+        ...state.comments
+    }));
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch<GetComments>(getComments());
+
+    }, [dispatch]);
+
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(10);
 
     const [inputText, setInputText] = useState<any>("");
     const [inputSearchActive, setInputSearchActive] = useState<number>(1);
 
-    useEffect(()=> {
-
-        fetch(apiURL)
-        .then(res=> res.json())
-        .then(data => setPosts(data))
-
-    }, [apiURL]);
-
     const indexOfLastPost: number = currentPage * postsPerPage;
     const indexOfFirstPost: number = indexOfLastPost - postsPerPage;
-    const currentPosts = posts.slice(indexOfFirstPost, indexOfLastPost);
-    const lastPage: number = posts.length / postsPerPage;
+    const currentPosts = commentList.slice(indexOfFirstPost, indexOfLastPost);
+    const lastPage: number = commentList.length / postsPerPage;
 
     const paginate = (pageNumber:number) => pageNumber>=1 && pageNumber <= lastPage ? setCurrentPage(pageNumber) : console.log("blad");
 
@@ -165,6 +173,7 @@ export const ResumeWork: FC = () => {
             setInputSearchActive(1);
         }
     }
+
 
     return(
         <WrapperResumeWork>
@@ -200,7 +209,7 @@ export const ResumeWork: FC = () => {
                                 </div>
                             </div>
                         </ResumeBox>
-                    )}): posts.filter((us: any) => {
+                    )}): commentList.filter((us: any) => {
                         if(us.name.toLowerCase().includes(inputText.toLowerCase())){
                             return us
                         }else{
@@ -229,7 +238,7 @@ export const ResumeWork: FC = () => {
                             </ResumeBox>
                         )})}
             {
-               inputSearchActive ? <Pagination postsPerPage={postsPerPage} totalPosts={posts.length} paginate={paginate} pageLast={lastPage}></Pagination> : null
+               inputSearchActive ? <Pagination postsPerPage={postsPerPage} totalPosts={commentList.length} paginate={paginate} pageLast={lastPage}></Pagination> : null
             }
 
 
