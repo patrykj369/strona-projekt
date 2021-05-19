@@ -9,7 +9,7 @@ import {SingleComponent} from './SingleWorkspace';
 
 
 const WorkspacesWrapper = styled(Wrapper)`
-    top: 480px;
+    top: 460px;
     left: 20px;
     position: relative;
     padding: 0;
@@ -76,7 +76,7 @@ const WorkspacesWrapper = styled(Wrapper)`
 
 const WorkspacesContent = styled.div`
     overflow-x: scroll;
-    height: 300px;
+    height: 270px;
     width: 860px;
     display: flex;
     flex-direction: row;
