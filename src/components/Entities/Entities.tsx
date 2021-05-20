@@ -29,6 +29,11 @@ const EntitiesWrapper = styled(Wrapper)`
         width: 890px;
         height: 780px;
 
+        .firstLine{
+            display: grid;
+            grid-template-columns: 1fr 105px 30px;
+        }
+
         h2{
             height: 2em;
             font-size: ${fontSize[18]};
@@ -38,6 +43,60 @@ const EntitiesWrapper = styled(Wrapper)`
             img{
                 margin-left: 10px;
             }
+        }
+
+        .mosaicDiv{
+            display: flex;
+            height: 1.8rem;
+            margin: 0 5px 0 5px;
+            border: 1px solid black;
+            text-align: center;
+            align-items: center;
+            img{
+                width: 20px;
+            }
+
+            .button{
+                border: none;
+                display: flex;
+                height: 1.2rem;
+                margin-top: 6px;
+                font-size: ${fontSize[18]};
+                text-align: center;
+                align-items: center;
+            }
+
+            .buttonh:hover{
+                background-color: ${Colors.hover_color};
+            }
+        }
+
+        .mosaicDiv:hover{
+            background-color: ${Colors.hover_color};
+        }
+
+        .linesDiv{
+            display: flex;
+            height: 1.8rem;
+            border: 1px solid black;
+            text-align: center;
+            align-items: center;
+            img{
+                width: 16px;
+            }
+
+            .button{
+                border: none;
+                height: 1.1rem;
+            }
+
+            .buttonh:hover{
+                background-color: ${Colors.hover_color};
+            }
+        }
+
+        .linesDiv:hover{
+            background-color: ${Colors.hover_color};
         }
     }
 
@@ -131,7 +190,20 @@ export const Entities: FC = () => {
     return(
         <EntitiesWrapper>
             <div className="contentEntities">
+                <div className="firstLine">
                 <h2>Entities <img src="./media/icons/cog.svg" alt=""></img></h2>
+                <div className="mosaicDiv">
+                    <button className="button">
+                    <img src="./media/icons/mosaic.svg" alt="" data-license="collecting by Ralf Schmitzer from the Noun Project"></img>
+                    Mosaic
+                    </button>
+                </div>
+                <div className="linesDiv">
+                    <button className="button">
+                    <img src="./media/icons/three_lines.svg" alt="" data-license="Hamburger by Gautam Arora from the Noun Project"></img>
+                    </button>
+                </div>
+                </div>
                 <div className="topBar">
                     <div className="leftSiteBar">
                     <div className="expandedSelector">
