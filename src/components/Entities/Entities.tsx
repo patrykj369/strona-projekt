@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {ChangeEvent, FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import {fontSize} from '../../styledHelpers/FontSizes';
@@ -66,7 +66,7 @@ const EntitiesWrapper = styled(Wrapper)`
     .entitiesCard{
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-between;
+        //justify-content: space-between;
     }
 `;
 
@@ -74,12 +74,11 @@ const EntitiesCard = styled.div`
     width: 18rem;
     height: 7rem;
     background-color: #fff;
-    margin: 20px 0 0 0;
+    margin: 20px 8px 0 0;
     display: grid;
     grid-template-columns: 1.5fr 2.5fr;
     border-radius: 10px;
     box-shadow: 0 8px 5px -5px rgba(143, 143, 143, 0.171);
-
 
     .contentImg{
         grid-column: 1;
@@ -107,6 +106,8 @@ const EntitiesCard = styled.div`
 
 export const Entities: FC = () => {
 
+    const [inputText, setInputText] = useState<string>('');
+
     const {usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
     }));
@@ -121,6 +122,11 @@ export const Entities: FC = () => {
         dispatch<GetImg>(getImg());
         dispatch<GetUsers>(getUsers());
     }, [dispatch]);
+
+    const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
+        const text = e.target.value;
+        setInputText(text);
+    }
 
     return(
         <EntitiesWrapper>
@@ -150,7 +156,7 @@ export const Entities: FC = () => {
 
                     <div className="rightSiteBar">
                         <div>
-                            <input type="text" placeholder="Search..."></input>
+                            <input type="text" placeholder="Search..." value={inputText} onChange={inputHandler}></input>
                         </div>
                         <div className="expandedSelector">
                             <p>Followed</p>
@@ -161,7 +167,7 @@ export const Entities: FC = () => {
                 </div>
 
                 <div className="entitiesCard">
-                    {usersList.map((x: any) => {
+                    {inputText === "" ? usersList.map((x: any) => {
                         return(
                         <EntitiesCard>
                             <div className="contentImg" style={{ background: `url(${imageList[x.id]?.url})`, backgroundSize: `cover`}}>
@@ -171,7 +177,24 @@ export const Entities: FC = () => {
                             <p>{x.company.catchPhrase}</p>
                             </div>
                         </EntitiesCard>
-                    )})}
+                    )}): usersList.filter((x: any)=>{
+                        if(x.company.name.toLowerCase().includes(inputText.toLowerCase())){
+                            return x
+                        }else{
+                            return null;
+                        }
+                    }).map((x: any)=>{
+                        return(
+                            <EntitiesCard>
+                                <div className="contentImg" style={{ background: `url(${imageList[x.id]?.url})`, backgroundSize: `cover`}}>
+                                </div>
+                                <div className="contentText">
+                                <h2>{x.company.name}</h2>
+                                <p>{x.company.catchPhrase}</p>
+                                </div>
+                            </EntitiesCard>
+                        )
+                    })}
                 </div>
             </div>
         </EntitiesWrapper>
