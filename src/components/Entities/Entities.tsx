@@ -18,8 +18,7 @@ type GetUsers = ReturnType<typeof getUsers>
 const EntitiesWrapper = styled(Wrapper)`
     position: absolute;
     padding: 0;
-    margin-top: 465px;
-    margin-left: 320px;
+    margin: 520px 0 50px 320px;
     border-radius: 5px;
     font-family: sans-serif;
     background-color: ${Colors.grey_hsla};
@@ -32,6 +31,7 @@ const EntitiesWrapper = styled(Wrapper)`
         .firstLine{
             display: grid;
             grid-template-columns: 1fr 105px 30px;
+            padding-right: 12px;
         }
 
         h2{
@@ -54,6 +54,7 @@ const EntitiesWrapper = styled(Wrapper)`
             align-items: center;
             img{
                 width: 20px;
+                margin-right: 2px;
             }
 
             .button{
@@ -98,6 +99,7 @@ const EntitiesWrapper = styled(Wrapper)`
         .linesDiv:hover{
             background-color: ${Colors.hover_color};
         }
+
     }
 
     .topBar{
@@ -122,10 +124,19 @@ const EntitiesWrapper = styled(Wrapper)`
         }
     }
 
-    .entitiesCard{
+    .entitiesCardMosaic{
         display: flex;
         flex-wrap: wrap;
-        //justify-content: space-between;
+    }
+
+    .entitiesCardLines{
+         display: block;
+    }
+
+    .entitiesCardLines:after{
+        content: "";
+        display: block;
+        height: 20px;
     }
 `;
 
@@ -135,7 +146,7 @@ const EntitiesCard = styled.div`
     background-color: #fff;
     margin: 20px 8px 0 0;
     display: grid;
-    grid-template-columns: 1.5fr 2.5fr;
+    grid-template-columns: 7rem 2.5fr;
     border-radius: 10px;
     box-shadow: 0 8px 5px -5px rgba(143, 143, 143, 0.171);
 
@@ -160,6 +171,8 @@ const EntitiesCard = styled.div`
             font-size: ${fontSize[14]};
         }
     }
+
+
 `;
 
 
@@ -185,6 +198,40 @@ export const Entities: FC = () => {
     const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
         const text = e.target.value;
         setInputText(text);
+
+    }
+
+    const changeDisplayLines = () =>{
+        const x = document.getElementById('cardBox');
+
+        x?.classList.remove('entitiesCardMosaic');
+        x?.classList.add('entitiesCardLines')
+
+        const y = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLElement>;
+        const z = y.length;
+
+        for(let i=0; i<z; i++){
+            if(y[i])
+            y[i].style.width = '100%';
+        }
+
+
+    }
+
+    const changeDisplayMosaic = () =>{
+        const x = document.getElementById('cardBox');
+
+        x?.classList.remove('entitiesCardLines');
+        x?.classList.add('entitiesCardMosaic');
+
+        const y = document.getElementsByClassName('card') as HTMLCollectionOf<HTMLElement>;
+        const z = y.length;
+
+        for(let i=0; i<z; i++){
+            if(y[i])
+            y[i].style.width = '18rem';
+        }
+
     }
 
     return(
@@ -193,13 +240,13 @@ export const Entities: FC = () => {
                 <div className="firstLine">
                 <h2>Entities <img src="./media/icons/cog.svg" alt=""></img></h2>
                 <div className="mosaicDiv">
-                    <button className="button">
+                    <button className="button" onClick={changeDisplayMosaic}>
                     <img src="./media/icons/mosaic.svg" alt="" data-license="collecting by Ralf Schmitzer from the Noun Project"></img>
                     Mosaic
                     </button>
                 </div>
                 <div className="linesDiv">
-                    <button className="button">
+                    <button className="button" onClick={changeDisplayLines}>
                     <img src="./media/icons/three_lines.svg" alt="" data-license="Hamburger by Gautam Arora from the Noun Project"></img>
                     </button>
                 </div>
@@ -238,10 +285,10 @@ export const Entities: FC = () => {
 
                 </div>
 
-                <div className="entitiesCard">
+                <div id="cardBox" className="entitiesCardMosaic">
                     {inputText === "" ? usersList.map((x: any) => {
                         return(
-                        <EntitiesCard>
+                        <EntitiesCard className="card">
                             <div className="contentImg" style={{ background: `url(${imageList[x.id]?.url})`, backgroundSize: `cover`}}>
                             </div>
                             <div className="contentText">
@@ -257,7 +304,7 @@ export const Entities: FC = () => {
                         }
                     }).map((x: any)=>{
                         return(
-                            <EntitiesCard>
+                            <EntitiesCard className="card">
                                 <div className="contentImg" style={{ background: `url(${imageList[x.id]?.url})`, backgroundSize: `cover`}}>
                                 </div>
                                 <div className="contentText">
@@ -267,6 +314,7 @@ export const Entities: FC = () => {
                             </EntitiesCard>
                         )
                     })}
+
                 </div>
             </div>
         </EntitiesWrapper>
