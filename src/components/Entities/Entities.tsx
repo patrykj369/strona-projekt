@@ -49,7 +49,6 @@ const EntitiesWrapper = styled(Wrapper)`
             display: flex;
             height: 1.8rem;
             margin: 0 5px 0 5px;
-            border: 1px solid black;
             text-align: center;
             align-items: center;
             img{
@@ -67,7 +66,7 @@ const EntitiesWrapper = styled(Wrapper)`
                 align-items: center;
             }
 
-            .buttonh:hover{
+            .button:hover{
                 background-color: ${Colors.hover_color};
             }
         }
@@ -79,7 +78,6 @@ const EntitiesWrapper = styled(Wrapper)`
         .linesDiv{
             display: flex;
             height: 1.8rem;
-            border: 1px solid black;
             text-align: center;
             align-items: center;
             img{
@@ -91,7 +89,7 @@ const EntitiesWrapper = styled(Wrapper)`
                 height: 1.1rem;
             }
 
-            .buttonh:hover{
+            .button:hover{
                 background-color: ${Colors.hover_color};
             }
         }
@@ -188,6 +186,8 @@ export const Entities: FC = () => {
         ...state.photos
     }))
 
+    const [displayStyle, setDisplayStyle] = useState<boolean>(true);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -215,6 +215,7 @@ export const Entities: FC = () => {
             y[i].style.width = '100%';
         }
 
+        setDisplayStyle(false);
 
     }
 
@@ -232,6 +233,7 @@ export const Entities: FC = () => {
             y[i].style.width = '18rem';
         }
 
+        setDisplayStyle(true);
     }
 
     return(
@@ -298,12 +300,13 @@ export const Entities: FC = () => {
                         </EntitiesCard>
                     )}): usersList.filter((x: any)=>{
                         if(x.company.name.toLowerCase().includes(inputText.toLowerCase())){
-                            return x
+                            return x;
                         }else{
                             return null;
                         }
                     }).map((x: any)=>{
-                        return(
+                        if(displayStyle){
+                            return(
                             <EntitiesCard className="card">
                                 <div className="contentImg" style={{ background: `url(${imageList[x.id]?.url})`, backgroundSize: `cover`}}>
                                 </div>
@@ -312,7 +315,21 @@ export const Entities: FC = () => {
                                 <p>{x.company.catchPhrase}</p>
                                 </div>
                             </EntitiesCard>
-                        )
+                            )
+                        }else{
+                            return(
+                                <EntitiesCard className="card" style={{width: "100%"}}>
+                                    <div className="contentImg" style={{ background: `url(${imageList[x.id]?.url})`, backgroundSize: `cover`}}>
+                                    </div>
+                                    <div className="contentText">
+                                    <h2>{x.company.name}</h2>
+                                    <p>{x.company.catchPhrase}</p>
+                                    </div>
+                                </EntitiesCard>
+                            )
+                        }
+
+
                     })}
 
                 </div>
