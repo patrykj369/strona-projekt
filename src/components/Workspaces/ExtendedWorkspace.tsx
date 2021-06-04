@@ -9,11 +9,11 @@ import {Colors} from '../../styledHelpers/Colors';
 
 const Wrapper = styled.div`
     width: 200px;
-    height: 200px;
+    height: 300px;
     background-color: ${Colors.navy_blue};
 `;
 
-export const ExpandedWorkspace: FC = () => {
+export const ExtendedWorkspace: FC = () => {
     return(
         <Wrapper>
             <h1>dupa</h1>

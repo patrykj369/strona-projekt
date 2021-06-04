@@ -9,6 +9,7 @@ import { Publications} from '../Publications/Publications';
 import { Workspaces } from '../Workspaces/Workspaces';
 import {ResumeWork} from '../ResumeWork/ResumeWork';
 import {Entities} from '../Entities/Entities';
+import {ExtendedWorkspace} from '../Workspaces/ExtendedWorkspace';
 
 import {
     BrowserRouter as Router,
@@ -58,7 +59,8 @@ const MainPage: FC = () => {
                         <div>To są administration</div>
                     </Route>
                     <Route path="/client_contract">
-                        <div>To są client contract</div>
+                        {/* <div>To są client contract</div> */}
+                        <ExtendedWorkspace></ExtendedWorkspace>
                     </Route>
                     <Route path="/supplier_contract">
                         <div>To są supplier contract</div>
