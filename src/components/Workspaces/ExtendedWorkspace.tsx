@@ -117,8 +117,6 @@ export const ExtendedWorkspace: FC<props> = (props) => {
 
     return(
         <Wrapper>
-            {/* <h1>{props.type === "client" ? "client" : "dupa"}</h1> */}
-
             <WorkspaceContent>
                 <div className="backPhoto" >
 
@@ -129,7 +127,6 @@ export const ExtendedWorkspace: FC<props> = (props) => {
                     <p>{workspacesData[parseInt(props.type)].content}</p>
                 </div>
             </WorkspaceContent>
-
 
             <section className="reasumeWork">
                 <ResumeWork/>
