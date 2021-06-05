@@ -81,6 +81,9 @@ export const ExtendedWorkspace: FC<props> = (props) => {
             border-radius: 8px 8px 0 0;
         }
         .workspaceTitle{
+            display: grid;
+            grid-template-rows: 1fr 2fr;
+            grid-template-columns: 100px 1fr;
             padding: 10px;
             background-color: ${Colors.white};
             border-radius: 8px;
@@ -88,11 +91,26 @@ export const ExtendedWorkspace: FC<props> = (props) => {
             h1{
                 color: ${Colors.navy_blue};
                 font-weight: 600;
-                font-size: ${fontSize[18]};
+                font-size: ${fontSize[20]};
+                grid-row: 1;
+                grid-column: 2;
             }
             p{
-                margin-top: 10px;
+                grid-row: 2;
+                grid-column: 2;
+                margin-top: 5px;
                 color: ${Colors.text_color};
+                line-height: ${fontSize[22]};
+            }
+
+            img {
+                position: absolute;
+                width: 70px;
+                height: 70px;
+                grid-row: 1;
+                grid-column-start: 1;
+                grid-column-end: 2;
+                margin-top: 12px;
             }
         }
     `;
@@ -106,6 +124,7 @@ export const ExtendedWorkspace: FC<props> = (props) => {
 
                 </div>
                 <div className="workspaceTitle">
+                    <img src="./media/icons/entities2.svg" alt="corporate"></img>
                     <h1>{workspacesData[parseInt(props.type)].name}</h1>
                     <p>{workspacesData[parseInt(props.type)].content}</p>
                 </div>
