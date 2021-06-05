@@ -34,7 +34,18 @@ const Content = styled.div`
     display: flex;
     margin: auto;
 
+    .resumeWork{
+        position: absolute;
+        margin-top: 1300px;
+        margin-left: 760px;
+    }
 
+`;
+
+const ResumeWork2 = styled(ResumeWork)`
+    /* position: relative;
+    margin-top: 160px;
+    margin-left: -640px; */
 `;
 
 const MainPage: FC = () => {
@@ -60,19 +71,23 @@ const MainPage: FC = () => {
                     </Route>
                     <Route path="/client_contract">
                         {/* <div>To są client contract</div> */}
-                        <ExtendedWorkspace></ExtendedWorkspace>
+                        <ExtendedWorkspace type="0"></ExtendedWorkspace>
                     </Route>
                     <Route path="/supplier_contract">
-                        <div>To są supplier contract</div>
+                        {/* <div>To są supplier contract</div> */}
+                        <ExtendedWorkspace type="1"></ExtendedWorkspace>
                     </Route>
                     <Route path="/corporate">
-                        <div>To są corporate</div>
+                        {/* <div>To są corporate</div> */}
+                        <ExtendedWorkspace type="2"></ExtendedWorkspace>
                     </Route>
                     <Route path="/group_norms">
-                        <div>To są group norms</div>
+                        {/* <div>To są group norms</div> */}
+                        <ExtendedWorkspace type="3"></ExtendedWorkspace>
                     </Route>
                     <Route path="/real_estate_contracts">
-                        <div>To są real estate contracts</div>
+                        {/* <div>To są real estate contracts</div> */}
+                        <ExtendedWorkspace type="4"></ExtendedWorkspace>
                     </Route>
                     <Route path="/profile">
                         <div>To jest profile</div>
@@ -118,7 +133,9 @@ const MainPage: FC = () => {
                     <Route path="/">
                         <Publications/>
                         <Workspaces/>
-                        <ResumeWork/>
+                        <div className="resumeWork">
+                            <ResumeWork2/>
+                        </div>
                     </Route>
 
                 </Switch>

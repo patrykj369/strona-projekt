@@ -18,13 +18,11 @@ const WrapperResumeWork = styled(Wrapper)`
 `;
 
 const ResumeWorkContent = styled.div`
-    top: 660px;
-    left: -840px;
+
     width: 860px;
     min-height: 1000px;
     background-color: ${Colors.grey_hsla};
     position: absolute;
-
 
     h2{
         position: absolute;
