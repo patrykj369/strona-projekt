@@ -135,6 +135,10 @@ const ResumeBox = styled.div`
     }
 `;
 
+interface props{
+    
+}
+
 export const ResumeWork: FC = () => {
 
     const {commentList} = useSelector<IState, ICommentsReducer>(state => ({
