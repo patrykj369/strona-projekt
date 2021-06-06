@@ -4,6 +4,8 @@ export const Colors = {
     blue: "#3f48cc",
     grey_hsla: "rgba(143, 143, 143, 0.01)",
     dirty_white: "rgb(219, 218, 218)",
+    //dirty2_white: "rgb(156, 152, 152)",
+    dirty2_white: "rgb(201, 197, 197)",
     navy_blue: "rgb(68, 19, 133)",
     text_color: "rgb(143, 143, 143)",
     hover_color: "#e7e6e6",

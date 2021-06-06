@@ -43,9 +43,7 @@ const Content = styled.div`
 `;
 
 const ResumeWork2 = styled(ResumeWork)`
-    /* position: relative;
-    margin-top: 160px;
-    margin-left: -640px; */
+
 `;
 
 const MainPage: FC = () => {
@@ -134,7 +132,7 @@ const MainPage: FC = () => {
                         <Publications/>
                         <Workspaces/>
                         <div className="resumeWork">
-                            <ResumeWork2/>
+                            <ResumeWork2 filterBar={false}/>
                         </div>
                     </Route>
 

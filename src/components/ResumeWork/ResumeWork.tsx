@@ -136,10 +136,10 @@ const ResumeBox = styled.div`
 `;
 
 interface props{
-    
+    filterBar: boolean,
 }
 
-export const ResumeWork: FC = () => {
+export const ResumeWork: FC<props> = ({filterBar}) => {
 
     const {commentList} = useSelector<IState, ICommentsReducer>(state => ({
         ...state.comments
@@ -176,12 +176,123 @@ export const ResumeWork: FC = () => {
         }
     }
 
+    const FilterBar = styled.div`
+
+        width: 860px;
+        height: 40px;
+        margin-bottom: 20px;
+        display: flex;
+        //justify-content: space-evenly;
+        margin: 0 auto;
+
+        button{
+            height: 30px;
+            padding: 0 10px 0 10px;
+            border: none;
+            border-radius: 2px;
+            cursor: pointer;
+            margin-right: auto;
+            font-size: ${fontSize[16]};
+            line-height: 30px;
+
+            img{
+                display: inline-block;
+                vertical-align: middle;
+                width: 20px;
+                height: 17px;
+            }
+
+        }
+
+        .btn-all{
+            background-color: #b2dcf8;
+        }
+
+        .btn-all:hover{
+            background-color: #939596;
+        }
+
+        .btn-sas{
+            background-color: #9df5c9;
+        }
+
+        .btn-sas:hover{
+            background-color: #939596;
+        }
+
+        .btn-sarl{
+            background-color: #c1e1f7;
+        }
+
+        .btn-sarl:hover{
+            background-color: #939596;
+        }
+
+        .btn-sb{
+            background-color: #bdf895;
+        }
+
+        .btn-sb:hover{
+            background-color: #939596;
+        }
+
+        .btn-com{
+            background-color: #cdcdce;
+        }
+
+        .btn-com:hover{
+            background-color: #939596;
+        }
+
+        .btn-poa{
+            background-color: #dbdfe2;
+        }
+
+        .btn-poa:hover{
+            background-color: #939596;
+        }
+
+        .btn-surv{
+            background-color: #e3e8eb;
+        }
+
+        .btn-surv:hover{
+            background-color: #939596;
+        }
+
+        .btn-dots{
+            background-color: #fff;
+        }
+
+        .btn-dots:hover{
+            background-color: #939596;
+        }
+    `;
+
 
     return(
         <WrapperResumeWork>
 
+
+
             <ResumeWorkContent>
             <h2 id="resumeText">Resume your work</h2>
+
+            {filterBar?
+
+                <FilterBar>
+                    <button className="btn-all">All</button>
+                    <button className="btn-sas"><img src="./media/icons/entities.svg" alt=""></img> SAS</button>
+                    <button className="btn-sarl"><img src="./media/icons/entities.svg" alt=""></img> SARL</button>
+                    <button className="btn-sb"><img src="./media/icons/entities.svg" alt=""></img> Secondary business</button>
+                    <button className="btn-com"><img src="./media/icons/entities.svg" alt=""></img> Communities</button>
+                    <button className="btn-poa"><img src="./media/icons/entities.svg" alt=""></img> POA</button>
+                    <button className="btn-surv"><img src="./media/icons/entities.svg" alt=""></img> Survey</button>
+                    <button className="btn-dots">...</button>
+                </FilterBar>
+
+            :null}
+
             <div className="searchInput">
                 <input type="text" placeholder="Filter by title..." value={inputText} onChange={inputHandler}></input>
                 <img src="./media/icons/search.svg" alt="" className="searchIcon"></img>

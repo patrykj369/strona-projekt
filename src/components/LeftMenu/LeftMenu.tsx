@@ -25,7 +25,6 @@ const Wrapper3 = styled(Wrapper)`
 `;
 
 const InnerWrapper2 = styled.div`
-
     width: 290px;
     height: 325px;
 `;
