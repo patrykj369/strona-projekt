@@ -157,7 +157,7 @@ const SingleComponentContent = styled.div`
 export const SingleComponent: FC = () =>{
     return (
         <SingleComponentWrapper>
-            <Link to="/client_contract" className="linksForSites">
+            <Link to="/client_contract/!" className="linksForSites">
             <SingleComponentContent>
                 <div className="topCard">
 

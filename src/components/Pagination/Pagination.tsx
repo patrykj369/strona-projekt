@@ -110,6 +110,7 @@ const PaginationBox = styled.div`
     }
 `;
 
+
 interface props{
     postsPerPage: number;
     totalPosts: number;
@@ -118,6 +119,7 @@ interface props{
 }
 
 export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageLast}) =>{
+
     let iterationKey: number = 0;
     const pageNumbers: number [] = [];
 
@@ -309,7 +311,6 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
         }
     })
 
-
     return (
         <PaginationBox id="paginationBoxik">
             <a className="buttonPN" href='!#' onClick={()=> {paginate(page-1); changePage(page-1); minusPage(page-1)}}>
@@ -323,7 +324,7 @@ export const Pagination: FC<props> = ({postsPerPage, totalPosts, paginate, pageL
 
             <div>
                 {pageNumbers.map((number) => (
-                    <a key={(iterationKey++).toString()}  onClick={() => {paginate(number); changePage(number)}} id={number.toString()} href='!#' className="inActiveClass">
+                    <a key={(iterationKey++).toString()}  onClick={() => {paginate(number); changePage(number)}} id={number.toString()} href="!#" className="inActiveClass">
                         <p id={number.toString() + "a"} className="inActiveClass">{number} </p>
                     </a>
                 ))}

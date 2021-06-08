@@ -135,8 +135,9 @@ const ResumeBox = styled.div`
     }
 `;
 
+
 interface props{
-    filterBar: boolean,
+    filterBar: boolean
 }
 
 export const ResumeWork: FC<props> = ({filterBar}) => {
