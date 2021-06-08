@@ -67,7 +67,7 @@ const MainPage: FC = () => {
                     <Route path="/administration">
                         <div>To są administration</div>
                     </Route>
-                    <Route path="/client_contract/!">
+                    <Route path="/client_contract">
                         {/* <div>To są client contract</div> */}
                         <ExtendedWorkspace type="0"></ExtendedWorkspace>
                     </Route>
