@@ -18,6 +18,7 @@ import {
     Redirect,
     //Link
   } from "react-router-dom";
+import { Profile } from '../Profile/Profile';
 // import { useDispatch } from 'react-redux';
 // import { getUsers } from '../../actions/usersActions';
 
@@ -88,7 +89,7 @@ const MainPage: FC = () => {
                         <ExtendedWorkspace type="4"></ExtendedWorkspace>
                     </Route>
                     <Route path="/profile">
-                        <div>To jest profile</div>
+                        <Profile></Profile>
                     </Route>
                     <Route path="/supplier_contract">
                         <div>To są supplier_contract</div>
