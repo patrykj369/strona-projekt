@@ -80,6 +80,8 @@ export const Profile: FC = () => {
     `;
 
     const [company, setCompany] = useState('');
+    const [name, setName] = useState('');
+    const [city, setCity] = useState('');
 
     const {usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
@@ -97,6 +99,8 @@ export const Profile: FC = () => {
 
     useEffect(()=>{
         setCompany(usersList[0]?.company.name);
+        setName(usersList[0]?.name);
+        setCity(usersList[0]?.address.city);
     },[usersList])
 
     return(
@@ -114,7 +118,10 @@ export const Profile: FC = () => {
                     <button>See profile</button>
                 </div>
                 <div className="profileDescriptionSecction">
+                    <p>{name}</p>
                     <p>{company}</p>
+                    <p>{city}</p>
+                    <p>Partner</p>
                 </div>
                 <div className="profileCommunicateSecction">
 
