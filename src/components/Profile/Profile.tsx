@@ -16,6 +16,7 @@ type GetUsers = ReturnType<typeof getUsers>
 
 const ProfileWrapper = styled.div`
     position: absolute;
+    font-family: sans-serif;
     margin-top: 680px;
     margin-left: 320px;
     width: 870px;
@@ -23,12 +24,10 @@ const ProfileWrapper = styled.div`
 `;
 
 export const Profile: FC = () => {
-
     const ProfileTopBarInfo = styled.div`
 
             width: 870px;
             height: 35px;
-
             .buttons{
                 float: right;
             }
@@ -53,7 +52,7 @@ export const Profile: FC = () => {
         width: 870px;
         height: 140px;
         display: grid;
-        grid-template-columns: 1fr 2fr 2fr;
+        grid-template-columns: 120px 2fr 2fr;
 
         .profilePhotoSection{
             display: grid;
@@ -75,13 +74,35 @@ export const Profile: FC = () => {
         }
 
         .profileDescriptionSecction{
+            padding: 18px 10px 10px 0;
+            font-size: ${fontSize[18]};
+            color: ${Colors.navy_blue};
 
+            p{
+                margin-bottom: 10px;
+            }
+
+            .boldDescription{
+                font-weight: 600;
+            }
+        }
+
+        .profileCommunicateSecction{
+            img{
+                height: 22px;
+                float: right;
+                /* margin-right: 10px;
+                margin-top: 10px; */
+
+            }
         }
     `;
 
     const [company, setCompany] = useState('');
     const [name, setName] = useState('');
     const [city, setCity] = useState('');
+    const [email, setEmail] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
 
     const {usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
@@ -101,6 +122,8 @@ export const Profile: FC = () => {
         setCompany(usersList[0]?.company.name);
         setName(usersList[0]?.name);
         setCity(usersList[0]?.address.city);
+        setEmail(usersList[0]?.email);
+        setPhoneNumber(usersList[0]?.phone);
     },[usersList])
 
     return(
@@ -118,16 +141,17 @@ export const Profile: FC = () => {
                     <button>See profile</button>
                 </div>
                 <div className="profileDescriptionSecction">
-                    <p>{name}</p>
-                    <p>{company}</p>
+                    <p className="boldDescription">{name}</p>
+                    <p className="boldDescription">{company}</p>
                     <p>{city}</p>
                     <p>Partner</p>
                 </div>
                 <div className="profileCommunicateSecction">
-
+                    <img src="./media/icons/tiny-pencil.png" alt="pencil"></img>
+                    <p>{email}</p>
+                    <p>{phoneNumber}</p>
                 </div>
             </ProfileDescription>
         </ProfileWrapper>
     )
-
 }
