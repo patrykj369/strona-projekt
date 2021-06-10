@@ -21,6 +21,8 @@ const ProfileWrapper = styled.div`
     margin-left: 320px;
     width: 870px;
     height: 1000px;
+    background-color: ${Colors.white};
+    border-radius: 10px;
 `;
 
 export const Profile: FC = () => {
@@ -48,7 +50,7 @@ export const Profile: FC = () => {
         `;
 
     const ProfileDescription = styled.div`
-        background-color: green;
+        //background-color: green;
         width: 870px;
         height: 140px;
         display: grid;
@@ -95,8 +97,8 @@ export const Profile: FC = () => {
 
             img{
                 height: 22px;
-                /* margin-right: 10px;
-                margin-top: 10px; */
+                margin-right: 10px;
+                margin-top: 10px;
                 grid-row: 1;
                 justify-self: end;
             }
@@ -110,6 +112,14 @@ export const Profile: FC = () => {
                 padding: 10px;
                 grid-row: 3;
             }
+        }
+
+        ::after{
+            content: "";
+            margin-top: 10px;
+            width: 870px;
+            height: 1px;
+            background-color: ${Colors.dirty2_white};
         }
     `;
 
