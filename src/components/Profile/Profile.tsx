@@ -88,12 +88,27 @@ export const Profile: FC = () => {
         }
 
         .profileCommunicateSecction{
+            font-size: ${fontSize[18]};
+            color: ${Colors.navy_blue};
+            display: grid;
+            grid-template-rows: 20px 1fr 80px;
+
             img{
                 height: 22px;
-                float: right;
                 /* margin-right: 10px;
                 margin-top: 10px; */
+                grid-row: 1;
+                justify-self: end;
+            }
 
+            p{
+                margin-bottom: 10px;
+            }
+
+            .dataDescription{
+                margin-top: 5px;
+                padding: 10px;
+                grid-row: 3;
             }
         }
     `;
@@ -148,8 +163,10 @@ export const Profile: FC = () => {
                 </div>
                 <div className="profileCommunicateSecction">
                     <img src="./media/icons/tiny-pencil.png" alt="pencil"></img>
-                    <p>{email}</p>
-                    <p>{phoneNumber}</p>
+                    <div className="dataDescription">
+                        <p>{email}</p>
+                        <p>{phoneNumber}</p>
+                    </div>
                 </div>
             </ProfileDescription>
         </ProfileWrapper>
