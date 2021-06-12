@@ -123,6 +123,45 @@ export const Profile: FC = () => {
         }
     `;
 
+    const TagContent = styled.div`
+        //background-color: green;
+        width: 870px;
+        margin-top: 20px;
+        padding: 10px;
+        display: grid;
+
+        .tagExpertise{
+            margin-bottom: 30px;
+            h1{
+                font-size: ${fontSize[18]};
+                color: ${Colors.navy_blue};
+                margin-bottom: 10px;
+            }
+
+            p{
+                padding: 5px 8px 5px 8px;
+                background-color: ${Colors.hover_color};
+                display: inline-block;
+                color: ${Colors.text_color};
+                margin-right: 10px;
+            }
+        }
+
+        img{
+            height: 22px;
+            position: absolute;
+            right: 10px;
+        }
+
+        ::after{
+            content: "";
+            width: 870px;
+            margin-left: -10px;
+            height: 1px;
+            background-color: ${Colors.dirty2_white};
+        }
+    `;
+
     const [company, setCompany] = useState('');
     const [name, setName] = useState('');
     const [city, setCity] = useState('');
@@ -155,11 +194,12 @@ export const Profile: FC = () => {
         <ProfileWrapper>
             <ProfileTopBarInfo>
                 <div className="buttons">
-                    <button><img src="./media/icons/comments.svg" alt="message"></img> Message</button>
-                    <button><img src="./media/icons/plus.svg" alt="plus"></img> Create a request</button>
-                    <button><img src="./media/icons/administration.svg" alt="cluster"></img> Add to cluster</button>
+                    <button className="singleButton"><img src="./media/icons/comments.svg" alt="message"></img> Message</button>
+                    <button className="singleButton"><img src="./media/icons/plus.svg" alt="plus"></img> Create a request</button>
+                    <button className="singleButton"><img src="./media/icons/administration.svg" alt="cluster"></img> Add to cluster</button>
                 </div>
             </ProfileTopBarInfo>
+
             <ProfileDescription>
                 <div className="profilePhotoSection">
                     <img src={imageList[0]?.thumbnailUrl} alt=""></img>
@@ -179,6 +219,44 @@ export const Profile: FC = () => {
                     </div>
                 </div>
             </ProfileDescription>
+
+            <TagContent>
+                <img src="./media/icons/tiny-pencil.png" alt="pencil"></img>
+                <div className="tagExpertise">
+                    <h1>Expertise</h1>
+
+                    <div className="tagExpertiseContent">
+                        <p>Mergers and acquisition</p>
+                    </div>
+                </div>
+
+                <div className="tagExpertise">
+                    <h1>Specialties</h1>
+
+                    <div className="tagExpertiseContent">
+                        <p>Cross border operation</p>
+                        <p>Transaction over 500M$</p>
+                    </div>
+                </div>
+
+                <div className="tagExpertise">
+                    <h1>Admission to practice law</h1>
+
+                    <div className="tagExpertiseContent">
+                        <p>Paris bar association</p>
+                        <p>Tunisian bar association</p>
+                    </div>
+                </div>
+
+                <div className="tagExpertise">
+                    <h1>Counties</h1>
+
+                    <div className="tagExpertiseContent">
+                        <p>Tunisia</p>
+                    </div>
+                </div>
+            </TagContent>
+
         </ProfileWrapper>
     )
 }
