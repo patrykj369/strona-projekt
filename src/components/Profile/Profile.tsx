@@ -257,7 +257,6 @@ export const Profile: FC = () => {
                 </div>
             </TagContent>
 
-
         </ProfileWrapper>
     )
 }
