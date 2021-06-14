@@ -17,10 +17,10 @@ type GetUsers = ReturnType<typeof getUsers>
 const ProfileWrapper = styled.div`
     position: absolute;
     font-family: sans-serif;
-    margin-top: 680px;
+    margin-top: 1282px;
     margin-left: 320px;
     width: 870px;
-    height: 1000px;
+    height: 1600px;
     background-color: ${Colors.white};
     border-radius: 10px;
 `;
@@ -125,7 +125,7 @@ export const Profile: FC = () => {
 
     const TagContent = styled.div`
         //background-color: green;
-        width: 870px;
+        //width: 870px;
         margin-top: 20px;
         padding: 10px;
         display: grid;
@@ -160,6 +160,100 @@ export const Profile: FC = () => {
             height: 1px;
             background-color: ${Colors.dirty2_white};
         }
+    `;
+
+    const PanelInformations = styled.div`
+        display: grid;
+        padding: 0 10px 10px 10px;
+        h1{
+            font-size: ${fontSize[18]};
+            color: ${Colors.navy_blue};
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+
+        .servicesHeader{
+            margin-top: 30px;
+        }
+
+        .internalHeader{
+            margin-top: 30px;
+        }
+
+        .headerPanel{
+            font-size: ${fontSize[16]};
+            color: ${Colors.text_color};
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .contentPanel{
+            font-size: ${fontSize[18]};
+            color: ${Colors.navy_blue};
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+
+
+        .attachmentPanel{
+            display: flex;
+            align-items: center;
+            height: ${fontSize[30]};
+            font-size: ${fontSize[18]};
+            border: none;
+            background-color: ${Colors.hover_color};
+            color: ${Colors.navy_blue};
+
+            img{
+                height: 20px;
+                margin-right: 5px;
+                margin-left: 10px;
+            }
+        }
+
+        .internalProfile{
+            display: grid;
+            grid-template-columns: 45px .5fr .2fr .2fr;
+            height: 40px;
+            background-color: ${Colors.hover_color};
+            margin: 5px 0;
+            align-items: center;
+
+            .avatar{
+                border-radius: 50%;
+                height: 32px;
+                margin-right: 10px;
+                margin-left: 10px;
+            }
+
+            p{
+                margin-left: 10px;
+                font-weight: 600;
+                color: ${Colors.navy_blue};
+            }
+
+            button{
+                display: flex;
+                align-items: center;
+                font-size: ${fontSize[16]};
+                border: none;
+                background-color: ${Colors.hover_color};
+
+                img{
+                    height: 20px;
+                    margin-right: 5px;
+                }
+            }
+
+            button:hover{
+                background-color: ${Colors.grey_hsla};
+            }
+
+        }
+
+
+        
     `;
 
     const [company, setCompany] = useState('');
@@ -256,6 +350,47 @@ export const Profile: FC = () => {
                     </div>
                 </div>
             </TagContent>
+
+            <PanelInformations>
+                <h1>Panel informations</h1>
+
+                <div className="panelInformations">
+                    <p className="headerPanel">Hourly fee</p>
+                    <p className="contentPanel">610$/hour (Negociated)</p>
+
+                    <p className="headerPanel">Terms {"&"} conditions</p>
+                    <p className="contentPanel">Mnthly 10k$ retainer - see with Jeanny Smith</p>
+
+                    <p className="attachmentPanel"><img src="./media/icons/user-plus.svg" alt=""></img>Attachement_test245.jpg</p>
+
+                </div>
+
+                <h1 className="servicesHeader">Services {"&"} projects</h1>
+
+                <div className="servicesPanel">
+                    <p className="contentPanel">Corporate M{"&"}A and international acquistions</p>
+                </div>
+
+                <h1 className="internalHeader">Internal corespondants</h1>
+
+                <div className="internalContent">
+                    <div className="internalProfile">
+                        <img className="avatar" src={imageList[1]?.thumbnailUrl} alt="person avatar"></img>
+                        <p>{usersList[1]?.name}</p>
+                        <button className="singleButton"><img src="./media/icons/comments.svg" alt="message"></img> Message</button>
+                        <button className="singleButton"><img src="./media/icons/people.svg" alt="message"></img> Profile</button>
+                    </div>
+
+                    <div className="internalProfile">
+                        <img className="avatar" src={imageList[2]?.thumbnailUrl} alt="person avatar"></img>
+                        <p>{usersList[2]?.name}</p>
+                        <button className="singleButton"><img src="./media/icons/comments.svg" alt="message"></img> Message</button>
+                        <button className="singleButton"><img src="./media/icons/people.svg" alt="message"></img> Profile</button>
+                    </div>
+                </div>
+
+
+            </PanelInformations>
 
         </ProfileWrapper>
     )
