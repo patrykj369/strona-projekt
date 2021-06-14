@@ -116,6 +116,7 @@ export const Profile: FC = () => {
 
         ::after{
             content: "";
+            display: inline-block;
             margin-top: 10px;
             width: 870px;
             height: 1px;
@@ -128,7 +129,6 @@ export const Profile: FC = () => {
         //width: 870px;
         margin-top: 20px;
         padding: 10px;
-        display: grid;
 
         .tagExpertise{
             margin-bottom: 30px;
@@ -155,6 +155,7 @@ export const Profile: FC = () => {
 
         ::after{
             content: "";
+            display: inline-block;
             width: 870px;
             margin-left: -10px;
             height: 1px;
@@ -163,7 +164,7 @@ export const Profile: FC = () => {
     `;
 
     const PanelInformations = styled.div`
-        display: grid;
+        //display: grid;
         padding: 0 10px 10px 10px;
         h1{
             font-size: ${fontSize[18]};
@@ -252,8 +253,14 @@ export const Profile: FC = () => {
 
         }
 
-
-        
+        ::after{
+            content: "";
+            display: inline-block;
+            width: 870px;
+            margin-left: -10px;
+            height: 1px;
+            background-color: ${Colors.dirty2_white};
+        }
     `;
 
     const [company, setCompany] = useState('');
