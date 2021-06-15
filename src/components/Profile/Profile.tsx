@@ -17,12 +17,18 @@ type GetUsers = ReturnType<typeof getUsers>
 const ProfileWrapper = styled.div`
     position: absolute;
     font-family: sans-serif;
-    margin-top: 1482px;
+    margin-top: 1422px;
     margin-left: 320px;
     width: 870px;
-    height: 1800px;
+    height: 1740px;
     background-color: ${Colors.white};
     border-radius: 10px;
+
+    ::after{
+        content: "";
+        height: 50px;
+        display: inline-block;
+    }
 `;
 
 export const Profile: FC = () => {
@@ -332,6 +338,25 @@ export const Profile: FC = () => {
             margin-bottom: 10px;
             margin-top: 15px;
         }        
+
+        .headerAmountTable{
+            td{
+                
+                font-size: ${fontSize[16]};
+                color: ${Colors.navy_blue};
+                font-weight: 600;
+                
+            }
+
+        }
+
+        table > tr > td {
+            padding: 5px 0 5px 0;
+        }
+
+        table{
+            width: 100%;
+        }
     `;
 
     const [company, setCompany] = useState('');
@@ -511,21 +536,27 @@ export const Profile: FC = () => {
             <Amount>
                 <h1>Amount of fees</h1>
                 <table>
-                    <tr className="headerTable">
-                        <td>Name</td> <td>Entity</td> <td>Location</td> <td>Expertise</td> <td>Date</td> 
+                    <tr className="headerAmountTable">
+                        <td>Year</td> <td>Cost center</td> <td>Total amount</td> <td>Law firm</td>
                     </tr>
                     <tr>
-                        <td>Operation Time</td> <td>Renault Co</td> <td>France</td> <td>#Tax</td> <td>20/01/2018</td>
+                        <td>2019</td> <td>CS 153</td> <td>3 500$</td> <td>Clifford chance</td>
                     </tr>
                     <tr>
-                        <td>Op. Prometheus</td> <td>Renault HQ</td> <td>USA</td> <td>#M{"&"}A</td> <td>18/01/2019</td>
+                        <td>2018</td> <td>CS 153</td> <td>9 500$</td> <td>Linklaters</td>
                     </tr>
                     <tr>
-                        <td>Op. Latandre</td> <td>Renault Brazil</td> <td>Italy</td> <td>#Social</td> <td>18/02/2019</td>
+                        <td>2017</td> <td>CS 47</td> <td>10 500$</td> <td>Linklaters</td>
+                    </tr>
+                    <tr>
+                        <td></td> <td>CS 153</td> <td>18 500$</td> <td>Linklaters</td>
+                    </tr>
+                    <tr>
+                        <td></td> <td>CS 32</td> <td>15 500$</td> <td>Linklaters</td>
                     </tr>
                 </table>
             </Amount>
-
+            
         </ProfileWrapper>
     )
 }
