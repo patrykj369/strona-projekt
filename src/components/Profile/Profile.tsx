@@ -17,10 +17,10 @@ type GetUsers = ReturnType<typeof getUsers>
 const ProfileWrapper = styled.div`
     position: absolute;
     font-family: sans-serif;
-    margin-top: 1282px;
+    margin-top: 1482px;
     margin-left: 320px;
     width: 870px;
-    height: 1600px;
+    height: 1800px;
     background-color: ${Colors.white};
     border-radius: 10px;
 `;
@@ -263,6 +263,77 @@ export const Profile: FC = () => {
         }
     `;
 
+    const TablePanel = styled.div`
+        padding: 0 10px 10px 10px;
+        margin-bottom: 20px;
+        h1{
+            font-size: ${fontSize[18]};
+            color: ${Colors.navy_blue};
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }
+        
+        .headerTable{
+            border-bottom: 1px solid ${Colors.dirty2_white};
+            height: 30px;
+            td{
+                
+                font-size: ${fontSize[16]};
+                color: ${Colors.navy_blue};
+                font-weight: 600;
+                
+            }
+
+        }
+
+        table > tr > td {
+            padding: 10px;
+        }
+
+        table{
+            width: 100%;
+        }
+
+        p{
+            font-size: ${fontSize[18]};
+            color: ${Colors.text_color};
+            text-align:  right;
+            margin-top: 5px;
+            margin-right: 5px;
+        }
+
+        .seeMore{
+            text-align:  left;
+            margin-top: 5px;
+            color: ${Colors.navy_blue};
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        ::after{
+            content: "";
+            display: inline-block;
+            width: 870px;
+            margin-left: -10px;
+            height: 1px;
+            background-color: ${Colors.dirty2_white};
+        }
+    `;
+
+    const Amount = styled.div`
+        padding: 0 10px 10px 10px;
+        //margin-bottom: 20px;
+        margin-top: -5px;
+        h1{
+            font-size: ${fontSize[18]};
+            color: ${Colors.navy_blue};
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 15px;
+        }        
+    `;
+
     const [company, setCompany] = useState('');
     const [name, setName] = useState('');
     const [city, setCity] = useState('');
@@ -398,6 +469,62 @@ export const Profile: FC = () => {
 
 
             </PanelInformations>
+
+            <TablePanel>
+                <h1>Proposals</h1>
+                <table>
+                    <tr className="headerTable">
+                        <td>Name</td> <td>Entity</td> <td>Location</td> <td>Expertise</td> <td>Date</td> <td>Firm</td>
+                    </tr>
+                    <tr>
+                        <td>Operation Time</td> <td>Renault Co</td> <td>France</td> <td>#Tax</td> <td>20/01/2018</td> <td>Racine</td>
+                    </tr>
+                    <tr>
+                        <td>Op. Prometheus</td> <td>Renault HQ</td> <td>USA</td> <td>#M{"&"}A</td> <td>18/01/2019</td> <td>Clifford chance</td>
+                    </tr>
+                    <tr>
+                        <td>Op. Latandre</td> <td>Renault Brazil</td> <td>Italy</td> <td>#Social</td> <td>18/02/2019</td> <td>SVZ</td>
+                    </tr>
+                </table>
+                <p>See more proposals</p>
+            </TablePanel>
+            
+            <TablePanel>
+                <h1>Internal reviews</h1>
+                <table>
+                    <tr className="headerTable">
+                        <td>Name</td> <td>Entity</td> <td>Location</td> <td>Expertise</td> <td>Date</td> 
+                    </tr>
+                    <tr>
+                        <td>Operation Time</td> <td>Renault Co</td> <td>France</td> <td>#Tax</td> <td>20/01/2018</td>
+                    </tr>
+                    <tr>
+                        <td>Op. Prometheus</td> <td>Renault HQ</td> <td>USA</td> <td>#M{"&"}A</td> <td>18/01/2019</td>
+                    </tr>
+                    <tr>
+                        <td>Op. Latandre</td> <td>Renault Brazil</td> <td>Italy</td> <td>#Social</td> <td>18/02/2019</td>
+                    </tr>
+                </table>
+                <p className="seeMore">See more Reviews</p>
+            </TablePanel>
+
+            <Amount>
+                <h1>Amount of fees</h1>
+                <table>
+                    <tr className="headerTable">
+                        <td>Name</td> <td>Entity</td> <td>Location</td> <td>Expertise</td> <td>Date</td> 
+                    </tr>
+                    <tr>
+                        <td>Operation Time</td> <td>Renault Co</td> <td>France</td> <td>#Tax</td> <td>20/01/2018</td>
+                    </tr>
+                    <tr>
+                        <td>Op. Prometheus</td> <td>Renault HQ</td> <td>USA</td> <td>#M{"&"}A</td> <td>18/01/2019</td>
+                    </tr>
+                    <tr>
+                        <td>Op. Latandre</td> <td>Renault Brazil</td> <td>Italy</td> <td>#Social</td> <td>18/02/2019</td>
+                    </tr>
+                </table>
+            </Amount>
 
         </ProfileWrapper>
     )
