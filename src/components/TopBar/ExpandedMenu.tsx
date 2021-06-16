@@ -177,47 +177,47 @@ export const ExpandedMenu: FC<any> = (props) => {
         <Wrapper id="Wrapperek">
             <ul>
                 <div className="overflowContainer">
-                <input type="text" placeholder="Filter..." value={inputText} onChange={inputHandler}></input>
-                <li className="specificLi">Platform</li>
+                    <input type="text" placeholder="Filter..." value={inputText} onChange={inputHandler}></input>
+                    <li className="specificLi">Platform</li>
 
-                {'Home'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/" className="linksForSites"><li id="Home" onClick={() => props.changeWord('Home')}><img src="./media/icons/house.png" alt="" className="imgLi"></img>Home</li></Link>
-                }
-                {'Publications'.toLowerCase().includes(inputText.toLowerCase())&&
-                   <Link to="/publications" className="linksForSites"><li id="Publications" onClick={() => props.changeWord('Publications')}><img src="./media/icons/publications.png" alt="" className="imgLi"></img>Publications</li></Link>
-                }
-                {'People'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/people" className="linksForSites">
-                        <li id="People" onClick={() => props.changeWord('People')} >
-                            <img src="./media/icons/people.png" alt="" className="imgLi"></img>
-                            People
-                        </li>
-                    </Link>
-                }
-                {'Entities'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/entities" className="linksForSites"><li id="Entities" onClick={() => props.changeWord('Entities')}><img src="./media/icons/entities2.png" alt="" className="imgLi"></img>Entities</li></Link>
-                }
-                {'Administration'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/administration" className="linksForSites"><li id="Administration" onClick={() => props.changeWord('Administration')}><img src="./media/icons/administration.png" alt="" className="imgLi"></img>Administration</li></Link>
-                }
+                    {'Home'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <Link to="/" className="linksForSites"><li id="Home" onClick={() => props.changeWord('Home')}><img src="./media/icons/house.png" alt="" className="imgLi"></img>Home</li></Link>
+                    }
+                    {'Publications'.toLowerCase().includes(inputText.toLowerCase())&&
+                    <Link to="/publications" className="linksForSites"><li id="Publications" onClick={() => props.changeWord('Publications')}><img src="./media/icons/publications.png" alt="" className="imgLi"></img>Publications</li></Link>
+                    }
+                    {'People'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <Link to="/people" className="linksForSites">
+                            <li id="People" onClick={() => props.changeWord('People')} >
+                                <img src="./media/icons/people.png" alt="" className="imgLi"></img>
+                                People
+                            </li>
+                        </Link>
+                    }
+                    {'Entities'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <Link to="/entities" className="linksForSites"><li id="Entities" onClick={() => props.changeWord('Entities')}><img src="./media/icons/entities2.png" alt="" className="imgLi"></img>Entities</li></Link>
+                    }
+                    {'Administration'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <Link to="/administration" className="linksForSites"><li id="Administration" onClick={() => props.changeWord('Administration')}><img src="./media/icons/administration.png" alt="" className="imgLi"></img>Administration</li></Link>
+                    }
 
 
-                <li className="specificLi">Workspaces</li>
-                {'Client contract'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/client_contract" className="linksForSites"><li onClick={() => props.changeWord('Client contract')}><img src="./media/icons/entities.png" alt="" className="imgLi"></img>Client contract</li></Link>
-                }
-                {'Supplier contract'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/supplier_contract" className="linksForSites"><li onClick={() => props.changeWord('Supplier contract')}><img src="./media/icons/cog.png" alt="" className="imgLi"></img>Supplier contract</li></Link>
-                }
-                {'Corporate'.toLowerCase().includes(inputText.toLowerCase()) &&
-                    <Link to="/corporate" className="linksForSites"><li onClick={() => props.changeWord('Corporate')}><img src="./media/icons/entities.png" alt="" className="imgLi"></img>Corporate</li></Link>
-                }
-                {'Group norms'.toLowerCase().includes(inputText.toLowerCase()) &&
-                   <Link to="/group_norms" className="linksForSites"><li onClick={() => props.changeWord('Group norms')}><img src="./media/icons/network.png" alt="" className="imgLi"></img>Group norms</li></Link>
-                }
-                {'Real estate contracts'.toLowerCase().includes(inputText.toLowerCase()) &&
-                   <Link to="/real_estate_contracts" className="linksForSites"><li onClick={() => props.changeWord('Real estate...')}><img src="./media/icons/publications.png" alt="" className="imgLi"></img>Real estate contracts</li></Link>
-                }
+                    <li className="specificLi">Workspaces</li>
+                    {'Client contract'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <Link to="/client_contract" className="linksForSites"><li onClick={() => props.changeWord('Client contract')}><img src="./media/icons/entities.png" alt="" className="imgLi"></img>Client contract</li></Link>
+                    }
+                    {'Supplier contract'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <Link to="/supplier_contract" className="linksForSites"><li onClick={() => props.changeWord('Supplier contract')}><img src="./media/icons/cog.png" alt="" className="imgLi"></img>Supplier contract</li></Link>
+                    }
+                    {'Corporate'.toLowerCase().includes(inputText.toLowerCase()) &&
+                        <Link to="/corporate" className="linksForSites"><li onClick={() => props.changeWord('Corporate')}><img src="./media/icons/entities.png" alt="" className="imgLi"></img>Corporate</li></Link>
+                    }
+                    {'Group norms'.toLowerCase().includes(inputText.toLowerCase()) &&
+                    <Link to="/group_norms" className="linksForSites"><li onClick={() => props.changeWord('Group norms')}><img src="./media/icons/network.png" alt="" className="imgLi"></img>Group norms</li></Link>
+                    }
+                    {'Real estate contracts'.toLowerCase().includes(inputText.toLowerCase()) &&
+                    <Link to="/real_estate_contracts" className="linksForSites"><li onClick={() => props.changeWord('Real estate...')}><img src="./media/icons/publications.png" alt="" className="imgLi"></img>Real estate contracts</li></Link>
+                    }
                 </div>
                 <hr></hr>
 

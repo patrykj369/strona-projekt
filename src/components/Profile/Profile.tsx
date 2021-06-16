@@ -424,11 +424,9 @@ export const Profile: FC = () => {
 
     }
 
-
     const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
         setName(e.target.value);
     }
-
 
     return(
         <ProfileWrapper>
@@ -452,7 +450,7 @@ export const Profile: FC = () => {
                         ?
                         <p className="boldDescription">{name}</p>
                         :
-                        <input value={name} type="text" onChange={inputHandler}/>
+                        <input key="inputName1" value={name} type="text" onChange={inputHandler}></input>
                     }
 
                     {
@@ -460,7 +458,7 @@ export const Profile: FC = () => {
                         ?
                         <p className="boldDescription">{company}</p>
                         :
-                        <input value={company}/>
+                        <input key="inputName2" value={company}/>
                     }
 
                     {
@@ -468,7 +466,7 @@ export const Profile: FC = () => {
                         ?
                         <p>{city}</p>
                         :
-                        <input value={city}/>
+                        <input key="inputName3" value={city}/>
                     }
 
                     {
@@ -476,7 +474,7 @@ export const Profile: FC = () => {
                         ?
                         <p>Partner</p>
                         :
-                        <input value={relation}/>
+                        <input key="inputName4" value={relation}/>
                     }
 
 
@@ -492,7 +490,7 @@ export const Profile: FC = () => {
                         ?
                         <p>{email}</p>
                         :
-                        <input value={email} />
+                        <input key="inputName5" value={email} />
                     }
 
                     {
@@ -500,7 +498,7 @@ export const Profile: FC = () => {
                         ?
                         <p>{phoneNumber}</p>
                         :
-                        <input value={phoneNumber}/>
+                        <input key="inputName6" value={phoneNumber}/>
                     }
                     </div>
                 </div>
