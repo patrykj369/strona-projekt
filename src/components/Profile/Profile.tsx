@@ -93,6 +93,12 @@ export const Profile: FC = () => {
             .boldDescription{
                 font-weight: 600;
             }
+
+            input{
+                display: flex;
+                font-size: ${fontSize[16]};
+                margin-bottom: 4px;
+            }
         }
 
         .profileCommunicateSecction{
@@ -103,8 +109,20 @@ export const Profile: FC = () => {
 
             img{
                 height: 22px;
+                /* margin-right: 10px;
+                margin-top: 10px; */
+                /* grid-row: 1;
+                justify-self: end; */
+            }
+
+            button{
+                width: 30px;
+                height: 30px;
                 margin-right: 10px;
                 margin-top: 10px;
+                border: none;
+                background-color: transparent;
+
                 grid-row: 1;
                 justify-self: end;
             }
@@ -117,6 +135,12 @@ export const Profile: FC = () => {
                 margin-top: 5px;
                 padding: 10px;
                 grid-row: 3;
+            }
+
+            input{
+                display: flex;
+                font-size: ${fontSize[16]};
+                margin-bottom: 4px;
             }
         }
 
@@ -279,16 +303,16 @@ export const Profile: FC = () => {
             margin-bottom: 10px;
             margin-top: 15px;
         }
-        
+
         .headerTable{
             border-bottom: 1px solid ${Colors.dirty2_white};
             height: 30px;
             td{
-                
+
                 font-size: ${fontSize[16]};
                 color: ${Colors.navy_blue};
                 font-weight: 600;
-                
+
             }
 
         }
@@ -337,15 +361,15 @@ export const Profile: FC = () => {
             font-weight: 600;
             margin-bottom: 10px;
             margin-top: 15px;
-        }        
+        }
 
         .headerAmountTable{
             td{
-                
+
                 font-size: ${fontSize[16]};
                 color: ${Colors.navy_blue};
                 font-weight: 600;
-                
+
             }
 
         }
@@ -362,8 +386,12 @@ export const Profile: FC = () => {
     const [company, setCompany] = useState('');
     const [name, setName] = useState('');
     const [city, setCity] = useState('');
+    const [relation, setRelation] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [turnEdition, setTurnEdition] = useState(false);
+
+    //const [expertise, setExpertise] = useState('');
 
     const {usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
@@ -372,6 +400,7 @@ export const Profile: FC = () => {
     const {imageList} = useSelector<IState, IImageReducer>(state =>({
         ...state.photos
     }))
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -385,7 +414,16 @@ export const Profile: FC = () => {
         setCity(usersList[0]?.address.city);
         setEmail(usersList[0]?.email);
         setPhoneNumber(usersList[0]?.phone);
+        setRelation('Partner');
+        setTurnEdition(false);
     },[usersList])
+
+    const turnBtn = () =>{
+        //const penBtn = document.getElementById("btnOnEditionProfile");
+        turnEdition ? setTurnEdition(false) : setTurnEdition(true);
+
+    }
+
 
     return(
         <ProfileWrapper>
@@ -403,16 +441,62 @@ export const Profile: FC = () => {
                     <button>See profile</button>
                 </div>
                 <div className="profileDescriptionSecction">
-                    <p className="boldDescription">{name}</p>
-                    <p className="boldDescription">{company}</p>
-                    <p>{city}</p>
-                    <p>Partner</p>
+
+                    {
+                        turnEdition !== true
+                        ?
+                        <p className="boldDescription">{name}</p>
+                        :
+                        <input value={name} type="text"/>
+                    }
+
+                    {
+                        turnEdition !== true
+                        ?
+                        <p className="boldDescription">{company}</p>
+                        :
+                        <input value={company}/>
+                    }
+
+                    {
+                        turnEdition !== true
+                        ?
+                        <p>{city}</p>
+                        :
+                        <input value={city}/>
+                    }
+
+                    {
+                        turnEdition !== true
+                        ?
+                        <p>Partner</p>
+                        :
+                        <input value={relation}/>
+                    }
+
+
+
                 </div>
                 <div className="profileCommunicateSecction">
-                    <img src="./media/icons/tiny-pencil.png" alt="pencil"></img>
+                    <button id="btnOnEditionProfile" onClick={() => turnBtn()}><img src="./media/icons/tiny-pencil.png" alt="pencil"></img></button>
                     <div className="dataDescription">
+
+
+                    {
+                        turnEdition !== true
+                        ?
                         <p>{email}</p>
+                        :
+                        <input value={email}/>
+                    }
+
+                    {
+                        turnEdition !== true
+                        ?
                         <p>{phoneNumber}</p>
+                        :
+                        <input value={phoneNumber}/>
+                    }
                     </div>
                 </div>
             </ProfileDescription>
@@ -424,6 +508,7 @@ export const Profile: FC = () => {
 
                     <div className="tagExpertiseContent">
                         <p>Mergers and acquisition</p>
+
                     </div>
                 </div>
 
@@ -513,12 +598,12 @@ export const Profile: FC = () => {
                 </table>
                 <p>See more proposals</p>
             </TablePanel>
-            
+
             <TablePanel>
                 <h1>Internal reviews</h1>
                 <table>
                     <tr className="headerTable">
-                        <td>Name</td> <td>Entity</td> <td>Location</td> <td>Expertise</td> <td>Date</td> 
+                        <td>Name</td> <td>Entity</td> <td>Location</td> <td>Expertise</td> <td>Date</td>
                     </tr>
                     <tr>
                         <td>Operation Time</td> <td>Renault Co</td> <td>France</td> <td>#Tax</td> <td>20/01/2018</td>
@@ -556,7 +641,7 @@ export const Profile: FC = () => {
                     </tr>
                 </table>
             </Amount>
-            
+
         </ProfileWrapper>
     )
 }
