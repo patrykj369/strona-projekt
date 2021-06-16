@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {ChangeEvent, FC, useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import {fontSize} from '../../styledHelpers/FontSizes';
@@ -383,8 +383,8 @@ export const Profile: FC = () => {
         }
     `;
 
-    const [company, setCompany] = useState('');
-    const [name, setName] = useState('');
+    const [company, setCompany] = useState<string>('');
+    const [name, setName] = useState<string>('');
     const [city, setCity] = useState('');
     const [relation, setRelation] = useState('');
     const [email, setEmail] = useState('');
@@ -425,6 +425,11 @@ export const Profile: FC = () => {
     }
 
 
+    const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
+        setName(e.target.value);
+    }
+
+
     return(
         <ProfileWrapper>
             <ProfileTopBarInfo>
@@ -447,7 +452,7 @@ export const Profile: FC = () => {
                         ?
                         <p className="boldDescription">{name}</p>
                         :
-                        <input value={name} type="text"/>
+                        <input value={name} type="text" onChange={inputHandler}/>
                     }
 
                     {
@@ -487,7 +492,7 @@ export const Profile: FC = () => {
                         ?
                         <p>{email}</p>
                         :
-                        <input value={email}/>
+                        <input value={email} />
                     }
 
                     {
