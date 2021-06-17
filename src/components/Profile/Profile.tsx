@@ -159,6 +159,15 @@ const ProfileTopBarInfo = styled.div`
         margin-top: 20px;
         padding: 10px;
 
+        button{
+                width: 30px;
+                height: 30px;
+                float: right;
+                margin-top: -10px;
+                border: none;
+                background-color: transparent;
+            }
+
         .tagExpertise{
             margin-bottom: 30px;
             h1{
@@ -178,7 +187,6 @@ const ProfileTopBarInfo = styled.div`
 
         img{
             height: 22px;
-            position: absolute;
             right: 10px;
         }
 
@@ -392,6 +400,7 @@ export const Profile: FC = () => {
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [turnEditionProfile, setTurnEditionProfile] = useState(false);
+    const [turnEditionContent, setTurnEditionContent] = useState(false);
 
     //const [expertise, setExpertise] = useState('');
 
@@ -427,7 +436,7 @@ export const Profile: FC = () => {
         if(ev === "btnOnEditionProfile" || ev === "btnOnEditionProfileImg")
             turnEditionProfile ? setTurnEditionProfile(false) : setTurnEditionProfile(true);
         else if(ev === "btnOnEditionContent" || ev === "btnOnEditionContentImg")
-            turnEditionProfile ? setTurnEditionProfile(false) : setTurnEditionProfile(true);
+            turnEditionContent ? setTurnEditionContent(false) : setTurnEditionContent(true);
 
     }
 
