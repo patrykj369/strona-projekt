@@ -548,8 +548,16 @@ export const Profile: FC = () => {
                     <h1>Expertise</h1>
 
                     <div className="tagExpertiseContent">
-                        <p>Mergers and acquisition</p>
+                        {/* <p>Mergers and acquisition</p> */}
+                        {
+                            turnEditionContent !== true
+                            ?
+                            <p>Mergers and acquisition</p>
+                            :
+                            <input key="inputPhoneNumber6" value={phoneNumber} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandler(event, "phoneNumber")}/>
+                        }
 
+                        {/* do poprawy ta czesc */}
                     </div>
                 </div>
 
