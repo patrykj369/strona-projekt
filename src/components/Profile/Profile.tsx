@@ -31,8 +31,7 @@ const ProfileWrapper = styled.div`
     }
 `;
 
-export const Profile: FC = () => {
-    const ProfileTopBarInfo = styled.div`
+const ProfileTopBarInfo = styled.div`
 
             width: 870px;
             height: 35px;
@@ -383,13 +382,16 @@ export const Profile: FC = () => {
         }
     `;
 
+export const Profile: FC = () => {
+
+
     const [company, setCompany] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [city, setCity] = useState('');
     const [relation, setRelation] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [turnEdition, setTurnEdition] = useState(false);
+    const [turnEditionProfile, setTurnEditionProfile] = useState(false);
 
     //const [expertise, setExpertise] = useState('');
 
@@ -415,17 +417,43 @@ export const Profile: FC = () => {
         setEmail(usersList[0]?.email);
         setPhoneNumber(usersList[0]?.phone);
         setRelation('Partner');
-        setTurnEdition(false);
+        setTurnEditionProfile(false);
     },[usersList])
 
-    const turnBtn = () =>{
-        //const penBtn = document.getElementById("btnOnEditionProfile");
-        turnEdition ? setTurnEdition(false) : setTurnEdition(true);
+    const turnBtn = (event: Event) =>{
+        const ev = ((event.target) as Element).id;
+        console.log(ev);
+
+        if(ev === "btnOnEditionProfile" || ev === "btnOnEditionProfileImg")
+            turnEditionProfile ? setTurnEditionProfile(false) : setTurnEditionProfile(true);
+        else if(ev === "btnOnEditionContent" || ev === "btnOnEditionContentImg")
+            turnEditionProfile ? setTurnEditionProfile(false) : setTurnEditionProfile(true);
 
     }
 
-    const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
-        setName(e.target.value);
+    const inputHandler = (event: ChangeEvent<HTMLInputElement>, type:string)=> {
+        switch(type) {
+            case 'name':
+                setName(event.target.value);
+                break;
+            case 'company':
+                setCompany(event.target.value);
+                break;
+            case 'city':
+                setCity(event.target.value);
+                break;
+            case 'relation':
+                setRelation(event.target.value);
+                break;
+            case 'email':
+                setEmail(event.target.value);
+                break;
+            case 'phoneNumber':
+                setPhoneNumber(event.target.value);
+                break;
+            default:
+                console.log("brak zmian");
+        }
     }
 
     return(
@@ -443,69 +471,70 @@ export const Profile: FC = () => {
                     <img src={imageList[0]?.thumbnailUrl} alt=""></img>
                     <button>See profile</button>
                 </div>
-                <div className="profileDescriptionSecction">
+                <div key="divProfile1" className="profileDescriptionSecction">
 
                     {
-                        turnEdition !== true
+                        turnEditionProfile !== true
                         ?
-                        <p className="boldDescription">{name}</p>
+                        <p key="pName1" className="boldDescription">{name}</p>
                         :
-                        <input key="inputName1" value={name} type="text" onChange={inputHandler}></input>
+                        <input key="inputName1" value={name} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandler(event, "name")}></input>
                     }
 
                     {
-                        turnEdition !== true
+                        turnEditionProfile !== true
                         ?
                         <p className="boldDescription">{company}</p>
                         :
-                        <input key="inputName2" value={company}/>
+                        <input key="inputCompany2" value={company} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandler(event, "company")}/>
                     }
 
                     {
-                        turnEdition !== true
+                        turnEditionProfile !== true
                         ?
                         <p>{city}</p>
                         :
-                        <input key="inputName3" value={city}/>
+                        <input key="inputCity3" value={city} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandler(event, "city")}/>
                     }
 
                     {
-                        turnEdition !== true
+                        turnEditionProfile !== true
                         ?
                         <p>Partner</p>
                         :
-                        <input key="inputName4" value={relation}/>
+                        <input key="inputRelation4" value={relation} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandler(event, "relation")}/>
                     }
 
 
 
                 </div>
                 <div className="profileCommunicateSecction">
-                    <button id="btnOnEditionProfile" onClick={() => turnBtn()}><img src="./media/icons/tiny-pencil.png" alt="pencil"></img></button>
+                    <button id="btnOnEditionProfile" onClick={(ev: any) => turnBtn(ev)}><img id="btnOnEditionProfileImg" src="./media/icons/tiny-pencil.png" alt="pencil"></img></button>
                     <div className="dataDescription">
 
 
                     {
-                        turnEdition !== true
+                        turnEditionProfile !== true
                         ?
                         <p>{email}</p>
                         :
-                        <input key="inputName5" value={email} />
+                        <input key="inputEmail5" value={email} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandler(event, "email")} />
                     }
 
                     {
-                        turnEdition !== true
+                        turnEditionProfile !== true
                         ?
                         <p>{phoneNumber}</p>
                         :
-                        <input key="inputName6" value={phoneNumber}/>
+                        <input key="inputPhoneNumber6" value={phoneNumber} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandler(event, "phoneNumber")}/>
                     }
                     </div>
                 </div>
             </ProfileDescription>
 
             <TagContent>
-                <img src="./media/icons/tiny-pencil.png" alt="pencil"></img>
+                <button id="btnOnEditionContent" onClick={(ev: any) => turnBtn(ev)}><img id="btnOnEditionContentImg" src="./media/icons/tiny-pencil.png" alt="pencil"></img></button>
+
                 <div className="tagExpertise">
                     <h1>Expertise</h1>
 
