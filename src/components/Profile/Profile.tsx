@@ -159,6 +159,13 @@ const ProfileTopBarInfo = styled.div`
         margin-top: 20px;
         padding: 10px;
 
+        input{
+            margin-right: 5px;
+            margin-bottom: 4px;
+            font-size: ${fontSize[16]};
+            height: 27px;
+        }
+
         button{
                 width: 30px;
                 height: 30px;
@@ -169,7 +176,7 @@ const ProfileTopBarInfo = styled.div`
             }
 
         .tagExpertise{
-            margin-bottom: 30px;
+            margin-bottom: 15px;
             h1{
                 font-size: ${fontSize[18]};
                 color: ${Colors.navy_blue};
@@ -182,6 +189,7 @@ const ProfileTopBarInfo = styled.div`
                 display: inline-block;
                 color: ${Colors.text_color};
                 margin-right: 10px;
+                margin-bottom: 5px;
             }
         }
 
@@ -203,6 +211,14 @@ const ProfileTopBarInfo = styled.div`
     const PanelInformations = styled.div`
         //display: grid;
         padding: 0 10px 10px 10px;
+
+        input{
+            margin-right: 5px;
+            margin-bottom: 4px;
+            font-size: ${fontSize[16]};
+            height: 27px;
+        }
+
         h1{
             font-size: ${fontSize[18]};
             color: ${Colors.navy_blue};
@@ -402,7 +418,47 @@ export const Profile: FC = () => {
     const [turnEditionProfile, setTurnEditionProfile] = useState(false);
     const [turnEditionContent, setTurnEditionContent] = useState(false);
 
-    //const [expertise, setExpertise] = useState('');
+
+    const initialExpertise = [
+        {
+            id: 1, value: 'Mergers and acquisition',
+        }
+    ];
+
+    const initialSpecialities = [
+        {
+            id: 1, value: 'Cross border operation',
+        },
+        {
+            id: 2, value: 'Transaction over 500M$',
+        }
+    ];
+
+    const initialAdmission = [
+        {
+            id: 1, value: 'Paris bar association',
+        },
+        {
+            id: 2, value: 'Tunisian bar association',
+        }
+    ];
+    const initialCounties = [
+        {
+            id: 1, value: 'Tunisia',
+        }
+    ];
+
+    const initialHourlyFee = [
+        {
+            id: 1, value: '610$/hour (Negociated)',
+        }
+    ];
+
+    const [expertise, setExpertise] = useState(initialExpertise);
+    const [specialities, setSpecialities] = useState(initialSpecialities);
+    const [admission, setAdmission] = useState(initialAdmission);
+    const [counties, setCounties] = useState(initialCounties);
+    const [hourlyFee, setHourlyFee] = useState(initialHourlyFee);
 
     const {usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
@@ -431,7 +487,6 @@ export const Profile: FC = () => {
 
     const turnBtn = (event: Event) =>{
         const ev = ((event.target) as Element).id;
-        console.log(ev);
 
         if(ev === "btnOnEditionProfile" || ev === "btnOnEditionProfileImg")
             turnEditionProfile ? setTurnEditionProfile(false) : setTurnEditionProfile(true);
@@ -464,6 +519,90 @@ export const Profile: FC = () => {
                 console.log("brak zmian");
         }
     }
+
+
+    const inputHandlerArray = (event: ChangeEvent<HTMLInputElement>, type: string, position: number)=>{
+        switch(type) {
+            case 'expertise':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'specialities':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'admission':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'counties':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'hourlyFee':
+                changeItemsFromContent(position, event, type);
+            break;
+        default:
+                console.log("brak zmian");
+        }
+    }
+
+
+    const changeItemsFromContent = (position: number, event: ChangeEvent<HTMLInputElement>, type: string ) => {
+        let typ;
+
+        switch(type){
+            case 'expertise':
+                typ = expertise;
+            break;
+            case 'specialities':
+                typ = specialities;
+            break;
+            case 'admission':
+                typ = admission;
+            break;
+            case 'counties':
+                typ = counties;
+            break;
+            case 'hourlyFee':
+                typ = hourlyFee;
+            break;
+
+            default:
+                typ = expertise;
+        }
+
+        const newArr:any = [];
+        typ.forEach((x: any) => {
+            if(x.id !== position){
+                newArr.push(x);
+            }else{
+                const elem = {
+                    id: position, value: event.target.value,
+                }
+
+                newArr.push(elem);
+            }
+        })
+
+        switch(type) {
+            case 'expertise':
+                setExpertise(newArr);
+            break;
+            case 'specialities':
+                setSpecialities(newArr);
+            break;
+            case 'admission':
+                setAdmission(newArr);
+            break;
+            case 'counties':
+                setCounties(newArr);
+            break;
+            case 'hourlyFee':
+                setHourlyFee(newArr);
+            break;
+        default:
+                console.log("brak zmian");
+        }
+
+    }
+
 
     return(
         <ProfileWrapper>
@@ -548,16 +687,26 @@ export const Profile: FC = () => {
                     <h1>Expertise</h1>
 
                     <div className="tagExpertiseContent">
-                        {/* <p>Mergers and acquisition</p> */}
+
                         {
                             turnEditionContent !== true
                             ?
-                            <p>Mergers and acquisition</p>
+
+                                expertise.map((x:any) => {
+                                    return(
+                                        <p>{x.value}</p>
+                                    );
+                                })
+
                             :
-                            <input key="inputPhoneNumber6" value={phoneNumber} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandler(event, "phoneNumber")}/>
+                                expertise.map((x:any) => {
+                                    return(
+                                        <input key={"inputExpertise" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "expertise", x.id)}/>
+                                    );
+                                })
+
                         }
 
-                        {/* do poprawy ta czesc */}
                     </div>
                 </div>
 
@@ -565,8 +714,25 @@ export const Profile: FC = () => {
                     <h1>Specialties</h1>
 
                     <div className="tagExpertiseContent">
-                        <p>Cross border operation</p>
-                        <p>Transaction over 500M$</p>
+
+                        {
+                            turnEditionContent !== true
+                            ?
+
+                                specialities.map((x:any) => {
+                                    return(
+                                        <p>{x.value}</p>
+                                    );
+                                })
+
+                            :
+                                specialities.map((x:any) => {
+                                    return(
+                                        <input key={"inputSpecialitie" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "specialities", x.id)}/>
+                                    );
+                                })
+
+                        }
                     </div>
                 </div>
 
@@ -574,8 +740,25 @@ export const Profile: FC = () => {
                     <h1>Admission to practice law</h1>
 
                     <div className="tagExpertiseContent">
-                        <p>Paris bar association</p>
-                        <p>Tunisian bar association</p>
+
+                        {
+                            turnEditionContent !== true
+                            ?
+
+                                admission.map((x:any) => {
+                                    return(
+                                        <p>{x.value}</p>
+                                    );
+                                })
+
+                            :
+                            admission.map((x:any) => {
+                                    return(
+                                        <input key={"inputAdmission" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "admission", x.id)}/>
+                                    );
+                                })
+
+                        }
                     </div>
                 </div>
 
@@ -583,7 +766,25 @@ export const Profile: FC = () => {
                     <h1>Counties</h1>
 
                     <div className="tagExpertiseContent">
-                        <p>Tunisia</p>
+
+                        {
+                            turnEditionContent !== true
+                            ?
+
+                                counties.map((x:any) => {
+                                    return(
+                                        <p>{x.value}</p>
+                                    );
+                                })
+
+                            :
+                                counties.map((x:any) => {
+                                    return(
+                                        <input key={"inputCounties" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "counties", x.id)}/>
+                                    );
+                                })
+
+                        }
                     </div>
                 </div>
             </TagContent>
@@ -593,10 +794,28 @@ export const Profile: FC = () => {
 
                 <div className="panelInformations">
                     <p className="headerPanel">Hourly fee</p>
-                    <p className="contentPanel">610$/hour (Negociated)</p>
+
+                    {
+                            turnEditionContent !== true
+                            ?
+
+                                hourlyFee.map((x:any) => {
+                                    return(
+                                        <p className="contentPanel">{x.value}</p>
+                                    );
+                                })
+
+                            :
+                                hourlyFee.map((x:any) => {
+                                    return(
+                                        <input key={"inputHourlyFee" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "hourlyFee", x.id)}/>
+                                    );
+                                })
+
+                    }
 
                     <p className="headerPanel">Terms {"&"} conditions</p>
-                    <p className="contentPanel">Mnthly 10k$ retainer - see with Jeanny Smith</p>
+                    <p className="contentPanel">Monthly 10k$ retainer - see with Jeanny Smith</p>
 
                     <p className="attachmentPanel"><img src="./media/icons/user-plus.svg" alt=""></img>Attachement_test245.jpg</p>
 
@@ -692,5 +911,5 @@ export const Profile: FC = () => {
             </Amount>
 
         </ProfileWrapper>
-    )
-}
+    );
+};
