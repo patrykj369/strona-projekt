@@ -454,11 +454,25 @@ export const Profile: FC = () => {
         }
     ];
 
+    const initialTerms = [
+        {
+            id: 1, value: 'Monthly 10k$ retainer - see with Jeanny Smith',
+        }
+    ];
+
+    const initialServices = [
+        {
+            id: 1, value: 'Corporate M&A and international acquistions',
+        }
+    ];
+
     const [expertise, setExpertise] = useState(initialExpertise);
     const [specialities, setSpecialities] = useState(initialSpecialities);
     const [admission, setAdmission] = useState(initialAdmission);
     const [counties, setCounties] = useState(initialCounties);
     const [hourlyFee, setHourlyFee] = useState(initialHourlyFee);
+    const [terms, setTerms] = useState(initialTerms);
+    const [services, setServices] = useState(initialServices);
 
     const {usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
@@ -538,6 +552,12 @@ export const Profile: FC = () => {
             case 'hourlyFee':
                 changeItemsFromContent(position, event, type);
             break;
+            case 'terms':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'services':
+                changeItemsFromContent(position, event, type);
+            break;
         default:
                 console.log("brak zmian");
         }
@@ -563,6 +583,13 @@ export const Profile: FC = () => {
             case 'hourlyFee':
                 typ = hourlyFee;
             break;
+            case 'terms':
+                typ = terms;
+            break;
+            case 'services':
+                typ = services;
+            break;
+
 
             default:
                 typ = expertise;
@@ -596,6 +623,12 @@ export const Profile: FC = () => {
             break;
             case 'hourlyFee':
                 setHourlyFee(newArr);
+            break;
+            case 'terms':
+                setTerms(newArr);
+            break;
+            case 'services':
+                setServices(newArr);
             break;
         default:
                 console.log("brak zmian");
@@ -815,7 +848,25 @@ export const Profile: FC = () => {
                     }
 
                     <p className="headerPanel">Terms {"&"} conditions</p>
-                    <p className="contentPanel">Monthly 10k$ retainer - see with Jeanny Smith</p>
+
+                    {
+                            turnEditionContent !== true
+                            ?
+
+                               terms.map((x:any) => {
+                                    return(
+                                        <p className="contentPanel">{x.value}</p>
+                                    );
+                                })
+
+                            :
+                                terms.map((x:any) => {
+                                    return(
+                                        <input key={"inputTerms" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "terms", x.id)}/>
+                                    );
+                                })
+
+                    }
 
                     <p className="attachmentPanel"><img src="./media/icons/user-plus.svg" alt=""></img>Attachement_test245.jpg</p>
 
@@ -824,7 +875,24 @@ export const Profile: FC = () => {
                 <h1 className="servicesHeader">Services {"&"} projects</h1>
 
                 <div className="servicesPanel">
-                    <p className="contentPanel">Corporate M{"&"}A and international acquistions</p>
+                    {
+                            turnEditionContent !== true
+                            ?
+
+                               services.map((x:any) => {
+                                    return(
+                                        <p className="contentPanel">{x.value}</p>
+                                    );
+                                })
+
+                            :
+                                services.map((x:any) => {
+                                    return(
+                                        <input key={"inputServices" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "services", x.id)}/>
+                                    );
+                                })
+
+                    }
                 </div>
 
                 <h1 className="internalHeader">Internal corespondants</h1>
