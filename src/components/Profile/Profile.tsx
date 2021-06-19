@@ -539,7 +539,6 @@ export const Profile: FC = () => {
             break;
             case 'proposalsName':
                 changeItemsFromContent(position, event, type);
-                
             break;
             case 'proposalsEntity':
                 changeItemsFromContent(position, event, type);
@@ -556,7 +555,8 @@ export const Profile: FC = () => {
             case 'proposalsFirm':
                 changeItemsFromContent(position, event, type);
             break;
-        default:
+
+            default:
                 console.log("brak zmian");
         }
     }
@@ -564,56 +564,72 @@ export const Profile: FC = () => {
 
     const changeItemsFromContent = (position: number, event: ChangeEvent<HTMLInputElement>, type: string ) => {
         let typ;
+        let mode;
 
         switch(type){
             case 'expertise':
                 typ = expertise;
+                mode = 1;
             break;
             case 'specialities':
                 typ = specialities;
+                mode = 1;
             break;
             case 'admission':
                 typ = admission;
+                mode = 1;
             break;
             case 'counties':
                 typ = counties;
+                mode = 1;
             break;
             case 'hourlyFee':
                 typ = hourlyFee;
+                mode = 1;
             break;
             case 'terms':
                 typ = terms;
+                mode = 1;
             break;
             case 'services':
                 typ = services;
+                mode = 1;
             break;
             case 'attachment':
                 typ = attachment;
+                mode = 1;
             break;
             case 'proposalsName':
                 typ = proposals;
+                mode = 2;
             break;
             case 'proposalsEntity':
                 typ = proposals;
+                mode = 2;
             break;
             case 'proposalsLocation':
                 typ = proposals;
+                mode = 2;
             break;
             case 'proposalsExpertise':
                 typ = proposals;
+                mode = 2;
             break;
             case 'proposalsDate':
                 typ = proposals;
+                mode = 2;
             break;
             case 'proposalsFirm':
                 typ = proposals;
+                mode = 2;
             break;
 
             default:
                 typ = expertise;
+                mode = 1;
         }
 
-        const newArr = pushElem(typ, position, event);
+        const newArr = pushElem(typ, position, event, mode);
 
         switch(type) {
             case 'expertise':
@@ -664,7 +680,7 @@ export const Profile: FC = () => {
 
     }
 
-    const pushElem = (type: any, position: number, event: ChangeEvent<HTMLInputElement>) => {
+    const pushElem = (type: any, position: number, event: ChangeEvent<HTMLInputElement>, mode: number) => {
         const newArr:any = [];
         //console.log(type);
         type.forEach((x: any) => {
@@ -672,7 +688,7 @@ export const Profile: FC = () => {
                 newArr.push(x);
             }else{
                 console.log(type === proposals);
-                if(type === expertise || type === specialities || type === admission || type === counties || hourlyFee || type === terms || type === services || type === attachment){
+                if(mode === 1){
                     const elem = {
                     id: position, value: event.target.value,
                     }
@@ -680,7 +696,7 @@ export const Profile: FC = () => {
                 }
                 else{
                     const elem1 = {
-                        id: position, name: "1", entity: "1", location: "1", expertise: "1", date: "1", firm: "1",
+                        id: position, name: event.target.value, entity: event.target.value, location: "1", expertise: "1", date: "1", firm: "1",
                     }
                     newArr.push(elem1);
                 }

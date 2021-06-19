@@ -41,6 +41,19 @@ const Content = styled.div`
         margin-left: 760px;
     }
 
+    .profileDiv{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+
+        LeftMenu{
+            grid-column: 1;
+        }
+
+        Profile{
+            grid-column: 2;
+        }
+    }
+
 `;
 
 const ResumeWork2 = styled(ResumeWork)`
@@ -54,7 +67,6 @@ const MainPage: FC = () => {
         <Wrapper>
             <TopBar />
             <Content>
-                <LeftMenu/>
                 <Switch>
                     <Route path="/publications">
                         <div>To są publications</div>
@@ -63,6 +75,7 @@ const MainPage: FC = () => {
                         <div>To są people</div>
                     </Route>
                     <Route path="/entities">
+                        <LeftMenu/>
                         <Entities/>
                     </Route>
                     <Route path="/administration">
@@ -70,26 +83,35 @@ const MainPage: FC = () => {
                     </Route>
                     <Route path="/client_contract">
                         {/* <div>To są client contract</div> */}
+                        <LeftMenu/>
                         <ExtendedWorkspace type="0"></ExtendedWorkspace>
                     </Route>
                     <Route path="/supplier_contract">
                         {/* <div>To są supplier contract</div> */}
+                        <LeftMenu/>
                         <ExtendedWorkspace type="1"></ExtendedWorkspace>
                     </Route>
                     <Route path="/corporate">
                         {/* <div>To są corporate</div> */}
+                        <LeftMenu/>
                         <ExtendedWorkspace type="2"></ExtendedWorkspace>
                     </Route>
                     <Route path="/group_norms">
                         {/* <div>To są group norms</div> */}
+                        <LeftMenu/>
                         <ExtendedWorkspace type="3"></ExtendedWorkspace>
                     </Route>
                     <Route path="/real_estate_contracts">
                         {/* <div>To są real estate contracts</div> */}
+                        <LeftMenu/>
                         <ExtendedWorkspace type="4"></ExtendedWorkspace>
                     </Route>
                     <Route path="/profile">
-                        <Profile></Profile>
+                        <div className="profileDiv">
+                            <LeftMenu/>
+                            <Profile></Profile>
+                        </div>
+
                     </Route>
                     <Route path="/supplier_contract">
                         <div>To są supplier_contract</div>
@@ -130,6 +152,7 @@ const MainPage: FC = () => {
                     {/* strona startowa z odpowiednimi komponentami */}
 
                     <Route path="/">
+                        <LeftMenu/>
                         <Publications/>
                         <Workspaces/>
                         <div className="resumeWork">
