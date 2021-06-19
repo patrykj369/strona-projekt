@@ -605,23 +605,23 @@ export const Profile: FC = () => {
             break;
             case 'proposalsEntity':
                 typ = proposals;
-                mode = 2;
+                mode = 3;
             break;
             case 'proposalsLocation':
                 typ = proposals;
-                mode = 2;
+                mode = 4;
             break;
             case 'proposalsExpertise':
                 typ = proposals;
-                mode = 2;
+                mode = 5;
             break;
             case 'proposalsDate':
                 typ = proposals;
-                mode = 2;
+                mode = 6;
             break;
             case 'proposalsFirm':
                 typ = proposals;
-                mode = 2;
+                mode = 7;
             break;
 
             default:
@@ -694,16 +694,44 @@ export const Profile: FC = () => {
                     }
                     newArr.push(elem);
                 }
-                else{
+                else if(mode === 2){
                     const elem1 = {
-                        id: position, name: event.target.value, entity: event.target.value, location: "1", expertise: "1", date: "1", firm: "1",
+                        id: position, name: event.target.value, entity: x.entity, location: x.location, expertise: x.expertise, date: x.date, firm: x.firm,
                     }
                     newArr.push(elem1);
                 }
-
+                else if(mode === 3){
+                    const elem1 = {
+                        id: position, name: x.name, entity: event.target.value, location: x.location, expertise: x.expertise, date: x.date, firm: x.firm,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 4){
+                    const elem1 = {
+                        id: position, name: x.name, entity: x.entity, location: event.target.value, expertise: x.expertise, date: x.date, firm: x.firm,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 5){
+                    const elem1 = {
+                        id: position, name: x.name, entity: x.entity, location: x.location, expertise: event.target.value, date: x.date, firm: x.firm,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 6){
+                    const elem1 = {
+                        id: position, name: x.name, entity: x.entity, location: x.location, expertise: x.expertise, date: event.target.value, firm: x.firm,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 7){
+                    const elem1 = {
+                        id: position, name: x.name, entity: x.entity, location: x.location, expertise: x.expertise, date: x.date, firm: event.target.value,
+                    }
+                    newArr.push(elem1);
+                }
             }
         })
-        console.log(newArr);
         return newArr;
     }
 
