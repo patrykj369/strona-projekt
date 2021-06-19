@@ -11,24 +11,35 @@ import { getImg} from '../../actions/imagesActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { IImageReducer } from '../../reducers/imageReducers';
 
+import {initialExpertise} from './data';
+import {initialSpecialities} from './data';
+import {initialAdmission} from './data';
+import {initialCounties} from './data';
+import {initialHourlyFee} from './data';
+import {initialTerms} from './data';
+import {initialServices} from './data';
+import {initialAttachment} from './data';
+import {initialProposals} from './data';
+import {initialInternalReviews} from './data';
+import {initialAmount} from './data';
+
+
 type GetImg = ReturnType<typeof getImg>
 type GetUsers = ReturnType<typeof getUsers>
 
 const ProfileWrapper = styled.div`
-    position: absolute;
+    //position: absolute;
     font-family: sans-serif;
-    margin-top: 1422px;
-    margin-left: 320px;
+    margin-top: 20px;
+
+    //margin-left: 320px;
     width: 870px;
-    height: 1740px;
+    min-height: 1660px;
     background-color: ${Colors.white};
     border-radius: 10px;
+    margin-bottom: 40px;
 
-    ::after{
-        content: "";
-        height: 50px;
-        display: inline-block;
-    }
+
 `;
 
 const ProfileTopBarInfo = styled.div`
@@ -306,6 +317,11 @@ const ProfileTopBarInfo = styled.div`
 
         }
 
+        .attachmentInput{
+            margin-top: 10px;
+            font-size: ${fontSize[16]};
+            height: 27px;
+        }
         ::after{
             content: "";
             display: inline-block;
@@ -364,6 +380,10 @@ const ProfileTopBarInfo = styled.div`
             margin-bottom: 10px;
         }
 
+        .tdInput{
+            width: 120px;
+        }
+
         ::after{
             content: "";
             display: inline-block;
@@ -376,7 +396,6 @@ const ProfileTopBarInfo = styled.div`
 
     const Amount = styled.div`
         padding: 0 10px 10px 10px;
-        //margin-bottom: 20px;
         margin-top: -5px;
         h1{
             font-size: ${fontSize[18]};
@@ -419,53 +438,6 @@ export const Profile: FC = () => {
     const [turnEditionContent, setTurnEditionContent] = useState(false);
 
 
-    const initialExpertise = [
-        {
-            id: 1, value: 'Mergers and acquisition',
-        }
-    ];
-
-    const initialSpecialities = [
-        {
-            id: 1, value: 'Cross border operation',
-        },
-        {
-            id: 2, value: 'Transaction over 500M$',
-        }
-    ];
-
-    const initialAdmission = [
-        {
-            id: 1, value: 'Paris bar association',
-        },
-        {
-            id: 2, value: 'Tunisian bar association',
-        }
-    ];
-    const initialCounties = [
-        {
-            id: 1, value: 'Tunisia',
-        }
-    ];
-
-    const initialHourlyFee = [
-        {
-            id: 1, value: '610$/hour (Negociated)',
-        }
-    ];
-
-    const initialTerms = [
-        {
-            id: 1, value: 'Monthly 10k$ retainer - see with Jeanny Smith',
-        }
-    ];
-
-    const initialServices = [
-        {
-            id: 1, value: 'Corporate M&A and international acquistions',
-        }
-    ];
-
     const [expertise, setExpertise] = useState(initialExpertise);
     const [specialities, setSpecialities] = useState(initialSpecialities);
     const [admission, setAdmission] = useState(initialAdmission);
@@ -473,6 +445,10 @@ export const Profile: FC = () => {
     const [hourlyFee, setHourlyFee] = useState(initialHourlyFee);
     const [terms, setTerms] = useState(initialTerms);
     const [services, setServices] = useState(initialServices);
+    const [attachment, setAttachment] = useState(initialAttachment);
+    const [proposals, setProposals] = useState(initialProposals);
+    const [internalReviews, setinternalReviews] = useState(initialInternalReviews);
+    const [amount, setAmount] = useState(initialAmount);
 
     const {usersList } = useSelector<IState, IUsersReducer>(state => ({
         ...state.users
@@ -538,7 +514,7 @@ export const Profile: FC = () => {
     const inputHandlerArray = (event: ChangeEvent<HTMLInputElement>, type: string, position: number)=>{
         switch(type) {
             case 'expertise':
-                changeItemsFromContent(position, event, type);
+               changeItemsFromContent(position, event, type);
             break;
             case 'specialities':
                 changeItemsFromContent(position, event, type);
@@ -556,6 +532,28 @@ export const Profile: FC = () => {
                 changeItemsFromContent(position, event, type);
             break;
             case 'services':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'attachment':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'proposalsName':
+                changeItemsFromContent(position, event, type);
+                
+            break;
+            case 'proposalsEntity':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'proposalsLocation':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'proposalsExpertise':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'proposalsDate':
+                changeItemsFromContent(position, event, type);
+            break;
+            case 'proposalsFirm':
                 changeItemsFromContent(position, event, type);
             break;
         default:
@@ -589,24 +587,33 @@ export const Profile: FC = () => {
             case 'services':
                 typ = services;
             break;
-
+            case 'attachment':
+                typ = attachment;
+            break;
+            case 'proposalsName':
+                typ = proposals;
+            break;
+            case 'proposalsEntity':
+                typ = proposals;
+            break;
+            case 'proposalsLocation':
+                typ = proposals;
+            break;
+            case 'proposalsExpertise':
+                typ = proposals;
+            break;
+            case 'proposalsDate':
+                typ = proposals;
+            break;
+            case 'proposalsFirm':
+                typ = proposals;
+            break;
 
             default:
                 typ = expertise;
         }
 
-        const newArr:any = [];
-        typ.forEach((x: any) => {
-            if(x.id !== position){
-                newArr.push(x);
-            }else{
-                const elem = {
-                    id: position, value: event.target.value,
-                }
-
-                newArr.push(elem);
-            }
-        })
+        const newArr = pushElem(typ, position, event);
 
         switch(type) {
             case 'expertise':
@@ -630,10 +637,58 @@ export const Profile: FC = () => {
             case 'services':
                 setServices(newArr);
             break;
+            case 'attachment':
+                setAttachment(newArr);
+            break;
+            case 'proposalsName':
+                setProposals(newArr);
+            break;
+            case 'proposalsEntity':
+                setProposals(newArr);
+            break;
+            case 'proposalsLocation':
+                setProposals(newArr);
+            break;
+            case 'proposalsExpertise':
+                setProposals(newArr);
+            break;
+            case 'proposalsDate':
+                setProposals(newArr);
+            break;
+            case 'proposalsFirm':
+                setProposals(newArr);
+            break;
         default:
                 console.log("brak zmian");
         }
 
+    }
+
+    const pushElem = (type: any, position: number, event: ChangeEvent<HTMLInputElement>) => {
+        const newArr:any = [];
+        //console.log(type);
+        type.forEach((x: any) => {
+            if(x.id !== position){
+                newArr.push(x);
+            }else{
+                console.log(type === proposals);
+                if(type === expertise || type === specialities || type === admission || type === counties || hourlyFee || type === terms || type === services || type === attachment){
+                    const elem = {
+                    id: position, value: event.target.value,
+                    }
+                    newArr.push(elem);
+                }
+                else{
+                    const elem1 = {
+                        id: position, name: "1", entity: "1", location: "1", expertise: "1", date: "1", firm: "1",
+                    }
+                    newArr.push(elem1);
+                }
+
+            }
+        })
+        console.log(newArr);
+        return newArr;
     }
 
 
@@ -868,7 +923,29 @@ export const Profile: FC = () => {
 
                     }
 
-                    <p className="attachmentPanel"><img src="./media/icons/user-plus.svg" alt=""></img>Attachement_test245.jpg</p>
+
+                    <div id="attachmentSection">
+
+                        {/* <p className="attachmentPanel"><img src="./media/icons/user-plus.svg" alt=""></img>Attachement_test245.jpg</p> */}
+                        {
+                            turnEditionContent !== true
+                            ?
+
+                            attachment.map((x:any) => {
+                                return(
+                                    <p className="attachmentPanel"><img src="./media/icons/user-plus.svg" alt=""></img>{x.value}</p>
+                                );
+                            })
+                            :
+
+                            attachment.map((x:any) => {
+                                return(
+                                    <input className="attachmentInput" key={"inputAttachment"+ x.id} type="file" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "attachment", x.id)}/>
+                                );
+                            })
+                        }
+
+                    </div>
 
                 </div>
 
@@ -922,15 +999,39 @@ export const Profile: FC = () => {
                     <tr className="headerTable">
                         <td>Name</td> <td>Entity</td> <td>Location</td> <td>Expertise</td> <td>Date</td> <td>Firm</td>
                     </tr>
-                    <tr>
-                        <td>Operation Time</td> <td>Renault Co</td> <td>France</td> <td>#Tax</td> <td>20/01/2018</td> <td>Racine</td>
-                    </tr>
-                    <tr>
-                        <td>Op. Prometheus</td> <td>Renault HQ</td> <td>USA</td> <td>#M{"&"}A</td> <td>18/01/2019</td> <td>Clifford chance</td>
-                    </tr>
-                    <tr>
-                        <td>Op. Latandre</td> <td>Renault Brazil</td> <td>Italy</td> <td>#Social</td> <td>18/02/2019</td> <td>SVZ</td>
-                    </tr>
+                    {
+                            turnEditionContent !== true
+                            ?
+
+                               proposals.map((x:any) => {
+                                    return(
+                                        <tr>
+                                            <td>{x.name}</td>
+                                            <td>{x.entity}</td>
+                                            <td>{x.location}</td>
+                                            <td>{x.expertise}</td>
+                                            <td>{x.date}</td>
+                                            <td>{x.firm}</td>
+                                        </tr>
+                                    );
+                                })
+
+                            :
+                                proposals.map((x:any) => {
+                                    return(
+                                        <tr>
+                                            <td><input className="tdInput" key={"inputProposalsName" + x.id} value={x.name} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "proposalsName", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputProposalsEntity" + x.id} value={x.entity} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "proposalsEntity", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputProposalsLocation" + x.id} value={x.location} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "proposalsLocation", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputProposalsExpertise" + x.id} value={x.expertise} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "proposalsExpertise", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputProposalsDate" + x.id} value={x.date} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "proposalsDate", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputProposalsFirm" + x.id} value={x.firm} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "proposalsFirm", x.id)}/></td>
+                                        </tr>
+
+                                    );
+                                })
+
+                    }
                 </table>
                 <p>See more proposals</p>
             </TablePanel>
@@ -941,15 +1042,37 @@ export const Profile: FC = () => {
                     <tr className="headerTable">
                         <td>Name</td> <td>Entity</td> <td>Location</td> <td>Expertise</td> <td>Date</td>
                     </tr>
-                    <tr>
-                        <td>Operation Time</td> <td>Renault Co</td> <td>France</td> <td>#Tax</td> <td>20/01/2018</td>
-                    </tr>
-                    <tr>
-                        <td>Op. Prometheus</td> <td>Renault HQ</td> <td>USA</td> <td>#M{"&"}A</td> <td>18/01/2019</td>
-                    </tr>
-                    <tr>
-                        <td>Op. Latandre</td> <td>Renault Brazil</td> <td>Italy</td> <td>#Social</td> <td>18/02/2019</td>
-                    </tr>
+                    {
+                            turnEditionContent !== true
+                            ?
+
+                               internalReviews.map((x:any) => {
+                                    return(
+                                        <tr>
+                                            <td>{x.name}</td>
+                                            <td>{x.entity}</td>
+                                            <td>{x.location}</td>
+                                            <td>{x.expertise}</td>
+                                            <td>{x.date}</td>
+                                        </tr>
+                                    );
+                                })
+
+                            :
+                                internalReviews.map((x:any) => {
+                                    return(
+                                        <tr>
+                                            <td><input className="tdInput" key={"inputInternalReviewsName" + x.id} value={x.name} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "internalReviewsName", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputInternalReviewsEntity" + x.id} value={x.entity} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "internalReviewsEntity", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputInternalReviewsLocation" + x.id} value={x.location} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "internalReviewsLocation", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputInternalReviewsExpertise" + x.id} value={x.expertise} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "internalReviewsExpertise", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputInternalReviewsDate" + x.id} value={x.date} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "internalReviewsDate", x.id)}/></td>
+                                        </tr>
+
+                                    );
+                                })
+
+                    }
                 </table>
                 <p className="seeMore">See more Reviews</p>
             </TablePanel>
@@ -960,21 +1083,35 @@ export const Profile: FC = () => {
                     <tr className="headerAmountTable">
                         <td>Year</td> <td>Cost center</td> <td>Total amount</td> <td>Law firm</td>
                     </tr>
-                    <tr>
-                        <td>2019</td> <td>CS 153</td> <td>3 500$</td> <td>Clifford chance</td>
-                    </tr>
-                    <tr>
-                        <td>2018</td> <td>CS 153</td> <td>9 500$</td> <td>Linklaters</td>
-                    </tr>
-                    <tr>
-                        <td>2017</td> <td>CS 47</td> <td>10 500$</td> <td>Linklaters</td>
-                    </tr>
-                    <tr>
-                        <td></td> <td>CS 153</td> <td>18 500$</td> <td>Linklaters</td>
-                    </tr>
-                    <tr>
-                        <td></td> <td>CS 32</td> <td>15 500$</td> <td>Linklaters</td>
-                    </tr>
+                    {
+                            turnEditionContent !== true
+                            ?
+
+                               amount.map((x:any) => {
+                                    return(
+                                        <tr>
+                                            <td>{x.year}</td>
+                                            <td>{x.costCenter}</td>
+                                            <td>{x.totalAmount}</td>
+                                            <td>{x.lawFirm}</td>
+                                        </tr>
+                                    );
+                                })
+
+                            :
+                                amount.map((x:any) => {
+                                    return(
+                                        <tr>
+                                            <td><input className="tdInput" key={"inputAmountYear" + x.id} value={x.year} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "amountYear", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputAmountCostCenter" + x.id} value={x.costCenter} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "amountCostCenter", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputAmountTotalAmount" + x.id} value={x.totalAmount} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "amountTotalAmount", x.id)}/></td>
+                                            <td><input className="tdInput" key={"inputAmountLawFirm" + x.id} value={x.lawFirm} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "amountLawFirm", x.id)}/></td>
+                                        </tr>
+
+                                    );
+                                })
+
+                    }
                 </table>
             </Amount>
 
