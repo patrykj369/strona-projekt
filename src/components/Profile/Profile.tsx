@@ -807,6 +807,7 @@ export const Profile: FC = () => {
                 }
         const newArr = expertise;
         newArr.push(data);
+
     }
 
 
