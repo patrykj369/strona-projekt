@@ -512,53 +512,7 @@ export const Profile: FC = () => {
 
 
     const inputHandlerArray = (event: ChangeEvent<HTMLInputElement>, type: string, position: number)=>{
-        switch(type) {
-            case 'expertise':
-               changeItemsFromContent(position, event, type);
-            break;
-            case 'specialities':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'admission':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'counties':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'hourlyFee':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'terms':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'services':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'attachment':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'proposalsName':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'proposalsEntity':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'proposalsLocation':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'proposalsExpertise':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'proposalsDate':
-                changeItemsFromContent(position, event, type);
-            break;
-            case 'proposalsFirm':
-                changeItemsFromContent(position, event, type);
-            break;
-
-            default:
-                console.log("brak zmian");
-        }
+        changeItemsFromContent(position, event, type);
     }
 
 
@@ -623,6 +577,42 @@ export const Profile: FC = () => {
                 typ = proposals;
                 mode = 7;
             break;
+            case 'internalReviewsName':
+                typ = internalReviews;
+                mode = 8;
+            break;
+            case 'internalReviewsEntity':
+                typ = internalReviews;
+                mode = 9;
+            break;
+            case 'internalReviewsLocation':
+                typ = internalReviews;
+                mode = 10;
+            break;
+            case 'internalReviewsExpertise':
+                typ = internalReviews;
+                mode = 11;
+            break;
+            case 'internalReviewsDate':
+                typ = internalReviews;
+                mode = 12;
+            break;
+            case 'amountYear':
+                typ = amount;
+                mode = 13;
+            break;
+            case 'amountCostCenter':
+                typ = amount;
+                mode = 14;
+            break;
+            case 'amountTotalAmount':
+                typ = amount;
+                mode = 15;
+            break;
+            case 'amountLawFirm':
+                typ = amount;
+                mode = 16;
+            break;
 
             default:
                 typ = expertise;
@@ -656,25 +646,32 @@ export const Profile: FC = () => {
             case 'attachment':
                 setAttachment(newArr);
             break;
+
             case 'proposalsName':
-                setProposals(newArr);
-            break;
             case 'proposalsEntity':
-                setProposals(newArr);
-            break;
             case 'proposalsLocation':
-                setProposals(newArr);
-            break;
             case 'proposalsExpertise':
-                setProposals(newArr);
-            break;
             case 'proposalsDate':
-                setProposals(newArr);
-            break;
             case 'proposalsFirm':
                 setProposals(newArr);
             break;
-        default:
+
+            case 'internalReviewsName':
+            case 'internalReviewsEntity':
+            case 'internalReviewsLocation':
+            case 'internalReviewsExpertise':
+            case 'internalReviewsDate':
+                setinternalReviews(newArr);
+            break;
+
+            case 'amountYear':
+            case 'amountCostCenter':
+            case 'amountTotalAmount':
+            case 'amountLawFirm':
+                setAmount(newArr);
+            break;
+
+            default:
                 console.log("brak zmian");
         }
 
@@ -727,6 +724,60 @@ export const Profile: FC = () => {
                 else if(mode === 7){
                     const elem1 = {
                         id: position, name: x.name, entity: x.entity, location: x.location, expertise: x.expertise, date: x.date, firm: event.target.value,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 8){
+                    const elem1= {
+                        id: position, name: event.target.value, entity: x.entity, location: x.location, expertise: x.expertise, date:  x.date,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 9){
+                    const elem1= {
+                        id: position, name: x.name, entity: event.target.value, location: x.location, expertise: x.expertise, date:  x.date,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 10){
+                    const elem1= {
+                        id: position, name: x.name, entity: x.entity, location: event.target.value, expertise: x.expertise, date:  x.date,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 11){
+                    const elem1= {
+                        id: position, name: x.name, entity: x.entity, location: x.location, expertise: event.target.value, date:  x.date,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 12){
+                    const elem1= {
+                        id: position, name: x.name, entity: x.entity, location: x.location, expertise: x.expertise, date: event.target.value,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 13){
+                    const elem1= {
+                        id: position, year: event.target.value, costCenter: x.costCenter, totalAmount: x.totalAmount, lawFirm: x.lawFirm,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 14){
+                    const elem1= {
+                        id: position, year: x.year, costCenter: event.target.value, totalAmount: x.totalAmount, lawFirm: x.lawFirm,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 15){
+                    const elem1= {
+                        id: position, year: x.year, costCenter: x.costCenter, totalAmount: event.target.value, lawFirm: x.lawFirm,
+                    }
+                    newArr.push(elem1);
+                }
+                else if(mode === 16){
+                    const elem1= {
+                        id: position, year: x.year, costCenter: x.costCenter, totalAmount: x.totalAmount, lawFirm: event.target.value,
                     }
                     newArr.push(elem1);
                 }
