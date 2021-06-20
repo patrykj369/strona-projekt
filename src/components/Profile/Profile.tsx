@@ -177,7 +177,7 @@ const ProfileTopBarInfo = styled.div`
             height: 27px;
         }
 
-        button{
+        #btnOnEditionContent{
                 width: 30px;
                 height: 30px;
                 float: right;
@@ -483,6 +483,11 @@ export const Profile: FC = () => {
         else if(ev === "btnOnEditionContent" || ev === "btnOnEditionContentImg")
             turnEditionContent ? setTurnEditionContent(false) : setTurnEditionContent(true);
 
+        const inputRemove = document.getElementById("inputToRemove");
+        if(inputRemove){
+            inputRemove.remove();
+        }
+
     }
 
     const inputHandler = (event: ChangeEvent<HTMLInputElement>, type:string)=> {
@@ -786,6 +791,24 @@ export const Profile: FC = () => {
         return newArr;
     }
 
+    const addInput = (name: string) => {
+        const divElem = document.getElementById(name);
+        const inputCreate = document.createElement("input");
+        inputCreate.type = "text";
+        inputCreate.id ="inputToRemove";
+        inputCreate.onchange = function (event: any){
+            const x = divElem!.childElementCount;
+            inputHandlerArray(event, "expertise", x)
+        }
+
+        divElem?.appendChild(inputCreate);
+        const data = {
+                    id: (divElem!.childElementCount), value: '',
+                }
+        const newArr = expertise;
+        newArr.push(data);
+    }
+
 
     return(
         <ProfileWrapper>
@@ -869,7 +892,14 @@ export const Profile: FC = () => {
                 <div className="tagExpertise">
                     <h1>Expertise</h1>
 
-                    <div className="tagExpertiseContent">
+                    <div className="tagExpertiseContent" id="tagExpertiseContentID">
+                        {
+                            turnEditionContent !== true
+                            ?
+                            null
+                            :
+                            <button onClick={() => addInput("tagExpertiseContentID")}>Add</button>
+                        }
 
                         {
                             turnEditionContent !== true
@@ -887,6 +917,7 @@ export const Profile: FC = () => {
                                         <input key={"inputExpertise" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "expertise", x.id)}/>
                                     );
                                 })
+
 
                         }
 
