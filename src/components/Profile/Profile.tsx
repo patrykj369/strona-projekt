@@ -204,6 +204,24 @@ const ProfileTopBarInfo = styled.div`
             }
         }
 
+        .btnAddInput{
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .divInput{
+            display: inline;
+
+            button{
+                margin-left: -5px;
+                margin-right: 5px;
+                height: 28px;
+                border: none;
+                color: red;
+                background-color: transparent;
+            }
+        }
+
         img{
             height: 22px;
             right: 10px;
@@ -483,7 +501,7 @@ export const Profile: FC = () => {
         else if(ev === "btnOnEditionContent" || ev === "btnOnEditionContentImg")
             turnEditionContent ? setTurnEditionContent(false) : setTurnEditionContent(true);
 
-            removeInpt();
+            //removeInpt();
     }
 
     const inputHandler = (event: ChangeEvent<HTMLInputElement>, type:string)=> {
@@ -685,7 +703,6 @@ export const Profile: FC = () => {
             if(x.id !== position){
                 newArr.push(x);
             }else{
-                console.log(type === proposals);
                 if(mode === 1){
                     const elem = {
                     id: position, value: event.target.value,
@@ -789,17 +806,35 @@ export const Profile: FC = () => {
 
     const addInput = (name: string) => {
         const divElem = document.getElementById(name);
+        const newDiv = document.createElement("div");
+        newDiv.id = "divExpertiseID_" + (divElem!.childElementCount);
+
+        newDiv.classList.add("divInputToDelete");
+        newDiv.classList.add("divInput");
+
         const inputCreate = document.createElement("input");
         inputCreate.type = "text";
-        inputCreate.id ="inputToRemove";
+        //inputCreate.id ="inputToRemove";
         inputCreate.onchange = function (event: any){
             const x = divElem!.childElementCount;
             inputHandlerArray(event, "expertise", x)
         }
+        inputCreate.value = "";
 
-        divElem?.appendChild(inputCreate);
+        const btnX = document.createElement("button");
+        btnX.id = "btnExpertiseID_" + (divElem!.childElementCount);
+        btnX.onclick = function(event: any){
+            deleteInput(event)
+        }
+
+        btnX.innerHTML = "X";
+
+        newDiv?.appendChild(inputCreate);
+        newDiv?.appendChild(btnX);
+        divElem?.appendChild(newDiv);
+
         const data = {
-                    id: (divElem!.childElementCount), value: '',
+                    id: ((divElem!.childElementCount)), value: '',
                 }
         const newArr = expertise;
         newArr.push(data);
@@ -807,10 +842,18 @@ export const Profile: FC = () => {
     }
 
     const removeInpt = () => {
-        const inputRemove = document.getElementById("inputToRemove");
+        const inputRemove = document.querySelector(".divInputToDelete");
         if(inputRemove){
-            inputRemove.remove();
+            console.log(inputRemove);
+            //inputRemove.forEach((x: any) => {
+                inputRemove.remove();
+            //})
+
         }
+    }
+
+    const deleteInput = (event: any) => {
+        console.log(event.target.id);
     }
 
 
@@ -902,7 +945,7 @@ export const Profile: FC = () => {
                             ?
                             null
                             :
-                            <button onClick={() => addInput("tagExpertiseContentID")}>Add</button>
+                            <button className="btnAddInput" onClick={() => addInput("tagExpertiseContentID")}>Add</button>
                         }
 
                         {
@@ -910,6 +953,7 @@ export const Profile: FC = () => {
                             ?
 
                                 expertise.map((x:any) => {
+
                                     return(
                                         <p>{x.value}</p>
                                     );
@@ -917,9 +961,13 @@ export const Profile: FC = () => {
 
                             :
                                 expertise.map((x:any) => {
-                                    removeInpt()
+                                    removeInpt();
+                                    console.log(expertise);
                                     return(
-                                        <input key={"inputExpertise" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "expertise", x.id)}/>
+                                        <div id={"divExpertiseID_" + (x.id)} className="divInput">
+                                            <input  key={"inputExpertise" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "expertise", x.id)}/>
+                                            <button id={"btnExpertiseID_" + (x.id)} onClick={(ev: any) => deleteInput(ev)}>X</button>
+                                        </div>
                                     );
                                 })
 
@@ -1049,7 +1097,9 @@ export const Profile: FC = () => {
                                 terms.map((x:any) => {
                                     return(
                                         <input key={"inputTerms" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "terms", x.id)}/>
+
                                     );
+
                                 })
 
                     }
