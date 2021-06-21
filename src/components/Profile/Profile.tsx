@@ -483,11 +483,7 @@ export const Profile: FC = () => {
         else if(ev === "btnOnEditionContent" || ev === "btnOnEditionContentImg")
             turnEditionContent ? setTurnEditionContent(false) : setTurnEditionContent(true);
 
-        const inputRemove = document.getElementById("inputToRemove");
-        if(inputRemove){
-            inputRemove.remove();
-        }
-
+            removeInpt();
     }
 
     const inputHandler = (event: ChangeEvent<HTMLInputElement>, type:string)=> {
@@ -810,6 +806,13 @@ export const Profile: FC = () => {
 
     }
 
+    const removeInpt = () => {
+        const inputRemove = document.getElementById("inputToRemove");
+        if(inputRemove){
+            inputRemove.remove();
+        }
+    }
+
 
     return(
         <ProfileWrapper>
@@ -914,6 +917,7 @@ export const Profile: FC = () => {
 
                             :
                                 expertise.map((x:any) => {
+                                    removeInpt()
                                     return(
                                         <input key={"inputExpertise" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "expertise", x.id)}/>
                                     );
