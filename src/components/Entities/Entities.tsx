@@ -160,7 +160,15 @@ export const Entities: FC<props> = ({type}) => {
             display: flex;
             justify-content: center;
             align-items: center;
+            border: none;
+            background-color: transparent;
         }
+
+        button:hover{
+            background-color: ${Colors.hover_color};
+            border-bottom: 1px solid #000;
+        }
+
 
 
         img{
@@ -357,7 +365,7 @@ const EntitiesCard = styled.div`
                     </div>
                     <div className="expandedSelector">
                         <Link className="link" to={type}>
-                            <button> <img src="./media/icons/resize.png" alt=""></img> Resize</button>
+                            <button> <img src="./media/icons/resize.png" alt=""></img></button>
                         </Link>
                     </div>
                     <div className="expandedSelector">
