@@ -351,26 +351,26 @@ const EntitiesCard = styled.div`
                 </div>
                 <div className="topBar">
                     <div className="leftSiteBar">
-                    <div className="expandedSelector">
-                        <button>All</button>
-                    </div>
-                    <div className="expandedSelector">
-                        <button>...</button>
-                    </div>
-                    <div className="expandedSelector">
-                        <button onClick={changeSort}> <img src="./media/icons/sort.png" alt=""></img> Sort</button>
-                    </div>
-                    <div className="expandedSelector">
-                        <button> <img src="./media/icons/filter.png" alt=""></img> Filters</button>
-                    </div>
-                    <div className="expandedSelector">
-                        <Link className="link" to={type}>
-                            <button> <img src="./media/icons/resize.png" alt=""></img></button>
-                        </Link>
-                    </div>
-                    <div className="expandedSelector">
-                        <button> <img src="./media/icons/share.png" alt=""></img> Share</button>
-                    </div>
+                        <div className="expandedSelector">
+                            <button>All</button>
+                        </div>
+                        <div className="expandedSelector">
+                            <button>...</button>
+                        </div>
+                        <div className="expandedSelector">
+                            <button onClick={changeSort}> <img src="./media/icons/sort.png" alt=""></img> Sort</button>
+                        </div>
+                        <div className="expandedSelector">
+                            <button> <img src="./media/icons/filter.png" alt=""></img> Filters</button>
+                        </div>
+                        <div className="expandedSelector">
+                            <Link className="link" to={type}>
+                                <button> <img src="./media/icons/resize.png" alt=""></img></button>
+                            </Link>
+                        </div>
+                        <div className="expandedSelector">
+                            <button> <img src="./media/icons/share.png" alt=""></img> Share</button>
+                        </div>
                     </div>
 
                     <div className="rightSiteBar">
@@ -388,6 +388,15 @@ const EntitiesCard = styled.div`
 
                     </div>
 
+                </div>
+
+                <div className="filters">
+                    <div className="activeFilters">
+
+                    </div>
+                    <div className="addFilter">
+
+                    </div>
                 </div>
 
                 <div id="cardBox" className="entitiesCardMosaic">
