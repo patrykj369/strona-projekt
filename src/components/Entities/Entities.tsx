@@ -229,6 +229,8 @@ const EntitiesCard = styled.div`
 
     const [displayStyle, setDisplayStyle] = useState<boolean>(true);
 
+    const [sorting, setSorting] = useState<number>(1);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -286,6 +288,42 @@ const EntitiesCard = styled.div`
 
     const [word, setWord] = useState('Followed');
 
+    const compare = (a: any, b: any) => {
+        if(sorting === 2){
+            if(a.company.name < b.company.name){
+                return -1;
+            }
+            if(a.company.name > b.company.name){
+                return 1;
+            }
+            return 0;
+        }
+        else if(sorting === 3){
+            if(a.company.name < b.company.name){
+                return 1;
+            }
+            if(a.company.name > b.company.name){
+                return -1;
+            }
+            return 0;
+        }else{
+            return 0;
+        }
+
+    }
+
+    const changeSort = () =>{
+        if(sorting === 1){
+            setSorting(2)
+        }
+        if(sorting === 2){
+            setSorting(3)
+        }
+        if(sorting === 3){
+            setSorting(1)
+        }
+    }
+
     return(
         <EntitiesWrapper>
             <div className="contentEntities">
@@ -312,7 +350,7 @@ const EntitiesCard = styled.div`
                         <button>...</button>
                     </div>
                     <div className="expandedSelector">
-                        <button> <img src="./media/icons/sort.png" alt=""></img> Sort</button>
+                        <button onClick={changeSort}> <img src="./media/icons/sort.png" alt=""></img> Sort</button>
                     </div>
                     <div className="expandedSelector">
                         <button> <img src="./media/icons/filter.png" alt=""></img> Filters</button>
@@ -345,7 +383,7 @@ const EntitiesCard = styled.div`
                 </div>
 
                 <div id="cardBox" className="entitiesCardMosaic">
-                    {inputText === "" ? usersList.map((x: any) => {
+                    {inputText === "" ? usersList.sort(compare).map((x: any) => {
                         return(
                         <EntitiesCard className="card">
                             <div className="contentImg" style={{ background: `url(${imageList[x.id]?.url})`, backgroundSize: `cover`}}>
