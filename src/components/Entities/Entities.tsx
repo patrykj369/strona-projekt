@@ -390,6 +390,8 @@ const EntitiesCard = styled.div`
 
                 </div>
 
+                {/* tutaj dodac filtry */}
+
                 <div className="filters">
                     <div className="activeFilters">
 
