@@ -12,10 +12,23 @@ import { getImg} from '../../actions/imagesActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { IImageReducer } from '../../reducers/imageReducers';
 
+import { ExpandedMenuEntities } from './ExpandedMenuEntities';
+import useDropdown from 'react-dropdown-hook';
+
+import { Link } from "react-router-dom";
+
 type GetImg = ReturnType<typeof getImg>
 type GetUsers = ReturnType<typeof getUsers>
 
-const EntitiesWrapper = styled(Wrapper)`
+
+
+interface props{
+    type: string;
+}
+
+export const Entities: FC<props> = ({type}) => {
+
+    const EntitiesWrapper = styled(Wrapper)`
     position: absolute;
     padding: 0;
     margin: 520px 0 50px 320px;
@@ -114,10 +127,9 @@ const EntitiesWrapper = styled(Wrapper)`
         }
 
         .rightSiteBar{
-
             display: flex;
             div{
-                margin: 10px 20px 10px 0;
+                margin: 10px 10px 10px 0;
             }
         }
     }
@@ -135,6 +147,38 @@ const EntitiesWrapper = styled(Wrapper)`
         content: "";
         display: block;
         height: 20px;
+    }
+
+    .expandedSelector{
+
+        .link{
+            text-decoration: none;
+        }
+
+        button{
+            font-size: ${fontSize[16]};
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        img{
+            height: 16px;
+            margin-right: 5px;
+        }
+    }
+
+    #followedDiv{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        img{
+            height: 8px;
+            margin-left: 2px;
+        }
     }
 `;
 
@@ -173,9 +217,6 @@ const EntitiesCard = styled.div`
 
 `;
 
-
-export const Entities: FC = () => {
-
     const [inputText, setInputText] = useState<string>('');
 
     const {usersList } = useSelector<IState, IUsersReducer>(state => ({
@@ -194,6 +235,7 @@ export const Entities: FC = () => {
         dispatch<GetImg>(getImg());
         dispatch<GetUsers>(getUsers());
     }, [dispatch]);
+
 
     const inputHandler = (e: ChangeEvent<HTMLInputElement>)=> {
         const text = e.target.value;
@@ -236,6 +278,14 @@ export const Entities: FC = () => {
         setDisplayStyle(true);
     }
 
+    const [wrapperRef, dropdownOpen, toggleDropdown] = useDropdown();
+
+    const menuHandler = () => {
+        toggleDropdown();
+    }
+
+    const [word, setWord] = useState('Followed');
+
     return(
         <EntitiesWrapper>
             <div className="contentEntities">
@@ -256,22 +306,24 @@ export const Entities: FC = () => {
                 <div className="topBar">
                     <div className="leftSiteBar">
                     <div className="expandedSelector">
-                        <p>All</p>
+                        <button>All</button>
                     </div>
-                    <div>
-                        <p>...</p>
+                    <div className="expandedSelector">
+                        <button>...</button>
                     </div>
-                    <div>
-                        <p>Sort</p>
+                    <div className="expandedSelector">
+                        <button> <img src="./media/icons/sort.png" alt=""></img> Sort</button>
                     </div>
-                    <div>
-                        <p>Filters</p>
+                    <div className="expandedSelector">
+                        <button> <img src="./media/icons/filter.png" alt=""></img> Filters</button>
                     </div>
-                    <div>
-                        <p>Resize</p>
+                    <div className="expandedSelector">
+                        <Link className="link" to={type}>
+                            <button> <img src="./media/icons/resize.png" alt=""></img> Resize</button>
+                        </Link>
                     </div>
-                    <div>
-                        <p>Share</p>
+                    <div className="expandedSelector">
+                        <button> <img src="./media/icons/share.png" alt=""></img> Share</button>
                     </div>
                     </div>
 
@@ -279,8 +331,13 @@ export const Entities: FC = () => {
                         <div>
                             <input type="text" placeholder="Search..." value={inputText} onChange={inputHandler}></input>
                         </div>
-                        <div className="expandedSelector">
+                        <div id="followedDiv" className="expandedSelector" onClick={menuHandler}>
                             <p>Followed</p>
+
+                            {dropdownOpen &&
+                                <ExpandedMenuEntities></ExpandedMenuEntities>
+                            }
+                            <img src="./media/icons/arrow-down.svg" alt=""></img>
                         </div>
 
                     </div>

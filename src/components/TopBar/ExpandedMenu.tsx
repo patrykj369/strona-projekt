@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getImg} from '../../actions/imagesActions';
 import { IImageReducer } from '../../reducers/imageReducers';
 
+
+
 type GetImg = ReturnType<typeof getImg>
 type GetUsers = ReturnType<typeof getUsers>
 

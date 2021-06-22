@@ -10,6 +10,9 @@ import { ICommentsReducer } from '../../reducers/commentsReducers';
 import { getComments } from '../../actions/commentsActions';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { ExpandedMenuResume } from './ExpandedMenuResume';
+import useDropdown from 'react-dropdown-hook';
+
 type GetComments = ReturnType<typeof getComments>
 
 const WrapperResumeWork = styled(Wrapper)`
@@ -177,6 +180,14 @@ export const ResumeWork: FC<props> = ({filterBar}) => {
         }
     }
 
+    const [wrapperRef, dropdownOpen, toggleDropdown] = useDropdown();
+
+    const menuHandler = () => {
+        toggleDropdown();
+    }
+
+    const [word, setWord] = useState('Followed');
+
     const FilterBar = styled.div`
 
         width: 860px;
@@ -298,8 +309,12 @@ export const ResumeWork: FC<props> = ({filterBar}) => {
                 <input type="text" placeholder="Filter by title..." value={inputText} onChange={inputHandler}></input>
                 <img src="./media/icons/search.svg" alt="" className="searchIcon"></img>
             </div>
-            <div className="follow">
-                <p>Followed</p>
+            <div className="follow" onClick={menuHandler}>
+                <p>{word}</p>
+                {dropdownOpen &&
+                    <ExpandedMenuResume></ExpandedMenuResume>
+                }
+
                 <img src="./media/icons/arrow-down.svg" alt=""></img>
             </div>
                 {inputText === "" ? currentPosts.map((us: any) =>{

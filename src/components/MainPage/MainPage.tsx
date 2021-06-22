@@ -18,10 +18,10 @@ import {
     Redirect,
     //Link
   } from "react-router-dom";
+
 import { Profile } from '../Profile/Profile';
 // import { useDispatch } from 'react-redux';
 // import { getUsers } from '../../actions/usersActions';
-
 
 // type GetUsers = ReturnType<typeof getUsers>
 // type GetData = ReturnType<typeof getSomeData>
@@ -54,11 +54,17 @@ const Content = styled.div`
         }
     }
 
+    .entitiesFull{
+        margin-top: -1000px;
+        margin-left: -150px;
+    }
+
 `;
 
 const ResumeWork2 = styled(ResumeWork)`
 
 `;
+
 
 const MainPage: FC = () => {
 
@@ -76,7 +82,12 @@ const MainPage: FC = () => {
                     </Route>
                     <Route path="/entities">
                         <LeftMenu/>
-                        <Entities/>
+                        <Entities type="/entitiesFull"/>
+                    </Route>
+                    <Route path="/entitiesFull">
+                        <div className="entitiesFull">
+                            <Entities type="/entities"/>
+                        </div>
                     </Route>
                     <Route path="/administration">
                         <div>To są administration</div>
