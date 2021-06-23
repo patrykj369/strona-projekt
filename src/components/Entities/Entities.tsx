@@ -131,6 +131,11 @@ export const Entities: FC<props> = ({type}) => {
             div{
                 margin: 10px 10px 10px 0;
             }
+
+            input{
+                height: 24px;
+                border: none;
+            }
         }
     }
 
@@ -188,6 +193,85 @@ export const Entities: FC<props> = ({type}) => {
             margin-left: 2px;
         }
     }
+
+    .filters{
+        display: none;
+        margin-top: 10px;
+        background-color: ${Colors.white};
+        padding: 5px;
+        h1{
+            margin-top: 10px;
+            color: ${Colors.text_color};
+            font-size: ${fontSize[14]};
+            margin-bottom: 10px;
+        }
+
+        .addFilter{
+            color: ${Colors.navy_blue};
+            button{
+                height: 24px;
+                border: none;
+                background: transparent;
+                img{
+                    height: 12px;
+                }
+                margin-right: 10px;
+            }
+
+            button:hover{
+                background-color: ${Colors.hover_color};
+            }
+
+            select{
+                height: 24px;
+                top: -2px;
+                border: none;
+                background-color: transparent;
+            }
+        }
+
+        .singleFilter{
+            margin-bottom: 10px;
+            button{
+                height: 24px;
+                border: none;
+                background: transparent;
+                img{
+                    height: 12px;
+                }
+                margin-right: 10px;
+            }
+
+            button:hover{
+                background-color: ${Colors.hover_color};
+            }
+
+            select{
+                height: 24px;
+                top: -2px;
+                border: none;
+                background-color: transparent;
+                margin-right: 10px;
+            }
+
+            input{
+                height: 24px;
+                padding: 4px;
+                top: -2px;
+                margin-right: 10px;
+                border: none;
+                border-radius: 4px;
+                background-color: ${Colors.hover_color};
+            }
+
+            p{
+                display: inline-block;
+                font-size: ${fontSize[14]};
+                margin-right: 10px;
+            }
+        }
+    }
+
 `;
 
 const EntitiesCard = styled.div`
@@ -238,6 +322,12 @@ const EntitiesCard = styled.div`
     const [displayStyle, setDisplayStyle] = useState<boolean>(true);
 
     const [sorting, setSorting] = useState<number>(1);
+
+    let filter: boolean = true;
+    let filterID: number = 1;
+    let filter2: number = 1;
+
+    const [displayFilters, setDisplayFilters] = useState<boolean>(true);
 
     const dispatch = useDispatch();
 
@@ -332,6 +422,161 @@ const EntitiesCard = styled.div`
         }
     }
 
+    const addFilter = () =>{
+        const parentDiv =  document.getElementById("activeFiltersID");
+
+        //tworzenie elementow
+        const singleFilterDiv = document.createElement("div");
+        const buttonX = document.createElement("button");
+        const pText = document.createElement("p");
+        const firstSelect = document.createElement("select");
+        const secondSelect = document.createElement("select");
+
+        const selectCompany = document.createElement("option");
+        const selectStatus = document.createElement("option");
+
+        const selectContains = document.createElement("option");
+        const selectIs = document.createElement("option");
+        const selectEnds = document.createElement("option");
+
+
+
+        const inp1 = document.createElement("input");
+        
+
+        //uzupelnianie danych elementow
+        singleFilterDiv.className = "singleFilter";
+        singleFilterDiv.id = "singleFilterID_" + filterID.toString();
+
+        secondSelect.id = "secondSelectID_" + filterID.toString();
+
+        buttonX.id = "singleFilterBtnID_" + filterID.toString();
+        buttonX.onclick = (event: any) => {
+            const btnID = (event.target.id).split("singleFilterBtnID_");
+            const divID = "singleFilterID_" + btnID[1];
+            const getDiv = document.getElementById(divID);
+            getDiv?.remove();
+        } 
+        filterID = filterID+1;
+        buttonX.innerHTML = "X";
+        if(filter){
+            pText.innerHTML = "Where";
+            
+        }else{
+            pText.innerHTML = "And";
+        }
+        
+
+        selectCompany.innerHTML = "Company";
+        selectStatus.innerHTML = "Status";
+
+        selectContains.innerHTML = "Contains";
+        selectIs.innerHTML = "Is";
+        selectEnds.innerHTML = "Ends before";
+
+        
+        firstSelect.options.add(selectCompany);
+        firstSelect.options.add(selectStatus);
+
+        secondSelect.options.add(selectContains);
+        secondSelect.options.add(selectIs);
+        secondSelect.options.add(selectEnds);
+        secondSelect.onclick= (event: any) => {
+            addSecondFilter(event);
+        };
+
+        inp1.type = "text";
+        inp1.placeholder="Type...";
+
+        
+
+    
+
+        singleFilterDiv.appendChild(buttonX);
+        singleFilterDiv.appendChild(pText);
+        singleFilterDiv.appendChild(firstSelect);
+        singleFilterDiv.appendChild(secondSelect);
+        singleFilterDiv.appendChild(inp1);
+
+        if(parentDiv){
+            parentDiv.appendChild(singleFilterDiv);
+        }
+        
+        
+        
+
+    }
+
+    const changeFilter = (event: any) => {
+        if(event.target.value === "And"){
+            filter = false;
+        }else{
+            filter = true;
+        }
+    }
+
+    const addSecondFilter = (event: any) => {
+        const btnID = (event.target.id).split("secondSelectID_");
+        const divID = "singleFilterID_" + btnID[1];
+        const getDiv = document.getElementById(divID);
+
+        const thirdSelect = document.createElement("select");
+        thirdSelect.id = "thirdSelectID_" + btnID[1];
+
+        const selectIn = document.createElement("option");
+        const selectNotIn = document.createElement("option");
+
+        selectIn.innerHTML = "In";
+        selectNotIn.innerHTML = "Not in";
+
+        thirdSelect.options.add(selectIn);
+        thirdSelect.options.add(selectNotIn);
+
+        const inp2 = document.createElement("input");
+        inp2.type = "text";
+        inp2.placeholder="Entity...";
+
+        if(event.target.value === "Is"){
+            if(filter2 === 2){
+                
+            }else{
+                filter2 = 2;
+                getDiv?.appendChild(thirdSelect);
+                getDiv?.appendChild(inp2);
+            }
+            
+            
+        }else if(event.target.value === "Ends before"){
+            filter2 = 3;
+        }else{
+            filter2 = 1;
+        }
+    }
+
+    const displayFiltersFn = () => {
+
+        // if(displayFilters){
+        //     setDisplayFilters(false);
+        // }else{
+        //     setDisplayFilters(true);
+        // }
+
+        const x = document.getElementById("filtersID");
+        if(displayFilters){
+            
+            if(x != null){
+                x.style.display = "none";
+            }
+        }else{
+
+            if(x != null){
+                x.style.display = "inline-block";
+            }
+        }
+        
+        
+    }
+
     return(
         <EntitiesWrapper>
             <div className="contentEntities">
@@ -361,7 +606,7 @@ const EntitiesCard = styled.div`
                             <button onClick={changeSort}> <img src="./media/icons/sort.png" alt=""></img> Sort</button>
                         </div>
                         <div className="expandedSelector">
-                            <button> <img src="./media/icons/filter.png" alt=""></img> Filters</button>
+                            <button onClick={displayFiltersFn}> <img src="./media/icons/filter.png" alt=""></img> Filters</button>
                         </div>
                         <div className="expandedSelector">
                             <Link className="link" to={type}>
@@ -392,12 +637,19 @@ const EntitiesCard = styled.div`
 
                 {/* tutaj dodac filtry */}
 
-                <div className="filters">
-                    <div className="activeFilters">
-
+                <div className="filters" id="filtersID">
+                    <h1>Rows are filtered by the following conditions starting from the top</h1>
+                    <div className="activeFilters" id="activeFiltersID">
+                        <div className="singleFilter">
+                           
+                        </div>
                     </div>
                     <div className="addFilter">
-
+                        <button onClick={addFilter}><img src="./media/icons/plus.svg" alt=""></img> Add filter</button>
+                        <select onChange={(event: any) => changeFilter(event)} >
+                            <option>Where</option>
+                            <option>And</option>
+                        </select>
                     </div>
                 </div>
 
