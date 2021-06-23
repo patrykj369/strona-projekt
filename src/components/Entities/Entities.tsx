@@ -28,6 +28,19 @@ interface props{
 
 export const Entities: FC<props> = ({type}) => {
 
+    const [displayStyle, setDisplayStyle] = useState<boolean>(true);
+
+    
+
+    const [sorting, setSorting] = useState<number>(1);
+
+    let filter: boolean = true;
+    let filterID: number = 1;
+    let filter2: number = 1;
+
+    const [displayFilters, setDisplayFilters] = useState<boolean>(true);
+    const [displayStyleCSS, setDisplayStyleCSS] = useState("none");
+
     const EntitiesWrapper = styled(Wrapper)`
     position: absolute;
     padding: 0;
@@ -195,7 +208,7 @@ export const Entities: FC<props> = ({type}) => {
     }
 
     .filters{
-        display: none;
+        display: ${displayStyleCSS};
         margin-top: 10px;
         background-color: ${Colors.white};
         padding: 5px;
@@ -318,16 +331,6 @@ const EntitiesCard = styled.div`
     const {imageList} = useSelector<IState, IImageReducer>(state =>({
         ...state.photos
     }))
-
-    const [displayStyle, setDisplayStyle] = useState<boolean>(true);
-
-    const [sorting, setSorting] = useState<number>(1);
-
-    let filter: boolean = true;
-    let filterID: number = 1;
-    let filter2: number = 1;
-
-    const [displayFilters, setDisplayFilters] = useState<boolean>(true);
 
     const dispatch = useDispatch();
 
@@ -555,24 +558,26 @@ const EntitiesCard = styled.div`
 
     const displayFiltersFn = () => {
 
-        // if(displayFilters){
-        //     setDisplayFilters(false);
-        // }else{
-        //     setDisplayFilters(true);
-        // }
-
-        const x = document.getElementById("filtersID");
         if(displayFilters){
-            
-            if(x != null){
-                x.style.display = "none";
-            }
+            setDisplayFilters(false);
+            setDisplayStyleCSS("none");
         }else{
-
-            if(x != null){
-                x.style.display = "inline-block";
-            }
+            setDisplayFilters(true);
+            setDisplayStyleCSS("block");
         }
+
+        // const x = document.getElementById("filtersID");
+        // if(displayFilters){
+            
+        //     if(x != null){
+        //         x.style.display = "none";
+        //     }
+        // }else{
+
+        //     if(x != null){
+        //         x.style.display = "inline-block";
+        //     }
+        // }
         
         
     }
