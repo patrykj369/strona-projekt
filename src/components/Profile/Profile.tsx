@@ -854,6 +854,10 @@ export const Profile: FC = () => {
 
     const deleteInput = (event: any) => {
         console.log(event.target.id);
+        const id = (event.target.id).replace("btnExpertiseID_", "");
+        const divID = "divExpertiseID_"+id;
+        const divFromSite = document.getElementById(divID);
+        divFromSite?.remove();
     }
 
 
