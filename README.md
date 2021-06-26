@@ -1,6 +1,13 @@
-# Getting Started with Create React App
+# Projekt zaliczeniowy z przedmiotu "Frameworki front-endowe".
+# Final project on the subject "Frontend frameworks".
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[PL]
+Projekt napisany na potrzeby zaliczenia zajęć z przedmiotu "Frameworki front-endowe".
+Projekt polegał na utworzeniu w REACT strony internetowej z użyciem TypeScripta, API, Reduxa, Styled-components, SCSSa.
+
+[ENG]
+Project written for the purpose of completing classes in the subject "Frontend frameworks".
+The project consisted in creating a website in REACT using TypeScript, API, Redux, Styled-components, SCSS.
 
 ## Available Scripts
 
