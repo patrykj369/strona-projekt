@@ -7,7 +7,7 @@ Projekt polegał na utworzeniu w REACT strony internetowej z użyciem TypeScript
 
 [ENG]
 Project written for the purpose of completing classes in the subject "Frontend frameworks".
-The project consisted in creating a website in REACT using TypeScript, API, Redux, Styled-components, SCSS.
+The project consisted in creating a website in REACT using TypeScript, API, Redux, styled-components, SCSS.
 
 ## Available Scripts
 
