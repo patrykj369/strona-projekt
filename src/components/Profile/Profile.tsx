@@ -823,6 +823,24 @@ export const Profile: FC = () => {
                 btnXtype = "btnSpecialitiesID_";
                 newArr = specialities;
             break;
+            case 'tagAdmissionID':
+                idName = "divAdmissionID_"
+                type = "admission";
+                btnXtype = "btnAdmissionID_";
+                newArr = admission;
+            break;
+            case 'tagCountiesID':
+                idName = "divCountiesID_"
+                type = "counties";
+                btnXtype = "btnCountiesID_";
+                newArr = counties;
+            break;
+            case 'tagServicesID':
+                idName = "divServicesID_"
+                type = "services";
+                btnXtype = "btnServicesID_";
+                newArr = services;
+            break;
         }
         const divElem = document.getElementById(name);
         const newDiv = document.createElement("div");
@@ -889,6 +907,21 @@ export const Profile: FC = () => {
                 idEvent = "btnSpecialitiesID_";
                 newArr = specialities;
             break;
+            case 'divAdmissionID_':
+                idName = "divAdmissionID_";
+                idEvent = "btnAdmissionID_";
+                newArr = admission;
+            break;
+            case 'divCountiesID_':
+                idName = "divCountiesID_";
+                idEvent = "btnCountiesID_";
+                newArr = counties;
+            break;
+            case 'divServicesID_':
+                idName = "divServicesID_";
+                idEvent = "btnServicesID_";
+                newArr = counties;
+            break;
         }
 
         const id = (event.target.id).replace(idEvent, "");
@@ -913,6 +946,15 @@ export const Profile: FC = () => {
             break;
             case 'tagSpecialitiesID':
                 setSpecialities(newArr);
+            break;
+            case 'tagAdmissionID':
+                setAdmission(newArr);
+            break;
+            case 'tagCountiesID':
+                setCounties(newArr);
+            break;
+            case 'tagServicesID':
+                setServices(newArr);
             break;
         }
     }
@@ -1075,7 +1117,14 @@ export const Profile: FC = () => {
                 <div className="tagExpertise">
                     <h1>Admission to practice law</h1>
 
-                    <div className="tagExpertiseContent">
+                    <div className="tagExpertiseContent" id="tagAdmissionID">
+                        {
+                            turnEditionContent !== true
+                            ?
+                            null
+                            :
+                            <button className="btnAddInput" onClick={() => addInput("tagAdmissionID")}>Add</button>
+                        }
 
                         {
                             turnEditionContent !== true
@@ -1090,7 +1139,10 @@ export const Profile: FC = () => {
                             :
                             admission.map((x:any) => {
                                     return(
-                                        <input key={"inputAdmission" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "admission", x.id)}/>
+                                        <div id={"divAdmissionID_" + x.id} className="divInput">
+                                            <input key={"inputAdmission" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "admission", x.id)}/>
+                                            <button id={"btnAdmissionID_" + x.id} onClick={(ev: any) => deleteInput(ev, "divAdmissionID_")}>X</button>
+                                        </div>
                                     );
                                 })
 
@@ -1101,8 +1153,14 @@ export const Profile: FC = () => {
                 <div className="tagExpertise">
                     <h1>Counties</h1>
 
-                    <div className="tagExpertiseContent">
-
+                    <div className="tagExpertiseContent" id="tagCountiesID">
+                        {
+                            turnEditionContent !== true
+                            ?
+                            null
+                            :
+                            <button className="btnAddInput" onClick={() => addInput("tagCountiesID")}>Add</button>
+                        }
                         {
                             turnEditionContent !== true
                             ?
@@ -1116,7 +1174,10 @@ export const Profile: FC = () => {
                             :
                                 counties.map((x:any) => {
                                     return(
-                                        <input key={"inputCounties" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "counties", x.id)}/>
+                                        <div id={"divCountiesID_" + x.id} className="divInput">
+                                            <input key={"inputCounties" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "counties", x.id)}/>
+                                            <button id={"btnCountiesID_" + x.id} onClick={(ev: any) => deleteInput(ev, "divCountiesID_")}>X</button>
+                                        </div>
                                     );
                                 })
 
@@ -1201,7 +1262,14 @@ export const Profile: FC = () => {
 
                 <h1 className="servicesHeader">Services {"&"} projects</h1>
 
-                <div className="servicesPanel">
+                <div className="servicesPanel" id="tagServicesID">
+                    {
+                            turnEditionContent !== true
+                            ?
+                            null
+                            :
+                            <button className="btnAddInput" onClick={() => addInput("tagServicesID")}>Add</button>
+                    }
                     {
                             turnEditionContent !== true
                             ?
@@ -1215,7 +1283,10 @@ export const Profile: FC = () => {
                             :
                                 services.map((x:any) => {
                                     return(
-                                        <input key={"inputServices" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "services", x.id)}/>
+                                        <div id={"divServicesID_" + x.id} className="divInput">
+                                            <input key={"inputServices" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "services", x.id)}/>
+                                            <button id={"btnServicesID_" + x.id} onClick={(ev: any) => deleteInput(ev, "divServicesID_")}>X</button>
+                                        </div>
                                     );
                                 })
 

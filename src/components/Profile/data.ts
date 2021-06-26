@@ -85,9 +85,9 @@ export const initialAmount = [
         id: 3, year: '2017', costCenter: 'CS 47', totalAmount: "10 500$", lawFirm: "Linklaters",
     },
     {
-        id: 4, year: '', costCenter: 'CS 153', totalAmount: "18 500$", lawFirm: "Linklaters",
+        id: 4, year: '2016', costCenter: 'CS 153', totalAmount: "18 500$", lawFirm: "Linklaters",
     },
     {
-        id: 5, year: '', costCenter: 'CS 32', totalAmount: "15 500$", lawFirm: "Linklaters",
+        id: 5, year: '2015', costCenter: 'CS 32', totalAmount: "15 500$", lawFirm: "Linklaters",
     }
 ];
