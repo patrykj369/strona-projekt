@@ -1,5 +1,5 @@
-# Projekt zaliczeniowy z przedmiotu "Frameworki front-endowe".
-# Final project on the subject "Frontend frameworks".
+## Projekt zaliczeniowy z przedmiotu "Frameworki front-endowe".
+## Final project on the subject "Frontend frameworks".
 
 [PL]
 Projekt napisany na potrzeby zaliczenia zajęć z przedmiotu "Frameworki front-endowe".
