@@ -28,11 +28,9 @@ type GetImg = ReturnType<typeof getImg>
 type GetUsers = ReturnType<typeof getUsers>
 
 const ProfileWrapper = styled.div`
-    //position: absolute;
     font-family: sans-serif;
     margin-top: 20px;
 
-    //margin-left: 320px;
     width: 870px;
     min-height: 1660px;
     background-color: ${Colors.white};
@@ -165,8 +163,6 @@ const ProfileTopBarInfo = styled.div`
     `;
 
     const TagContent = styled.div`
-        //background-color: green;
-        //width: 870px;
         margin-top: 20px;
         padding: 10px;
 
@@ -277,7 +273,6 @@ const ProfileTopBarInfo = styled.div`
             margin-bottom: 10px;
             margin-top: 5px;
         }
-
 
         .attachmentPanel{
             display: flex;
@@ -445,7 +440,6 @@ const ProfileTopBarInfo = styled.div`
 
 export const Profile: FC = () => {
 
-
     const [company, setCompany] = useState<string>('');
     const [name, setName] = useState<string>('');
     const [city, setCity] = useState('');
@@ -501,7 +495,6 @@ export const Profile: FC = () => {
         else if(ev === "btnOnEditionContent" || ev === "btnOnEditionContentImg")
             turnEditionContent ? setTurnEditionContent(false) : setTurnEditionContent(true);
 
-            //removeInpt();
     }
 
     const inputHandler = (event: ChangeEvent<HTMLInputElement>, type:string)=> {
@@ -818,25 +811,25 @@ export const Profile: FC = () => {
                 newArr = expertise;
             break;
             case 'tagSpecialitiesID':
-                idName = "divSpecialitiesID_"
+                idName = "divSpecialitiesID_";
                 type = "specialities";
                 btnXtype = "btnSpecialitiesID_";
                 newArr = specialities;
             break;
             case 'tagAdmissionID':
-                idName = "divAdmissionID_"
+                idName = "divAdmissionID_";
                 type = "admission";
                 btnXtype = "btnAdmissionID_";
                 newArr = admission;
             break;
             case 'tagCountiesID':
-                idName = "divCountiesID_"
+                idName = "divCountiesID_";
                 type = "counties";
                 btnXtype = "btnCountiesID_";
                 newArr = counties;
             break;
             case 'tagServicesID':
-                idName = "divServicesID_"
+                idName = "divServicesID_";
                 type = "services";
                 btnXtype = "btnServicesID_";
                 newArr = services;
