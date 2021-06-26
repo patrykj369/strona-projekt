@@ -805,9 +805,28 @@ export const Profile: FC = () => {
     }
 
     const addInput = (name: string) => {
+        let idName:string = "";
+        let type = "";
+        let btnXtype = ""
+        let newArr = expertise;
+
+        switch(name){
+            case 'tagExpertiseContentID':
+                idName = "divExpertiseID_";
+                type = "expertise";
+                btnXtype = "btnExpertiseID_";
+                newArr = expertise;
+            break;
+            case 'tagSpecialitiesID':
+                idName = "divSpecialitiesID_"
+                type = "specialities";
+                btnXtype = "btnSpecialitiesID_";
+                newArr = specialities;
+            break;
+        }
         const divElem = document.getElementById(name);
         const newDiv = document.createElement("div");
-        newDiv.id = "divExpertiseID_" + (divElem!.childElementCount);
+        newDiv.id = idName + (divElem!.childElementCount);
 
         newDiv.classList.add("divInputToDelete");
         newDiv.classList.add("divInput");
@@ -815,16 +834,18 @@ export const Profile: FC = () => {
         const inputCreate = document.createElement("input");
         inputCreate.type = "text";
         //inputCreate.id ="inputToRemove";
+
         inputCreate.onchange = function (event: any){
             const x = divElem!.childElementCount;
-            inputHandlerArray(event, "expertise", x)
+            inputHandlerArray(event, type, x)
         }
         inputCreate.value = "";
 
         const btnX = document.createElement("button");
-        btnX.id = "btnExpertiseID_" + (divElem!.childElementCount);
+
+        btnX.id = btnXtype + (divElem!.childElementCount);
         btnX.onclick = function(event: any){
-            deleteInput(event)
+            deleteInput(event, idName)
         }
 
         btnX.innerHTML = "X";
@@ -836,28 +857,64 @@ export const Profile: FC = () => {
         const data = {
                     id: ((divElem!.childElementCount)), value: '',
                 }
-        const newArr = expertise;
+
         newArr.push(data);
 
     }
 
     const removeInpt = () => {
-        const inputRemove = document.querySelector(".divInputToDelete");
+        const inputRemove = document.querySelectorAll(".divInputToDelete");
         if(inputRemove){
-            console.log(inputRemove);
-            //inputRemove.forEach((x: any) => {
-                inputRemove.remove();
-            //})
-
+            inputRemove.forEach((x: any) => {
+                x.remove();
+            })
         }
     }
 
-    const deleteInput = (event: any) => {
-        console.log(event.target.id);
-        const id = (event.target.id).replace("btnExpertiseID_", "");
-        const divID = "divExpertiseID_"+id;
+    const deleteInput = (event: any, name: string) => {
+        //console.log(event.target.id);
+
+        let idName:string = "";
+        let idEvent:string = "";
+        let newArr = expertise;
+
+        switch(name){
+            case 'divExpertiseID_':
+                idName = "divExpertiseID_";
+                idEvent = "btnExpertiseID_";
+                newArr = expertise;
+            break;
+            case 'divSpecialitiesID_':
+                idName = "divSpecialitiesID_";
+                idEvent = "btnSpecialitiesID_";
+                newArr = specialities;
+            break;
+        }
+
+        const id = (event.target.id).replace(idEvent, "");
+        const divID = idName+id;
+        console.log(name);
         const divFromSite = document.getElementById(divID);
         divFromSite?.remove();
+
+        const idNumber:number = parseInt(id)+1;
+
+        const newArr2:any = [];
+        //console.log(id);
+        newArr.forEach((x: any)=>{
+            if(x.id !== idNumber){
+                newArr2.push(x);
+            }
+        })
+
+        switch(name){
+            case 'tagExpertiseContentID':
+                setExpertise(newArr);
+            break;
+            case 'tagSpecialitiesID':
+                setSpecialities(newArr);
+            break;
+        }
     }
 
 
@@ -966,11 +1023,10 @@ export const Profile: FC = () => {
                             :
                                 expertise.map((x:any) => {
                                     removeInpt();
-                                    console.log(expertise);
                                     return(
-                                        <div id={"divExpertiseID_" + (x.id)} className="divInput">
+                                        <div id={"divExpertiseID_" + x.id} className="divInput">
                                             <input  key={"inputExpertise" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "expertise", x.id)}/>
-                                            <button id={"btnExpertiseID_" + (x.id)} onClick={(ev: any) => deleteInput(ev)}>X</button>
+                                            <button id={"btnExpertiseID_" + x.id} onClick={(ev: any) => deleteInput(ev, "divExpertiseID_")}>X</button>
                                         </div>
                                     );
                                 })
@@ -984,8 +1040,14 @@ export const Profile: FC = () => {
                 <div className="tagExpertise">
                     <h1>Specialties</h1>
 
-                    <div className="tagExpertiseContent">
-
+                    <div className="tagExpertiseContent" id="tagSpecialitiesID">
+                        {
+                            turnEditionContent !== true
+                            ?
+                            null
+                            :
+                            <button className="btnAddInput" onClick={() => addInput("tagSpecialitiesID")}>Add</button>
+                        }
                         {
                             turnEditionContent !== true
                             ?
@@ -999,7 +1061,10 @@ export const Profile: FC = () => {
                             :
                                 specialities.map((x:any) => {
                                     return(
-                                        <input key={"inputSpecialitie" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "specialities", x.id)}/>
+                                        <div id={"divSpecialitiesID_" + x.id} className="divInput">
+                                            <input key={"inputSpecialities" + x.id} value={x.value} type="text" onChange={(event: ChangeEvent<HTMLInputElement>) => inputHandlerArray(event, "specialities", x.id)}/>
+                                            <button id={"btnSpecialitiesID_" + x.id} onClick={(ev: any) => deleteInput(ev, "divSpecialitiesID_")}>X</button>
+                                        </div>
                                     );
                                 })
 

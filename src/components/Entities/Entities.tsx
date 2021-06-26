@@ -583,8 +583,8 @@ const EntitiesCard = styled.div`
     }
 
     return(
-        <EntitiesWrapper>
-            <div className="contentEntities">
+        <EntitiesWrapper id="entitiesWrapper">
+            <div className="contentEntities" >
                 <div className="firstLine">
                 <h2>Entities <img src="./media/icons/cog.svg" alt=""></img></h2>
                 <div className="mosaicDiv">
