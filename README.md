@@ -9,6 +9,15 @@ Projekt polegał na utworzeniu w REACT strony internetowej z użyciem TypeScript
 Project written for the purpose of completing classes in the subject "Frontend frameworks".
 The project consisted in creating a website in REACT using TypeScript, API, Redux, styled-components, SCSS.
 
+### Desktop design in my implementation: 
+![Main Page](./public/photos/main_page.PNG)
+
+![Entities](./public/photos/entities.PNG)
+
+![Profile](./public/photos/profile.PNG)
+
+![Workspaces](./public/photos/workspaces.PNG)
+
 ## Available Scripts
 
 In the project directory, you can run:
