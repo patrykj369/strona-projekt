@@ -1,6 +1,9 @@
 ## Projekt zaliczeniowy z przedmiotu "Frameworki front-endowe".
 ## Final project on the subject "Frontend frameworks".
 
+[LIVE]
+https://patrykj369.github.io/react_app/
+
 [PL]
 Projekt napisany na potrzeby zaliczenia zajęć z przedmiotu "Frameworki front-endowe".
 Projekt polegał na utworzeniu w REACT strony internetowej z użyciem TypeScripta, API, Reduxa, Styled-components, SCSSa.
