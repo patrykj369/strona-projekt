@@ -30,7 +30,7 @@ export const Entities: FC<props> = ({type}) => {
 
     const [displayStyle, setDisplayStyle] = useState<boolean>(true);
 
-    
+
 
     const [sorting, setSorting] = useState<number>(1);
 
@@ -445,7 +445,7 @@ const EntitiesCard = styled.div`
 
 
         const inp1 = document.createElement("input");
-        
+
 
         //uzupelnianie danych elementow
         singleFilterDiv.className = "singleFilter";
@@ -459,16 +459,16 @@ const EntitiesCard = styled.div`
             const divID = "singleFilterID_" + btnID[1];
             const getDiv = document.getElementById(divID);
             getDiv?.remove();
-        } 
+        }
         filterID = filterID+1;
         buttonX.innerHTML = "X";
         if(filter){
             pText.innerHTML = "Where";
-            
+
         }else{
             pText.innerHTML = "And";
         }
-        
+
 
         selectCompany.innerHTML = "Company";
         selectStatus.innerHTML = "Status";
@@ -477,7 +477,7 @@ const EntitiesCard = styled.div`
         selectIs.innerHTML = "Is";
         selectEnds.innerHTML = "Ends before";
 
-        
+
         firstSelect.options.add(selectCompany);
         firstSelect.options.add(selectStatus);
 
@@ -491,9 +491,9 @@ const EntitiesCard = styled.div`
         inp1.type = "text";
         inp1.placeholder="Type...";
 
-        
 
-    
+
+
 
         singleFilterDiv.appendChild(buttonX);
         singleFilterDiv.appendChild(pText);
@@ -504,9 +504,9 @@ const EntitiesCard = styled.div`
         if(parentDiv){
             parentDiv.appendChild(singleFilterDiv);
         }
-        
-        
-        
+
+
+
 
     }
 
@@ -541,14 +541,14 @@ const EntitiesCard = styled.div`
 
         if(event.target.value === "Is"){
             if(filter2 === 2){
-                
+
             }else{
                 filter2 = 2;
                 getDiv?.appendChild(thirdSelect);
                 getDiv?.appendChild(inp2);
             }
-            
-            
+
+
         }else if(event.target.value === "Ends before"){
             filter2 = 3;
         }else{
@@ -568,7 +568,7 @@ const EntitiesCard = styled.div`
 
         // const x = document.getElementById("filtersID");
         // if(displayFilters){
-            
+
         //     if(x != null){
         //         x.style.display = "none";
         //     }
@@ -578,8 +578,6 @@ const EntitiesCard = styled.div`
         //         x.style.display = "inline-block";
         //     }
         // }
-        
-        
     }
 
     return(
@@ -640,13 +638,11 @@ const EntitiesCard = styled.div`
 
                 </div>
 
-                {/* tutaj dodac filtry */}
-
                 <div className="filters" id="filtersID">
                     <h1>Rows are filtered by the following conditions starting from the top</h1>
                     <div className="activeFilters" id="activeFiltersID">
                         <div className="singleFilter">
-                           
+
                         </div>
                     </div>
                     <div className="addFilter">
